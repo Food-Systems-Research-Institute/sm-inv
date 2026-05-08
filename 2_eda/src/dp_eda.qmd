@@ -1,0 +1,566 @@
+---
+title: "Exploratory Data Analysis"
+format:
+  html:
+    fig-dpi: 200
+    code-fold: true
+editor_options: 
+  chunk_output_type: console
+warnings: false
+execute:
+  cache: false
+---
+
+```{r}
+#| label: prep
+#| cache: false
+#| output: false
+options(scipen = 999)
+
+pacman::p_load(
+  dplyr,
+  htmltools,
+  stringr,
+  tidyr,
+  purrr,
+  broom,
+  skimr,
+  ggplot2,
+  ggpubr,
+  tibble,
+  Hmisc,
+  reshape2,
+  viridisLite,
+  conflicted,
+  readr,
+  reactable,
+  naniar,
+  stringdist
+)
+
+# GitHub packages
+pacman::p_load_current_gh(
+  'Food-Systems-Research-Institute/SMdata',
+  'Food-Systems-Research-Institute/SMdocs'
+)
+
+conflicts_prefer(
+  dplyr::select(),
+  dplyr::filter(),
+  dplyr::pull(),
+  dplyr::summarize(),
+  stats::lag(),
+  base::setdiff(),
+  .quiet = TRUE
+)
+```
+
+## Sources
+
+Check breakdowns of sources. How many metrics were provided by each source, what were the most used sources, etc.
+
+Wrangling sources: 
+
+```{r}
+#| label: source_wrangling
+#| output: false
+tab <- SMdocs::giant_table
+str(tab)
+
+# Filter down to metrics in use
+tab <- tab %>% 
+  filter( metric != 'NONE' & !is.na(variable_name) )
+str(tab)
+
+tab %>% 
+  group_by(source) %>% 
+  summarize(count = n()) %>% 
+  arrange(source)
+# Need to clean up names
+
+# String distance to consolidate sources
+mat <- stringdistmatrix(tab$source, tab$source, method = "lv")
+
+# Cluster
+hc <- hclust(as.dist(mat))
+
+# Cuttree at max edit distance
+clusters <- cutree(hc, h = 4)
+
+# Check
+tab$cluster <- clusters
+tab %>% 
+  select(source, cluster) %>% 
+  arrange(source)
+
+# This is less useful than I hoped - some sources have very different citations3
+# because they come from different branches. Let's try manually clumping
+str(tab)
+tab <- tab %>% 
+  mutate(
+    org = case_when(
+      str_detect(source, 'CDC|Disease Control') ~ 'CDC',
+      str_detect(source, 'National Agricultural Stat') ~ 'NASS',
+      str_detect(source, 'Madison|Wisconsin') ~ 'UWMadison',
+      str_detect(source, 'American Community Survey') ~ 'Census Bureau',
+      str_detect(source, 'Economic Research Service') ~ 'ERS',
+      str_detect(source, 'Forest Inventory Analysis') ~ 'USFS',
+      str_detect(source, 'Geological') ~ 'USGS',
+      str_detect(source, 'Labor Stat|BLS') ~ 'BLS',
+      str_detect(source, 'Environmental Protection') ~ 'EPA',
+      str_detect(source, 'Food and Nutrition') ~ 'Food and Nutrition',
+      str_detect(source, 'Carbon Monitoring') ~ 'National Carbon Forest Monitoring System',
+      str_detect(source, 'Bureau of Investigation') ~ 'FBI',
+      str_detect(source, 'Feeding America') ~ 'Feeding America',
+      str_detect(source, 'Drought') ~ 'USDM',
+      str_detect(source, 'Risk') ~ 'RMA',
+      str_detect(source, 'PRISM') ~ 'PRISM',
+      .default = source
+    ),
+    usda = case_when(
+      org %in% c('NASS', 'ERS', 'USFS', 'FNS', 'RMA', 'ERS') ~ TRUE,
+      .default = FALSE
+    ),
+    sector = case_when(
+      usda == TRUE | org %in% c(
+        'USDM', 
+        'EPA', 
+        'Carbon Monitoring',
+        'FBI',
+        'USGS',
+        'Census Bureau', 
+        'CDC',
+        'BLS'
+      ) ~ 'Federal',
+      org %in% c('UWMadison', 'PRISM') ~ 'Academic',
+      org %in% c('iNaturalist', 'NatureServe', 'Feeding America') ~ 'Nonprofit',
+      .default = NA
+    )
+  ) %>% 
+  select(dimension, indicator, metric, source, org, usda, sector)
+str(tab)
+```
+
+Breakdown by organization:
+
+```{r}
+#| label: orgs
+perc_usda <- round(mean(tab$usda) * 100, 2)
+perc_nass <- round(mean(tab$org == 'NASS') * 100, 2)
+nass_of_usda <- tab %>% 
+  filter(usda == TRUE) %>% 
+  {mean(.[['org']] == 'NASS') * 100} %>% 
+  round(2)
+
+tab %>% 
+  group_by(org) %>% 
+  summarize(
+    count = n(),
+    usda = any(usda == TRUE)
+  ) %>% 
+  arrange(desc(count)) %>% 
+  get_reactable()
+```
+
+`{r} perc_usda`% of metric data came from a branch of the USDA, of which `{r} nass_of_usda`% came from NASS specifically.
+
+Breakdown by organization and dimension:
+
+```{r}
+#| label: org_dimension
+tab %>% 
+  group_by(dimension, org) %>% 
+  summarize(count = n()) %>% 
+  arrange(dimension, desc(count)) %>% 
+  get_reactable()
+```
+
+Breakdown by sector:
+
+```{r}
+#| label: sector
+sector_tab <- tab %>% 
+  group_by(sector) %>% 
+  summarize(count = n()) %>% 
+  mutate(percent = round((count / sum(.[['count']])) * 100, 2)) %>% 
+  arrange(desc(count)) %>% 
+  get_reactable()
+sector_tab
+```
+
+Breakdown by sector and dimension:
+
+```{r}
+#| label: sector_dimension
+sector_tab <- tab %>% 
+  group_by(dimension, sector) %>% 
+  summarize(count = n()) %>% 
+  # mutate(percent = round((count / sum(.[['count']])) * 100, 2)) %>% 
+  arrange(dimension, desc(count)) %>% 
+  get_reactable()
+sector_tab
+```
+
+Economics and Production dimensions are both 100% federal data. 
+
+
+## Missing Data
+
+In this section, we explore the missingness of our collected data. We do not dive into metrics for which there are no data available at all in certain years; rather, we dig into the data that are available to see whether they systematically miss counties based on county characteristics. We first explore how many missing data points there are per metric, and then look by county to explore how many metrics are available for that resolution. We exclude Connecticut from these analyses because of changes to their county system that make it prohibitively difficult to compare. 
+
+### By Metric
+
+First, we calculate how many data points there should be for each metric, based on the number of counties (not including CT) and the number of years the metric covers. Then we can get determine the percentage of missing data per metric.
+
+```{r}
+#| label: mis_by_metric
+vars <- meta_vars(dp_metrics_county)
+
+# Years covered by each metric, multiplied by number of counties: 209 (not CT)
+n_counties <- 209
+
+# Get years, number of data points, total possible number of points based on 
+# years and 209 counties, then the percentage missing
+metric_cov <- map(vars, ~ {
+  var_df <- dp_metrics_county %>%
+    filter(
+      variable_name == .x,
+      str_detect(fips, '^09', negate = TRUE)
+    )
+  n_years <- var_df %>% 
+    pull(year) %>%
+    unique() %>%
+    length()
+  n_points <- nrow(var_df)
+  df <- data.frame(
+    variable_name = .x,
+    n_years = n_years, 
+    n_points = n_points
+  )
+  return(df)
+}) %>% 
+  bind_rows() %>% 
+  mutate(
+    n_possible = n_years * n_counties,
+    perc_miss = round(100 - ((n_points / n_possible) * 100), 2)
+  )
+
+# Overall numbers of missing
+(total_perc_missing <- 100 - (sum(metric_cov$n_points) / sum(metric_cov$n_possible)) * 100)
+  
+missy_metric_df <- metric_cov %>% 
+  filter(perc_miss > 5)
+missy_metrics <- missy_metric_df$variable_name
+print_missy_metrics <- paste0(missy_metrics, collapse = ', ')
+  
+get_reactable(metric_cov)
+```
+
+Across all county metrics, total percent missing was `{r} round(total_perc_missing, 2)`.
+
+The metrics with > 5% missing are: `{r} print_missy_metrics`. Now let's see in which counties they are missing data:
+
+```{r}
+#| label: missy_metrics_table
+non_ct_fips <- fips_key %>% 
+  filter(
+    str_length(fips) == 5,
+    str_detect(fips, '^09', negate = TRUE)
+  ) %>% 
+  pull(fips)
+
+missing_table <- dp_metrics_county %>% 
+  filter(
+    variable_name %in% missy_metrics,
+    str_detect(fips, '^09', negate = TRUE)
+  ) %>% 
+  group_by(variable_name, year) %>%
+  summarize(
+    fips_present = list(fips),
+    fips_missing = list(setdiff(non_ct_fips, fips_present)),
+  ) %>% 
+  select(-fips_present) %>%
+  unique() %>% 
+  mutate(
+    n_fips_missing = lengths(fips_missing)
+  )
+
+# Table
+get_reactable(
+  missing_table,
+  defaultColDef = reactable::colDef(minWidth = 100),
+  columns = list(
+    fips_missing = reactable::colDef(minWidth = 500)
+  )
+)
+```
+
+The `propInvasive` metric (proportion of invasive species based on the USFS Forest Inventory Analysis) is missing a substantial amount of data in 2000 and 2001, but it quickly subsides in the following years. Few other metrics show a substantial amount of missing data across counties.
+
+```{r}
+#| label: mcar_test
+#| include: false
+#| eval: false
+str(dp_metrics_county)
+vars
+
+# Filter to our county vars
+dat <- dp_metrics_county %>% 
+  filter(variable_name %in% vars)
+str(dat)
+
+# Get 'complete' df by each metric - not all together.
+dat <- map(vars, ~ {
+  dat %>% 
+    filter(variable_name == .x) %>% 
+    complete(fips, year)
+}) %>% 
+  bind_rows()
+str(dat)
+
+# Run mcar test within each metric, see how it va
+# naniar::mcar_test(dat)
+remove <- which(vars %in% c(
+  'lackSocialSupport', 
+  'propOpsOrganic', 
+  'propOpsPrecision'
+))
+out <- map(vars[-remove], ~ {
+  df <- dat %>% 
+    filter(variable_name == .x)
+  if (any(is.na(df$value))) {
+    df %>% 
+      pivot_wider(
+        id_cols = c(fips, year),
+        names_from = 'variable_name',
+        values_from = 'value'
+      ) %>% 
+      naniar::mcar_test()
+  }
+})
+
+out
+str(out[[1]])
+
+# Add col for missing value
+# dat <- dat %>%
+#   mutate(missing = is.na(value))
+# mod <- glm(
+#   missing ~ fips + variable_name + year,
+#   data = dat,
+#   family = binomial
+# )
+# summary(mod)
+```
+
+### By County
+
+Now we look at which counties are missing the most metrics, ranked in order for each of the top five most missing metrics.
+
+```{r}
+#| label: missed_counties
+out <- map(missy_metrics, ~ {
+  missing_table %>% 
+    filter(variable_name == .x) %>% 
+    pull(fips_missing) %>% 
+    unlist() %>% 
+    table() %>% 
+    as.data.frame() %>% 
+    setNames(c('fips', 'times_missing')) %>% 
+    arrange(desc(times_missing))
+}) %>% 
+  setNames(c(missy_metrics))
+
+# Add county names
+out <- map(out, ~ {
+  left_join(.x, select(fips_key, -state_code))
+})
+```
+
+Conservation Easement Acres:
+
+```{r}
+#| class: centered-table
+get_reactable(out$consEasementAcres, fullWidth = FALSE)
+```
+
+Proportion of Invasive Species:
+
+```{r}
+#| class: centered-table
+get_reactable(out$propInvasive)
+```
+
+Proportion of farms with precision ag:
+
+```{r}
+#| class: centered-table
+get_reactable(out$propOpsPrecision)
+```
+
+Tree Size Diversity:
+
+```{r}
+#| class: centered-table
+get_reactable(out$sizeDiversity)
+```
+
+Tree Species Diversity:
+
+```{r}
+#| class: centered-table
+get_reactable(out$treeDiversity)
+```
+
+
+### Overall
+
+Finally, let's look at the overall proportion of missing data for each metric at the county level:
+
+```{r}
+#| label: missing_data
+#| output: false
+skimr::skim(SMdocs::dp_metrics_county_wide)
+# Missing years are county areas, that's fine
+# Other missing values are because years don't match up, that's fine
+str(dp_metrics_county_wide)
+vars <- names(dp_metrics_county_wide[, 3:ncol(dp_metrics_county_wide)])
+
+out <- map_dbl(vars, ~ {
+  years <- dp_metrics_county_wide %>% 
+    drop_na(.x) %>% 
+    distinct(year) %>% 
+    pull(year)
+  df <- dp_metrics_county_wide %>% 
+    select(year, fips, all_of(.x)) %>% 
+    filter(year %in% years) %>% 
+    complete(year, fips)
+  prop_mis <- sum(is.na(df[.x])) / nrow(df)
+  return(prop_mis)
+})
+
+# Graph it
+miss <- bind_cols(vars, out) %>% 
+  setNames(c('var', 'prop_miss'))
+miss_plot <- miss %>% 
+  ggplot(aes(y = reorder(var, prop_miss), x = prop_miss)) +
+  geom_col(
+    color = 'black',
+    fill = '#154734'
+  ) +
+  labs(
+    x = 'Proportion Missing',
+    y = 'Metric'
+  ) +
+  theme_bw()
+miss_plot
+```
+
+```{r}
+#| label: plot_missing
+#| echo: false
+#| out-width: 75%
+#| fig-align: 'center'
+miss_plot
+```
+
+We can see that `plantRar` (Rarefied richness of plant observations from iNaturalist) is missing a substantial amount of data. This is because we only did these calculations in counties with at least 100 recorded observations per year. The purpose here was to avoid systematic bias toward populated counties by rarefying or downsampling the data. We are also missing a substantial number of observations from CDC surveys on social isolation and social support. 
+
+## Distributions
+
+Here we explore distributions of each metric using the latest year available for each variable. Graphs in red have a skew > 2. We use these exploratory graphs to get a sense of the data and inform our analyses. 
+
+### County Data
+
+```{r}
+#| label: metric_distributions_county
+#| fig-height: 25
+#| fig-width: 10
+#| cache: true
+# Get skews of variables
+# str(dp_metrics_county)
+dat <- dp_metrics_county %>% 
+  get_latest_year() %>% 
+  pivot_wider(
+    id_cols = fips,
+    values_from = 'value',
+    names_from = 'variable_name'
+  )
+# str(dat)
+
+skewed <- psych::describe(dat[, -1]) %>% 
+  as.data.frame() %>% 
+  mutate(across(everything(), as.numeric)) %>% 
+  tibble::rownames_to_column('variable_name') %>% 
+  dplyr::select(variable_name, skew) %>% 
+  dplyr::filter(abs(skew) > 1) %>% 
+  dplyr::pull(variable_name)
+
+plots <- map(names(dat)[-1], \(var){
+  # color based on skewness
+  if (var %in% skewed) {
+    fill <- 'red'
+    color <- 'darkred'
+  } else {
+    fill <- '#154724'
+    color <- 'black'
+  }
+  
+  # Make plot for variable
+   dat %>% 
+    select(!!sym(var)) %>% 
+    mutate(!!sym(var) := as.numeric(!!sym(var))) %>% 
+    na.omit() %>% 
+    ggplot(aes(x = !!sym(var), group = 1)) + 
+    geom_density(
+      fill = fill,
+      color = color,
+      alpha = 0.5
+    ) +
+    theme_classic() +
+    scale_x_continuous(n.breaks = 5) +
+    theme(plot.margin = unit(c(rep(0.5, 4)), 'cm'))
+}) 
+
+# Arrange them in 4 columns
+# TODO: Turn this into a package function
+n_col <- 4
+n_plots <- length(plots)
+n_rows <- ceiling(n_plots/n_col)
+ggarrange(
+  plotlist = plots,
+  ncol = n_col,
+  nrow = n_rows
+)
+```
+
+
+### State Data
+
+```{r}
+#| label: state_distributions
+#| fig-height: 10
+#| fig-width: 10
+#| cache: true
+state_dat <- dp_metrics_state %>% 
+  filter(!(
+    fips == '42' & year == 2022 & variable_name == 'hayYieldMeasuredInTonsAcre'
+  )) %>% 
+  get_latest_year() %>% 
+  pivot_wider(
+    id_cols = fips,
+    values_from = 'value',
+    names_from = 'variable_name'
+  )
+state_plots <- SMdocs::get_distributions(df = state_dat)
+  
+# Arrange with proper number of rows based on given number of cols
+n_col <- 4
+n_plots <- length(state_plots)
+n_rows <- ceiling(n_plots/n_col)
+ggpubr::ggarrange(
+  plotlist = state_plots,
+  ncol = n_col,
+  nrow = n_rows
+)
+```

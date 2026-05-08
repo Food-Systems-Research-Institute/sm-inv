@@ -1,0 +1,1057 @@
+---
+title: "Metric Analysis"
+format:
+  html:
+    fig-dpi: 200
+    code-fold: true
+editor_options: 
+  chunk_output_type: console
+warnings: false
+execute:
+  cache: false
+---
+
+```{r}
+#| label: prep
+#| cache: false
+#| output: false
+options(scipen = 999)
+
+pacman::p_load(
+  conflicted,
+  dplyr,
+  htmltools,
+  stringr,
+  tidyr,
+  reactable,
+  purrr,
+  broom,
+  knitr,
+  kableExtra,
+  tictoc,
+  furrr,
+  parallelly,
+  splm,
+  spdep,
+  spatialreg,
+  sf,
+  skimr,
+  ggplot2,
+  ggpubr,
+  readr,
+  lmtest,
+  sandwich,
+  performance,
+  snakecase,
+  ggtext
+)
+
+pacman::p_load_gh(
+  'Food-Systems-Research-Institute/SMdata',
+  'Food-Systems-Research-Institute/SMdocs'
+)
+
+conflicts_prefer(
+  dplyr::select(),
+  dplyr::filter(),
+  dplyr::pull(),
+  stats::lag(),
+  base::setdiff(),
+  .quiet = TRUE
+)
+```
+
+```{r}
+#| label: graph_functions
+#| output: false
+#| echo: false
+
+# Take formatted figure data, a palette for text colors, the label dimension
+# lookup from prepare_figure_data(). Return ggplot graph object
+pct_change_graph <- function(figure_data, 
+                             dp_text_palette, 
+                             label_dimension_lookup) {
+
+  # Renaming input to preserve it for error checking
+  data <- figure_data
+  
+  # Standardize column names
+  if ("conf_low" %in% names(data) && "conf_high" %in% names(data)) {
+    data <- data %>%
+      rename(ci_low = conf_low, ci_high = conf_high)
+  }
+
+  data <- data %>%
+    mutate(across(c(estimate, ci_low, ci_high), ~ as.numeric(.x))) %>%
+    mutate(
+      across(c(estimate, starts_with('ci|conf')), as.numeric),
+      outcome = ifelse(is.na(outcome), 'no change', outcome),
+      outcome = snakecase::to_title_case(outcome)
+    )
+
+  ggplot(data, aes(x = estimate, y = combined_label)) +
+    geom_point(aes(color = outcome)) +
+    geom_errorbarh(aes(xmin = ci_low, xmax = ci_high, color = outcome)) +
+    geom_vline(xintercept = 0) +
+    
+    # Invisible points to create a second legend (dimension colors)
+    geom_point(
+      aes(fill = dimension, color = dimension), 
+      shape = 22, 
+      alpha = 0, 
+      show.legend = TRUE
+    ) +
+    
+    # Add stars
+    geom_text(
+      aes(x = ci_high + 0.1, label = sig),
+      hjust = 0,
+      size = 4
+    ) +
+    
+    # Outcome legend (color of real points and lines)
+    scale_color_manual(
+      values = c('Better' = 'darkgreen', 'No Change' = 'grey', 'Worse' = 'purple'),
+      name = "Outcome"
+    ) +
+    
+    # Dimension legend (fill colors)
+    scale_fill_manual(
+      values = dp_text_palette,
+      name = "Dimension",
+      labels = snakecase::to_title_case(names(dp_text_palette))
+    ) +
+    
+    # Add both legends
+    guides(
+      color = guide_legend(order = 1, nrow = 2),
+      fill = guide_legend(
+        override.aes = list(shape = 22, size = 4, alpha = 1, color = dp_text_palette),
+        order = 2,
+        nrow = 2
+      )
+    ) +
+    
+    theme_minimal() +
+    
+    labs(
+      x = 'Average Percent Change per Year',
+      y = 'Indicator with Metric'
+    ) + 
+    
+    scale_y_discrete(
+      labels = make_y_axis_labels(label_dimension_lookup, dp_text_palette)
+    ) +
+    
+    theme(
+      legend.position = "top",
+      legend.direction = "horizontal",
+      legend.title.position = "top",
+      text = element_text(family = "Times New Roman"),
+      axis.title = element_text(family = "Times New Roman"),
+      axis.text = element_text(family = "Times New Roman"),
+      legend.title = element_text(family = "Times New Roman", hjust = 0.5),
+      legend.text = element_text(family = "Times New Roman"),
+      axis.text.y.left = ggtext::element_markdown(),
+    )
+}
+```
+
+This page explores time series data at the state and county level, then runs some regressions to see whether metrics are improving or declining over time at the county level. We first run weighted OLS models with robust SEs in @sec-ols. Then in @sec-spdep, we use spatial error models weighted by both geography and weighting variables.
+
+## Time Series
+
+Plot time series of each metric that has at least two data points. These are unweighted values. LOESS curves are shown in blue, while individual county/state data are shown in black
+
+### County Data
+
+First, we prepare a vector names of our time series variables for counties:
+
+```{r}
+#| label: prep_series
+#| output: false
+# Prepare vector of county variables that are time series
+str(SMdocs::dp_metrics_county_adj)
+vars <- unique(SMdocs::dp_metrics_county_adj$variable_name)
+series_vars <- map(vars, ~ {
+  count <- SMdocs::dp_metrics_county_adj %>% 
+    filter(variable_name == .x) %>% 
+    pull(year) %>% 
+    unique() %>% 
+    length()
+  if (count > 1) {
+    return(.x)
+  } else {
+    return(NULL)
+  }
+}) %>% 
+  keep(~ !is.null(.x)) %>%
+  unlist()
+
+dir.create('5_trends/output/trend_plots', recursive = TRUE, showWarnings = FALSE)
+saveRDS(series_vars, '5_trends/output/series_vars.rds')
+```
+
+Now we plot each graph individually and arrange them together:
+
+```{r}
+#| label: county_time_series
+#| fig-height: 25
+#| fig-width: 12
+#| cache: true
+plots <- map(series_vars, ~ {
+  df <- SMdocs::dp_metrics_county_adj %>%
+    filter(variable_name == .x) %>%
+    ggplot(aes(x = year, y = value)) +
+    geom_line(
+      aes(group = fips),
+      alpha = 0.3
+    ) +
+    geom_smooth(
+      method = 'loess',
+      lwd = 2
+    ) +
+    labs(
+      x = 'Year',
+      title = .x
+    ) +
+    theme_classic()
+})
+
+ggarrange(
+  plotlist = plots,
+  ncol = 4,
+  nrow = 11
+)
+```
+
+### State Data
+
+Again, start by getting a vector of time series metrics for state data, then plot all metrics:
+
+```{r}
+#| label: state_time_series
+#| fig-height: 12
+#| fig-width: 12
+vars <- unique(SMdocs::dp_metrics_state_adj$variable_name)
+state_series_vars <- map(vars, ~ {
+  count <- SMdocs::dp_metrics_state_adj %>% 
+    filter(variable_name == .x) %>% 
+    pull(year) %>% 
+    unique() %>% 
+    length()
+  if (count > 1) {
+    return(.x)
+  } else {
+    return(NULL)
+  }
+}) %>% 
+  keep(~ !is.null(.x)) %>%
+  unlist()
+saveRDS(state_series_vars, '5_trends/output/state_series_vars.rds')
+
+plots <- map(state_series_vars, ~ {
+  df <- SMdocs::dp_metrics_state_adj %>%
+    filter(variable_name == .x) %>%
+    mutate(across(c(year, value), as.numeric)) %>% 
+    ggplot(aes(x = year, y = value)) +
+    geom_line(
+      aes(group = fips),
+      alpha = 0.3
+    ) +
+    geom_smooth(
+      method = 'loess',
+      lwd = 2
+    ) +
+    labs(
+      x = 'Year',
+      title = .x
+    ) +
+    theme_classic()
+})
+
+ggarrange(
+  plotlist = plots,
+  ncol = 3,
+  nrow = 5
+)
+```
+
+### Tiny Trend Graphs
+
+Outputs not shown here - these will be added to a table in the paper.
+
+```{r}
+all_series_vars <- c(series_vars, state_series_vars)
+
+# Function to get tiny plots from county and state vars
+get_tiny_plots <- function(df, vars) {
+  map(vars, ~ {
+    df <- df %>%
+      filter(variable_name == .x, !is.na(value)) %>% 
+      ggplot(aes(x = year, y = value)) +
+      geom_line(
+        aes(group = fips),
+        alpha = 0.25,
+        color = 'grey',
+        linewidth = 0.5
+      ) +
+      geom_smooth(
+        method = "loess", 
+        se = FALSE, 
+        linewdith = 0.75
+      ) +
+      coord_cartesian(xlim = c(2000, 2024)) +
+      scale_x_discrete(expand = c(0, 0)) +
+      scale_y_discrete(expand = c(0, 0)) +
+      theme_bw() +
+      theme(
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.margin = margin(rep(0.5, 4))
+        
+      )
+  }) %>% 
+    setNames(c(vars))
+}
+
+# Plots for counties
+county_plots <- SMdocs::dp_metrics_county_adj %>% 
+  get_tiny_plots(
+    vars = series_vars
+  )
+
+# Plots for states
+state_plots <- SMdocs::dp_metrics_state_adj %>% 
+  get_tiny_plots(
+    vars = state_series_vars
+  )
+
+# One more plot for CPI - food at home
+system_plots <- SMdata::metrics %>% 
+  filter(variable_name == 'cpiFoodAtHome') %>% 
+  get_tiny_plots(vars = 'cpiFoodAtHome')
+
+
+# Save them all to outputs with variable names
+iwalk(c(county_plots, state_plots, system_plots), \(plot, var) {
+  ggsave(
+    filename = paste0('5_trends/output/trend_plots/fig_trend_', var, '.png'),
+    plot = plot,
+    width = 1.5,
+    height = 1.5,
+    units = 'cm',
+    dpi = 300,
+    bg = NULL
+  )
+})
+```
+
+## Linear Models {#sec-ols}
+
+First trying linear models with time as independent variable. Min max normalizing dataset with stored function before we do anything else.
+
+```{r}
+#| label: normalize
+#| output: false
+str(SMdocs::dp_metrics_county_adj)
+
+vars <- unique(SMdocs::dp_metrics_county_adj$variable_name)
+dp_metrics_county_adj_normed <- map(vars, ~ {
+  SMdocs::dp_metrics_county_adj %>%
+    filter(variable_name == .x) %>% 
+    mutate(across(c(year, value), as.numeric)) %>% 
+    drop_na(value) %>% 
+    group_by(variable_name) %>% 
+    mutate(normed_value = min_max(value)) %>% 
+    ungroup()
+}) %>% 
+  list_rbind()
+str(dp_metrics_county_adj_normed)  
+
+dir.create('5_trends/output/', recursive = TRUE, showWarnings = FALSE)
+saveRDS(dp_metrics_county_adj_normed, '5_trends/output/dp_metrics_county_adj_normed.rds')
+```
+
+### Regressions
+
+First create a weights crosswalk that links `variable_name`s to weighting variables.
+
+```{r}
+#| label: weights_crosswalk
+weights_crosswalk <- data.frame(
+  metric = c(
+    'GDP',
+    'GDP from agriculture',
+    'Total number of producers',
+    'Total number of operations',
+    'Population (annual)',
+    'Population (5 year)',
+    'Population (5 year, smooth)',
+    'Acres of land',
+    'Acres of water',
+    'Area under agriculture (CDL)',
+    'Number employed in agriculture',
+    'Acres operated',
+    'Acres operated, smooth',
+    'Acres of cropland ag land',
+    'Acres of woodland ag land',
+    'Acres of pasture ag land',
+    'Total farm income',
+    'Total sales from commodities'
+  ),
+  variable_name = c(
+    'gdp',
+    'gdpFromAg',
+    'nProducers',
+    'nOperations',
+    'populationAnnual',
+    'population5Year',
+    'population5YearSmooth',
+    'landAcres',
+    'waterAcres',
+    'cdlAgAcres',
+    'annualAvgEmplvlNAICS11',
+    'acresOperated',
+    'acresOperatedSmooth',
+    'agLandCropAcres',
+    'agLandWoodAcres',
+    'agLandPastureAcres',
+    'totalFarmIncome',
+    'totalSalesCommodities'
+  )
+)
+
+# Link weight vars to the appropriate variables
+weights_crosswalk <- SMdocs::dp_meta %>% 
+  select(variable_name, weighting) %>% 
+  filter(variable_name %in% SMdocs::dp_metrics_county_adj_normed$variable_name) %>% 
+  left_join(weights_crosswalk, by = join_by(weighting == metric)) %>% 
+  setNames(c('variable_name', 'weight_metric', 'weight_variable')) %>% 
+  select(-weight_metric) %>% 
+  na.omit()
+head(weights_crosswalk)
+```
+
+Run weighted OLS regressions for all time series variables where time points \> 1. The general formula is: 
+
+$$
+\Large y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \epsilon_i,
+$$
+
+where $y_i$ is the normalized value of the metric across counties, $x_{1i}$ is the year, $x_{2i}$ is the state each county is part of, and $\epsilon$ is the error term.
+
+```{r}
+#| label: regressions
+#| output: false
+#| eval: false
+# Get a crosswalk to add state as a fixed effect
+state_link <- SMdata::fips_key %>% 
+  filter(str_length(fips) == 2, fips != '00') %>% 
+  select(fips, state_code)
+
+res <- map(SMdocs::series_vars, ~ {
+  tryCatch(
+    {
+      df <- SMdocs::dp_metrics_county_adj_normed %>% 
+        filter(variable_name == .x) %>% 
+        mutate(
+          value = as.numeric(value),
+          year = as.numeric(year),
+          state_fips = str_sub(fips, end = 2)
+        ) %>% 
+        left_join(state_link, by = join_by(state_fips == fips))
+      
+      # Add weighting variable
+      weight_var <- weights_crosswalk$weight_variable[weights_crosswalk$variable_name == .x]
+      weight_df <- SMdocs::dp_weights
+      if (!is.na(weight_var) && length(weight_var) > 0) {
+        weight_df <- weight_df %>% 
+          filter(variable_name == weight_var)
+      }
+      weight_df <- weight_df %>% 
+        mutate(
+          value = as.numeric(value), 
+          year = as.numeric(year)
+        ) %>% 
+        rename(
+          weight_value = value, 
+          weight_name = variable_name,
+          weight_year = year
+        )
+      # str(weight_df)
+      
+      # Depending on whether weight has a year, do appropriate join
+      # Note that we might be losing some years here if weighting var doesn't
+      # cover the variable enough
+      if (all(is.na(weight_df$weight_year))) {
+        df <- df %>% 
+          inner_join(weight_df, by = join_by(fips))
+      } else {
+        df <- df %>% 
+          inner_join(weight_df, by = join_by(fips, year == weight_year))
+      }
+      
+      # Reduce to county fips only. Remove dupes 
+      df <- df %>%
+        filter(str_length(fips) == 5) %>% 
+        distinct()
+      
+      # Weighted OLS 
+      model <- lm(
+        normed_value ~ year + state_code, 
+        data = df,
+        weights = weight_value
+      )
+      return(model)
+    },
+    error = function(e) {
+      message(paste('Error with var', .x))
+    }
+  )
+}) %>% 
+  setNames(c(SMdocs::series_vars)) %>%
+  discard(\(x) is.null(x))
+str(res, 1)
+str(res)
+
+# Robust SEs
+lmtest::coeftest(res[[1]])
+
+# Save immediate output
+saveRDS(res, '5_trends/output/weighted_ols_outs.rds')
+```
+
+We are saving these outputs to a file so we don't have to rerun it every time we want them.
+
+### Wrangling
+
+Now that we have regression outputs, let's put them in a table to see which ones change significantly over time.
+
+```{r}
+#| label: make_reg_table
+#| output: false
+# Put together one table of results from all models, add stars
+res <- readRDS('5_trends/output/weighted_ols_outs.rds')
+str(res)
+
+# Check for NA outputs
+res[[1]]$coefficients[['year']]
+coefs <- map(res, ~ .x$coefficients[['year']])
+names(coefs[is.na(coefs)])
+
+# Mobility disability is NA because there is only 1 year after we join with 
+# weighting variable. So we need to just throw it out if we can't get smoothed
+# population for 2024.
+res <- res %>% 
+  discard(~ is.na(.x$coefficients[[2]]))
+
+# Make a table of regression outputs, including robust standard errors
+res_df <- imap(res, ~ {
+  vcov = vcovHC(.x, type = 'HC0')
+  df <- coeftest(.x, vcov = vcov) %>% 
+    tidy() %>% 
+    filter(term == 'year') %>% 
+    mutate(term = .y)
+  conf_ints <- coefci(.x)['year', ]
+  df$ci_low <- conf_ints[1]
+  df$ci_high <- conf_ints[2]
+  df
+}) %>% 
+  bind_rows() %>% 
+  mutate(sig = ifelse(p.value < 0.05, '*', ''))
+res_df
+
+# How many time series metrics total
+(n_metrics <- nrow(res_df))
+
+# How many change over time significantly
+(
+  n_change <- res_df %>% 
+    filter(sig == '*') %>% 
+    nrow()
+)
+
+# Percentage significant
+(perc_sig <- mean(res_df$sig == '*', na.rm = TRUE) * 100)
+```
+
+Note that we only have 2 years for the mobility disability metric - 2023 and 2024. But we don't have a smoothed 5-year population for 2024, only 2023. So we can only use a single year, which means there is no variation in year. So we are dropping this from the analysis.
+
+Out of `{r} n_metrics` metrics with \> 1 time point, we have `{r} n_change` metrics that change significantly over time (`{r} round(perc_sig, 2)`%).
+
+Still have to make sense of the directional values of our metrics. These were defined in the [Aggregation](../pages/aggregation.qmd) from the main analysis branch. In this next chunk, we assign normative directions to each metric so we can tell whether they are getting better or worse over time based on whether high values or low values are desirable.
+
+```{r}
+#| label: make_sense_of_trends
+#| output: false
+# Of those that are significant, what are trends
+# leaving in all of them, even if not significant though
+raw_outputs <- res_df %>% 
+  mutate(trend = case_when(
+    estimate > 0 & sig == '*' ~ 'increasing',
+    sig == '' ~ NA_character_,
+    .default = 'decreasing'
+  ))
+
+# Bring in directional values. Keep only the ones without question marks, 
+# clearly higher or lower
+str(SMdocs::dp_meta)
+directions <- SMdocs::dp_meta %>% 
+  filter(str_detect(desirable, 'higher|lower'), !is.na(variable_name)) %>% 
+  mutate(desirable = str_remove_all(desirable, '\\?')) %>% 
+  select(variable_name, desirable)
+reverse <- directions %>% 
+  filter(desirable == 'lower') %>% 
+  pull(variable_name)
+
+# Reduce to only vars that have a direction.
+# Here we lose a few metrics
+model_outputs <- raw_outputs %>% 
+  filter(term %in% directions$variable_name) %>% 
+  mutate(
+    reverse = ifelse(term %in% reverse, TRUE, FALSE),
+    outcome = case_when(
+      reverse == FALSE & trend == 'increasing' ~ 'better',
+      reverse == FALSE & trend == 'decreasing' ~ 'worse',
+      reverse == TRUE & trend == 'increasing' ~ 'worse',
+      reverse == TRUE & trend == 'decreasing' ~ 'better',
+      .default = NA
+    ),
+    across(where(is.numeric), ~ format(round(.x, 3), nsmall = 3))
+  )
+model_outputs
+
+# See what we lost
+(lost <- setdiff(raw_outputs$term, model_outputs$term))
+(n_lost <- length(lost))
+(print_lost <- lost %>% paste0(collapse = ', '))
+
+# proportion getting better or worse
+(tab <- table(model_outputs$outcome))
+(percs <- round(prop.table(tab), 3) * 100)
+```
+
+`{r} percs[['better']]`% are getting better and `{r} percs[['worse']]`% are getting worse. We drop `{r} length(lost)` metrics here that don't have proper directions (`{r} print_lost`).
+
+
+### Table
+
+Now we can check out the outputs table for each regression. In each model, 
+
+
+Trend is just whether it is going up or down, outcome is whether that is good or bad.
+
+```{r}
+#| label: reg_table
+# Add framework info
+framed_outputs <- SMdocs::dp_meta %>% 
+  select(dimension, index, indicator, metric, variable_name) %>% 
+  right_join(model_outputs, by = join_by(variable_name == term))
+
+# Create interactive table for Quarto
+get_reactable(
+  framed_outputs, 
+  defaultPageSize = 10,
+  columns = list(
+   variable_name = colDef(minWidth = 200),
+   sig = colDef(minWidth = 50),
+   reverse = colDef(minWidth = 75),
+   statistic = colDef(minWidth = 75),
+   outcome = colDef(minWidth = 75)
+  )
+)
+```
+
+### Figure
+
+Figure below shows 95% confidence intervals for the coefficients of each metric, including state as a covariate.
+
+```{r}
+#| label: regression_figure
+# Combined label for indicator and metric
+
+# See repository for function definitions!
+processed_lm_data <- prepare_figure_data(framed_outputs)
+
+lm_figure <- pct_change_graph(
+  figure_data = processed_lm_data$figure_data,
+  dp_text_palette = dp_text_palette,
+  label_dimension_lookup = processed_lm_data$label_dimension_lookup
+)
+
+ggsave(
+  '5_trends/output/fig_lm.png',
+  plot = lm_figure,
+  width = 8,
+  height = 5,
+  units = 'in',
+  bg = 'white'
+)
+
+lm_figure
+```
+
+## Spatial Regressions {#sec-spdep}
+
+### Models
+
+Here we run the same process but using spatial error models with the `spatialreg` package. We are now working with:
+
+$$
+\Large y = X\beta + u, u = \lambda Wu + \epsilon,
+$$
+
+where $y$ are normalized metric values, $X$ is an $n * k$ matrix, $\beta$ is a vector of predictors, $u$ is the spatial autocorrelation error term, $\lambda$ is the spatial error parameter, $W$ is the county weights matrix, and $\epsilon$ is the error term. 
+
+We run this portion of the code in parallel because it has a pretty long run time. Again, results are saved so it doesn't need to be run again unless something changes.
+
+```{r}
+#| label: spatial_reg_all
+#| eval: true
+#| output: false
+str(SMdocs::dp_metrics_county_adj)
+state_link <- SMdata::fips_key %>% 
+  filter(str_length(fips) == 2, fips != '00') %>% 
+  select(fips, state_code)
+
+dat <- SMdocs::dp_metrics_county_adj %>% 
+  pivot_wider(
+    id_cols = fips:year,
+    names_from = variable_name,
+    values_from = value
+  ) %>% 
+  filter(str_detect(fips, '^09', negate = TRUE)) %>% 
+  mutate(link = str_sub(fips, end = 2)) %>% 
+  left_join(state_link, by = join_by(link == fips)) %>% 
+  select(-link) %>% 
+  mutate(across(!c(fips, state_code), as.numeric))
+str(dat)
+
+# Get vector of vars
+(vars <- names(dat)[!names(dat) %in% c('fips', 'year', 'state_code')])
+
+tic()
+get_time()
+plan(multisession, workers = availableCores(omit = 2))
+# out <- map(vars[1], \(var) {
+out <- future_map(vars, \(var) {
+  cat('\n\nStarting', var)
+  
+  tryCatch({
+    # Reduce to relevant variable, remove NAs
+    df <- dat %>% 
+      select(fips, year, !!sym(var), state_code) %>% 
+      drop_na(!!sym(var)) %>% 
+      mutate(normed = min_max(!!sym(var)))
+ 
+    # Regular weights
+    weight_var <- weights_crosswalk$weight_variable[weights_crosswalk$variable_name == var]
+    if (!is.na(weight_var) && length(weight_var) > 0) {
+      weight_df <- SMdocs::dp_weights %>% 
+        mutate(
+          value = as.numeric(value), 
+          year = as.numeric(year)
+        ) %>% 
+        rename(
+          weight_value = value, 
+          weight_name = variable_name,
+          weight_year = year
+        ) %>% 
+        filter(weight_name == weight_var, str_length(fips) == 5)
+      
+      # Join weights back to df
+      # df <- df %>% 
+      #   inner_join(weight_df, by = join_by(fips, year == weight_year))
+      if (all(is.na(weight_df$weight_year))) {
+        df <- df %>% 
+          inner_join(weight_df, by = join_by(fips))
+      } else {
+        df <- df %>% 
+          inner_join(weight_df, by = join_by(fips, year == weight_year))
+      }
+      
+      cat('\nJoined to weights:', weight_var)
+    } else {
+      cat('\nNo weighting variable')
+    }
+    
+    # List weights
+    lw <- SMdata::neast_counties_2024 %>% 
+      right_join(df) %>% 
+      select(fips, year, normed) %>% 
+      poly2nb() %>% 
+      nb2listw(zero.policy = TRUE)   
+    cat('\nCreated lw')
+    
+    # Assign weights arg if variable is weighted. Otherwise NULL
+    if (!is.na(weight_var) && length(weight_var) > 0) {
+      weights_arg <- df[['weight_value']]
+    } else {
+      weights_arg <- NULL
+    }
+    
+    # Run error sar model with appropriate (or no) weighting
+    model <- errorsarlm(
+      normed ~ as.numeric(year) + state_code,
+      data = df,
+      listw = lw,
+      weights = weights_arg
+    ) 
+    cat('\nRan model')
+   
+    return(model)
+    },
+    error = function(e) {
+      return(paste0('Error with ', var, ': ', e))
+    }
+  )
+}, .progress = FALSE) %>% 
+  setNames(c(vars))
+plan(sequential)
+toc()
+# 6 to 12 minutes or so
+
+# out
+# out[[1]]
+
+str(out)
+str(out[[1]])
+map(out, class)
+# str(out[[1]])
+# map(out, ~ .x['fips'])
+# map(out, ~ summary(.x))
+
+saveRDS(out, '5_trends/output/errorsarlm_outs.rds')
+```
+
+#### Reactable Table
+
+First we wrangle our outputs to get the relevant results in a nicely formatted table:
+
+```{r}
+#| output: false
+sar_outs <- readRDS('5_trends/output/errorsarlm_outs.rds')
+start <- length(sar_outs)
+sar_outs <- sar_outs[names(sar_outs) != 'state_code'] %>% 
+  keep(~ class(.x) == 'Sarlm')
+end <- length(sar_outs)
+(lost <- start - end)
+# 42 down to 38 here
+
+sar_df <- imap(sar_outs, ~ {
+  tryCatch(
+    {
+      df <- tidy(.x)
+      est <- df[2, 'estimate'] %>% as.numeric
+      se <- df[2, 'std.error'] %>% as.numeric
+      alpha <- 0.05
+      z <- qnorm(1 - alpha/2)
+      confints <- c(est - z * se, est + z * se)
+      
+      # confints <- confint(.x)[3, ]
+      out <- df %>% 
+        filter(str_detect(term, 'year')) %>% 
+        mutate(
+          variable_name = .y,
+          conf_low = confints[1],
+          conf_high = confints[2]
+        ) %>% 
+        select(-term) %>% 
+        mutate(
+          sig = case_when(
+            p.value < 0.001 ~ '***',
+            p.value > 0.001 & p.value < 0.01 ~ '**',
+            p.value > 0.01 & p.value < 0.05 ~ '*',
+            p.value > 0.05 ~ ' ',
+            .default = NA
+          )
+        )
+      return(out)
+    },
+      error = function(e) {
+        message('Error')
+        print(e)
+    }
+  )
+}) %>% 
+  keep(is.data.frame) %>% 
+  bind_rows()
+str(sar_df)
+# sar_df
+
+# 38 down to 36.
+(lost <- setdiff(names(sar_outs), sar_df$variable_name))
+check <- sar_outs[names(sar_outs) %in% lost]
+# Not defined because of singularities. Single time points. 
+# At least while including the weighting variables.
+
+sar_raw_outputs <- sar_df %>% 
+  mutate(trend = case_when(
+    estimate > 0 & str_detect(sig, '\\*') ~ 'increasing',
+    estimate < 0 & str_detect(sig, '\\*') ~ 'decreasing',
+    str_detect(sig, '\\*', negate = TRUE) ~ 'no change',
+    .default = NA_character_
+  ))
+str(sar_raw_outputs)
+
+# Bring in directional values. Keep only the ones without question marks, 
+# clearly higher or lower
+str(SMdocs::dp_meta)
+directions <- SMdocs::dp_meta %>% 
+  filter(str_detect(desirable, 'higher|lower'), !is.na(variable_name)) %>% 
+  mutate(desirable = str_remove_all(desirable, '\\?')) %>% 
+  select(variable_name, desirable)
+reverse <- directions %>% 
+  filter(desirable == 'lower') %>% 
+  pull(variable_name)
+
+# Reduce to only vars that have a direction.
+# Here we lose a few metrics
+sar_model_outputs <- sar_raw_outputs %>% 
+  filter(variable_name %in% directions$variable_name) %>% 
+  mutate(
+    reverse = ifelse(variable_name %in% reverse, TRUE, FALSE),
+    outcome = case_when(
+      reverse == FALSE & trend == 'increasing' ~ 'better',
+      reverse == FALSE & trend == 'decreasing' ~ 'worse',
+      reverse == TRUE & trend == 'increasing' ~ 'worse',
+      reverse == TRUE & trend == 'decreasing' ~ 'better',
+      trend == 'no change' ~ 'no change',
+      .default = NA
+    ),
+    across(where(is.numeric), ~ format(round(.x, 3), nsmall = 3))
+  )
+sar_model_outputs
+
+(n_metrics <- dim(sar_model_outputs)[1])
+
+# See what we lost
+(lost <- setdiff(sar_raw_outputs$variable_name, sar_model_outputs$variable_name))
+(n_lost <- length(lost))
+(print_lost <- lost %>% paste0(collapse = ', '))
+
+# proportion getting better or worse
+(tab <- get_table(sar_model_outputs$outcome))
+(percs <- round(prop.table(tab), 3) * 100)
+```
+
+We have `{r} n_metrics` metrics modeled. `{r} percs[['better']]`% are getting better, `{r} percs[['worse']]`% are getting worse, and `{r} percs[3]`% are stable. We drop `{r} length(lost)` metrics here that don't have proper directions (`{r} print_lost`).
+
+Now we present the table, including normative outcomes:
+
+```{r}
+#| label: errorsar_reactable
+sar_framed_outputs <- SMdocs::dp_meta %>% 
+  select(dimension, index, indicator, metric, variable_name) %>% 
+  right_join(sar_model_outputs, by = join_by(variable_name == variable_name))
+
+## Create interactive table for Quarto
+get_reactable(
+  sar_framed_outputs, 
+  defaultPageSize = 10,
+  columns = list(
+   variable_name = colDef(minWidth = 200),
+   sig = colDef(minWidth = 50),
+   reverse = colDef(minWidth = 75),
+   statistic = colDef(minWidth = 75),
+   outcome = colDef(minWidth = 75)
+  )
+)
+```
+
+
+#### LaTeX Table
+
+Saving table to $\LaTeX$ for paper:
+
+```{r}
+#| label: latex_table
+#| output: false
+str(sar_framed_outputs)
+
+# Reduce to specific columns
+latex_df <- sar_framed_outputs %>% 
+  select(metric, estimate:p.value, sig, outcome) %>% 
+  mutate(
+    # p.value = ifelse(sig == '*', paste0(p.value, '*'), p.value),
+    p.value = case_when(
+      str_detect(sig, '\\*') ~ paste0(p.value, sig),
+      .default = p.value
+    ),
+    outcome = case_when(
+      outcome == 'no change' ~ '\\textemdash',
+      .default = str_to_title(outcome)
+    )
+  ) %>% 
+  select(-sig) %>% 
+  setNames(c(
+    'Metric',
+    '$\\beta$',
+    'SE',
+    '$z$-value',
+    'p-value',
+    'Outcome'
+  ))
+str(latex_df)
+
+# Save to latex
+latex_df %>% 
+  kbl(
+    format = 'latex',
+    caption = 'Spatial error models of year and state on metric',
+    label = 'tab_errorsarlm',
+    booktabs = TRUE,
+    escape = FALSE
+  ) %>% 
+  kable_styling(
+    font_size = 9
+  ) %>% 
+  footnote(
+    general_title = "",
+    general = 
+      '\\\\textit{Note: }The table shows coefficients of the effect of year on
+      normalized, inflation-adjusted metrics with state as a covariate. 
+      Metrics are weighted by variables shown in Table \\\\ref{tab:tab_metrics_body}. 
+      Significant p-values
+      indicated change over time, and the direction of the outcome was determined
+      based on desirable directions of change for each metric. ***: p < 0.001,
+      **: p < 0.01, *: p < 0.05.',
+    threeparttable = TRUE,
+    escape = FALSE
+  ) %>% 
+  save_kable(
+    file = '5_trends/output/tab_errorsarlm.tex'
+  )
+```
+
+#### Figure
+
+Finally, the figure below shows coefficient estimates and confidence intervals for the errorsar models. Green points represent metrics that are trending in a "good" direction, while purple represents trends in a "bad" direction.
+
+```{r}
+#| label: errorsar_figure
+# Using functions at top of script to process outputs and make graph
+errorsar_figure_data <- prepare_figure_data(model_output_df = sar_framed_outputs)
+errorsar_figure <- pct_change_graph(
+  figure_data = errorsar_figure_data$figure_data,
+  dp_text_palette = dp_text_palette,
+  label_dimension_lookup = errorsar_figure_data$label_dimension_lookup
+)
+
+ggsave(
+  '5_trends/output/fig_errorsarlm.png',
+  plot = errorsar_figure,
+  width = 8.5,
+  height = 6,
+  units = 'in',
+  bg = 'white'
+)
+
+errorsar_figure
+```
+

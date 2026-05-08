@@ -1,0 +1,1176 @@
+indicator,year,dimension
+Income Stability,2000,Economics
+Business Failure Rate,2000,Economics
+Wealth and Income Distribution,2000,Economics
+Farm Insurance,2001,Economics
+Income Stability,2001,Economics
+Business Failure Rate,2001,Economics
+Wealth and Income Distribution,2001,Economics
+Operations Diversification,2002,Economics
+Access to Land,2002,Economics
+Income Stability,2002,Economics
+Business Failure Rate,2002,Economics
+Wealth and Income Distribution,2002,Economics
+Income Stability,2003,Economics
+Business Failure Rate,2003,Economics
+Wealth and Income Distribution,2003,Economics
+Income Stability,2005,Economics
+Business Failure Rate,2005,Economics
+Wealth and Income Distribution,2005,Economics
+Income Stability,2006,Economics
+Business Failure Rate,2006,Economics
+Wealth and Income Distribution,2006,Economics
+Farm Insurance,2007,Economics
+Operations Diversification,2007,Economics
+Access to Land,2007,Economics
+Income Stability,2007,Economics
+Business Failure Rate,2007,Economics
+Wealth and Income Distribution,2007,Economics
+Farm Insurance,2008,Economics
+Income Stability,2008,Economics
+Business Failure Rate,2008,Economics
+Wealth and Income Distribution,2008,Economics
+Farm Insurance,2009,Economics
+Income Stability,2009,Economics
+Business Failure Rate,2009,Economics
+Wealth and Income Distribution,2009,Economics
+Farm Insurance,2010,Economics
+Income Stability,2010,Economics
+Business Failure Rate,2010,Economics
+Wealth and Income Distribution,2010,Economics
+Farm Insurance,2011,Economics
+Income Stability,2011,Economics
+Business Failure Rate,2011,Economics
+Wealth and Income Distribution,2011,Economics
+Farm Insurance,2012,Economics
+Operations Diversification,2012,Economics
+Access to Land,2012,Economics
+Income Stability,2012,Economics
+Business Failure Rate,2012,Economics
+Wealth and Income Distribution,2012,Economics
+Farm Insurance,2013,Economics
+Wealth and Income Distribution,2013,Economics
+Farm Insurance,2014,Economics
+Farm Insurance,2015,Economics
+Income Stability,2015,Economics
+Business Failure Rate,2015,Economics
+Wealth and Income Distribution,2015,Economics
+Farm Insurance,2016,Economics
+Income Stability,2016,Economics
+Business Failure Rate,2016,Economics
+Wealth and Income Distribution,2016,Economics
+Farm Insurance,2017,Economics
+Operations Diversification,2017,Economics
+Market Mix,2017,Economics
+Access to Land,2017,Economics
+Income Stability,2017,Economics
+Business Failure Rate,2017,Economics
+Wealth and Income Distribution,2017,Economics
+Farm Insurance,2018,Economics
+Income Stability,2018,Economics
+Business Failure Rate,2018,Economics
+Wealth and Income Distribution,2018,Economics
+Farm Insurance,2019,Economics
+Income Stability,2019,Economics
+Business Failure Rate,2019,Economics
+Wealth and Income Distribution,2019,Economics
+Farm Insurance,2020,Economics
+Income Stability,2020,Economics
+Business Failure Rate,2020,Economics
+Wealth and Income Distribution,2020,Economics
+Farm Insurance,2021,Economics
+Income Stability,2021,Economics
+Business Failure Rate,2021,Economics
+Wealth and Income Distribution,2021,Economics
+Farm Insurance,2022,Economics
+Operations Diversification,2022,Economics
+Market Mix,2022,Economics
+Access to Land,2022,Economics
+Income Stability,2022,Economics
+Business Failure Rate,2022,Economics
+Wealth and Income Distribution,2022,Economics
+Farm Insurance,2023,Economics
+Income Stability,2023,Economics
+Business Failure Rate,2023,Economics
+Wealth and Income Distribution,2023,Economics
+Farm Insurance,2024,Economics
+Income Stability,2024,Economics
+Business Failure Rate,2024,Economics
+Wealth and Income Distribution,2024,Economics
+Forest Complexity,2000,Environment
+Forest Health,2000,Environment
+Carbon Fluxes,2000,Environment
+Water Quantity,2000,Environment
+Forest Complexity,2001,Environment
+Forest Health,2001,Environment
+Carbon Fluxes,2001,Environment
+Water Quantity,2001,Environment
+Forest Complexity,2002,Environment
+Forest Health,2002,Environment
+Embodied Carbon,2002,Environment
+Carbon Fluxes,2002,Environment
+Water Quantity,2002,Environment
+Forest Complexity,2003,Environment
+Forest Health,2003,Environment
+Carbon Fluxes,2003,Environment
+Water Quantity,2003,Environment
+Forest Complexity,2004,Environment
+Forest Health,2004,Environment
+Carbon Fluxes,2004,Environment
+Water Quantity,2004,Environment
+Forest Complexity,2005,Environment
+Forest Health,2005,Environment
+Carbon Fluxes,2005,Environment
+Water Quantity,2005,Environment
+Forest Complexity,2006,Environment
+Forest Health,2006,Environment
+Carbon Fluxes,2006,Environment
+Water Quantity,2006,Environment
+Forest Complexity,2007,Environment
+Forest Health,2007,Environment
+Water Quality,2007,Environment
+Embodied Carbon,2007,Environment
+Carbon Fluxes,2007,Environment
+Water Quantity,2007,Environment
+Forest Complexity,2008,Environment
+Forest Health,2008,Environment
+Carbon Fluxes,2008,Environment
+Water Quantity,2008,Environment
+Forest Complexity,2009,Environment
+Forest Health,2009,Environment
+Carbon Fluxes,2009,Environment
+Water Quantity,2009,Environment
+Forest Complexity,2010,Environment
+Forest Health,2010,Environment
+Carbon Fluxes,2010,Environment
+Water Quantity,2010,Environment
+Forest Complexity,2011,Environment
+Forest Health,2011,Environment
+Carbon Fluxes,2011,Environment
+Water Quantity,2011,Environment
+Forest Complexity,2012,Environment
+Forest Health,2012,Environment
+Water Quality,2012,Environment
+Embodied Carbon,2012,Environment
+Carbon Fluxes,2012,Environment
+Water Quantity,2012,Environment
+Forest Complexity,2013,Environment
+Forest Health,2013,Environment
+Carbon Fluxes,2013,Environment
+Water Quantity,2013,Environment
+Forest Complexity,2014,Environment
+Forest Health,2014,Environment
+Carbon Fluxes,2014,Environment
+Water Quantity,2014,Environment
+Forest Complexity,2015,Environment
+Forest Health,2015,Environment
+Land Use Diversity,2015,Environment
+Carbon Fluxes,2015,Environment
+Water Quantity,2015,Environment
+Forest Complexity,2016,Environment
+Forest Health,2016,Environment
+Land Use Diversity,2016,Environment
+Carbon Fluxes,2016,Environment
+Water Quantity,2016,Environment
+Forest Complexity,2017,Environment
+Forest Health,2017,Environment
+Land Use Diversity,2017,Environment
+Water Quality,2017,Environment
+Embodied Carbon,2017,Environment
+Carbon Fluxes,2017,Environment
+Water Quantity,2017,Environment
+Forest Complexity,2018,Environment
+Biodiversity,2018,Environment
+Forest Health,2018,Environment
+Land Use Diversity,2018,Environment
+Carbon Fluxes,2018,Environment
+Water Quantity,2018,Environment
+Forest Complexity,2019,Environment
+Biodiversity,2019,Environment
+Forest Health,2019,Environment
+Land Use Diversity,2019,Environment
+Carbon Fluxes,2019,Environment
+Water Quantity,2019,Environment
+Forest Complexity,2020,Environment
+Carbon Stocks,2020,Environment
+Biodiversity,2020,Environment
+Forest Health,2020,Environment
+Land Use Diversity,2020,Environment
+Carbon Fluxes,2020,Environment
+Water Quantity,2020,Environment
+Forest Complexity,2021,Environment
+Biodiversity,2021,Environment
+Forest Health,2021,Environment
+Land Use Diversity,2021,Environment
+Carbon Fluxes,2021,Environment
+Water Quantity,2021,Environment
+Forest Complexity,2022,Environment
+Biodiversity,2022,Environment
+Forest Health,2022,Environment
+Sensitive or Rare Habitats,2022,Environment
+Land Use Diversity,2022,Environment
+Water Quality,2022,Environment
+Embodied Carbon,2022,Environment
+Carbon Fluxes,2022,Environment
+Water Quantity,2022,Environment
+Forest Complexity,2023,Environment
+Biodiversity,2023,Environment
+Forest Health,2023,Environment
+Land Use Diversity,2023,Environment
+Water Quantity,2023,Environment
+Biodiversity,2024,Environment
+Land Use Diversity,2024,Environment
+Water Quantity,2024,Environment
+Food Affordability,2009,Health
+Food Insecurity,2009,Health
+Food Affordability,2010,Health
+Stress and Anxiety,2010,Health
+Food Insecurity,2010,Health
+Food Affordability,2011,Health
+Stress and Anxiety,2011,Health
+Food Insecurity,2011,Health
+Prevalence of Diet-Related Disease,2011,Health
+Access to Care,2012,Health
+Food Affordability,2012,Health
+Stress and Anxiety,2012,Health
+Food Access,2012,Health
+Food Insecurity,2012,Health
+Prevalence of Diet-Related Disease,2012,Health
+Housing Supply and Quality,2013,Health
+Access to Care,2013,Health
+Food Affordability,2013,Health
+Stress and Anxiety,2013,Health
+Food Access,2013,Health
+Educational Attainment,2013,Health
+Food Insecurity,2013,Health
+Prevalence of Diet-Related Disease,2013,Health
+Access to Care,2014,Health
+Food Affordability,2014,Health
+Stress and Anxiety,2014,Health
+Food Access,2014,Health
+Food Insecurity,2014,Health
+Prevalence of Diet-Related Disease,2014,Health
+Access to Care,2015,Health
+Food Affordability,2015,Health
+Stress and Anxiety,2015,Health
+Food Access,2015,Health
+Food Insecurity,2015,Health
+Prevalence of Diet-Related Disease,2015,Health
+Access to Care,2016,Health
+Food Affordability,2016,Health
+Stress and Anxiety,2016,Health
+Food Access,2016,Health
+"Mobility, Pain",2016,Health
+Food Insecurity,2016,Health
+Prevalence of Diet-Related Disease,2016,Health
+Access to Care,2017,Health
+Food Affordability,2017,Health
+Stress and Anxiety,2017,Health
+Nutritious Diets,2017,Health
+Food Access,2017,Health
+"Mobility, Pain",2017,Health
+Food Insecurity,2017,Health
+Prevalence of Diet-Related Disease,2017,Health
+Housing Supply and Quality,2018,Health
+Access to Care,2018,Health
+Food Affordability,2018,Health
+Stress and Anxiety,2018,Health
+Food Access,2018,Health
+Educational Attainment,2018,Health
+"Mobility, Pain",2018,Health
+Food Insecurity,2018,Health
+Prevalence of Diet-Related Disease,2018,Health
+Access to Care,2019,Health
+Food Affordability,2019,Health
+Stress and Anxiety,2019,Health
+Nutritious Diets,2019,Health
+Food Access,2019,Health
+"Mobility, Pain",2019,Health
+Food Insecurity,2019,Health
+Prevalence of Diet-Related Disease,2019,Health
+Access to Care,2020,Health
+Food Affordability,2020,Health
+Stress and Anxiety,2020,Health
+Food Access,2020,Health
+"Mobility, Pain",2020,Health
+Food Insecurity,2020,Health
+Prevalence of Diet-Related Disease,2020,Health
+Access to Care,2021,Health
+Food Affordability,2021,Health
+Stress and Anxiety,2021,Health
+Nutritious Diets,2021,Health
+Food Access,2021,Health
+"Mobility, Pain",2021,Health
+Food Insecurity,2021,Health
+Prevalence of Diet-Related Disease,2021,Health
+Access to Care,2022,Health
+Food Affordability,2022,Health
+Stress and Anxiety,2022,Health
+Food Access,2022,Health
+"Mobility, Pain",2022,Health
+Food Insecurity,2022,Health
+Prevalence of Diet-Related Disease,2022,Health
+Access to Culturally Appropriate Food,2023,Health
+Housing Supply and Quality,2023,Health
+Access to Care,2023,Health
+Food Affordability,2023,Health
+Stress and Anxiety,2023,Health
+Food Access,2023,Health
+Educational Attainment,2023,Health
+"Mobility, Pain",2023,Health
+Food Insecurity,2023,Health
+Prevalence of Diet-Related Disease,2023,Health
+Access to Care,2024,Health
+Stress and Anxiety,2024,Health
+Food Access,2024,Health
+Access to Social Support,2024,Health
+"Mobility, Pain",2024,Health
+Prevalence of Diet-Related Disease,2024,Health
+Total Quantity Exported,2000,Production
+Total Quantity Exported,2001,Production
+Total Quantity Exported,2002,Production
+Total Quantity Food Products,2002,Production
+Value Added Market,2002,Production
+Certificates of Assurance,2002,Production
+Yield,2002,Production
+Inputs,2002,Production
+Total Quantity Exported,2003,Production
+Yield,2003,Production
+Total Quantity Exported,2004,Production
+Yield,2004,Production
+Total Quantity Exported,2005,Production
+Yield,2005,Production
+Total Quantity Exported,2006,Production
+Yield,2006,Production
+Total Quantity Exported,2007,Production
+Total Quantity Food Products,2007,Production
+Value Added Market,2007,Production
+Certificates of Assurance,2007,Production
+Yield,2007,Production
+Inputs,2007,Production
+Total Quantity Exported,2008,Production
+Total Quantity Forest Products,2008,Production
+Yield,2008,Production
+Crop Diversity,2008,Production
+Total Quantity Exported,2009,Production
+Total Quantity Forest Products,2009,Production
+Yield,2009,Production
+Crop Diversity,2009,Production
+Total Quantity Exported,2010,Production
+Total Quantity Forest Products,2010,Production
+Yield,2010,Production
+Crop Diversity,2010,Production
+Total Quantity Exported,2011,Production
+Total Quantity Forest Products,2011,Production
+Yield,2011,Production
+Crop Diversity,2011,Production
+Total Quantity Exported,2012,Production
+Total Quantity Forest Products,2012,Production
+Total Quantity Food Products,2012,Production
+Value Added Market,2012,Production
+Certificates of Assurance,2012,Production
+Yield,2012,Production
+Inputs,2012,Production
+Crop Diversity,2012,Production
+Total Quantity Exported,2013,Production
+Total Quantity Forest Products,2013,Production
+Yield,2013,Production
+Crop Diversity,2013,Production
+Total Quantity Exported,2014,Production
+Total Quantity Forest Products,2014,Production
+Yield,2014,Production
+Crop Diversity,2014,Production
+Total Quantity Exported,2015,Production
+Total Quantity Forest Products,2015,Production
+Yield,2015,Production
+Crop Diversity,2015,Production
+Total Quantity Exported,2016,Production
+Total Quantity Forest Products,2016,Production
+Yield,2016,Production
+Crop Diversity,2016,Production
+Total Quantity Exported,2017,Production
+Total Quantity Forest Products,2017,Production
+Total Quantity Food Products,2017,Production
+Value Added Market,2017,Production
+Certificates of Assurance,2017,Production
+Yield,2017,Production
+Inputs,2017,Production
+Crop Diversity,2017,Production
+Total Quantity Exported,2018,Production
+Total Quantity Forest Products,2018,Production
+Yield,2018,Production
+Crop Diversity,2018,Production
+Total Quantity Exported,2019,Production
+Total Quantity Imported,2019,Production
+Total Quantity Forest Products,2019,Production
+Yield,2019,Production
+Crop Diversity,2019,Production
+Total Quantity Exported,2020,Production
+Total Quantity Imported,2020,Production
+Total Quantity Forest Products,2020,Production
+Yield,2020,Production
+Crop Diversity,2020,Production
+Total Quantity Exported,2021,Production
+Total Quantity Imported,2021,Production
+Total Quantity Forest Products,2021,Production
+Yield,2021,Production
+Crop Diversity,2021,Production
+Total Quantity Exported,2022,Production
+Total Quantity Imported,2022,Production
+Total Quantity Forest Products,2022,Production
+Total Quantity Food Products,2022,Production
+Value Added Market,2022,Production
+Certificates of Assurance,2022,Production
+Technology Adoption,2022,Production
+Yield,2022,Production
+Inputs,2022,Production
+Crop Diversity,2022,Production
+Total Quantity Imported,2023,Production
+Total Quantity Forest Products,2023,Production
+Crop Diversity,2023,Production
+Total Quantity Imported,2024,Production
+Crop Diversity,2024,Production
+Participatory Governance,2000,Social
+Community Safety,2000,Social
+Community Safety,2001,Social
+Participatory Governance,2002,Social
+Community Safety,2002,Social
+Community Safety,2003,Social
+Participatory Governance,2004,Social
+Community Safety,2004,Social
+Community Safety,2005,Social
+Participatory Governance,2006,Social
+Community Safety,2006,Social
+Community Safety,2007,Social
+Participatory Governance,2008,Social
+Community Safety,2008,Social
+Community Safety,2009,Social
+Participatory Governance,2010,Social
+Community Safety,2010,Social
+Community Safety,2011,Social
+Participatory Governance,2012,Social
+Community Safety,2012,Social
+Conservation Program,2012,Social
+Community Safety,2013,Social
+Outmigration,2013,Social
+Participatory Governance,2014,Social
+Community Safety,2014,Social
+Outmigration,2014,Social
+Outmigration,2015,Social
+Participatory Governance,2016,Social
+Community Safety,2016,Social
+Outmigration,2016,Social
+Community Safety,2017,Social
+Producer Gender Diversity,2017,Social
+Producer Racial Diversity,2017,Social
+Producer Age Diversity,2017,Social
+Outmigration,2017,Social
+Conservation Program,2017,Social
+Participatory Governance,2018,Social
+Community Safety,2018,Social
+Outmigration,2018,Social
+Community Safety,2019,Social
+Outmigration,2019,Social
+Participatory Governance,2020,Social
+Community Safety,2020,Social
+Outmigration,2020,Social
+Community Safety,2021,Social
+Outmigration,2021,Social
+Participatory Governance,2022,Social
+Community Safety,2022,Social
+Producer Gender Diversity,2022,Social
+Producer Racial Diversity,2022,Social
+Producer Age Diversity,2022,Social
+Outmigration,2022,Social
+Conservation Program,2022,Social
+Outmigration,2023,Social
+Participatory Governance,2024,Social
+Social Connectedness,2024,Social
+Social Connectedness,2000,NA
+Producer Gender Diversity,2000,NA
+Producer Racial Diversity,2000,NA
+Producer Age Diversity,2000,NA
+Outmigration,2000,NA
+Conservation Program,2000,NA
+Total Quantity Imported,2000,NA
+Total Quantity Forest Products,2000,NA
+Total Quantity Food Products,2000,NA
+Value Added Market,2000,NA
+Certificates of Assurance,2000,NA
+Technology Adoption,2000,NA
+Yield,2000,NA
+Inputs,2000,NA
+Crop Diversity,2000,NA
+Access to Culturally Appropriate Food,2000,NA
+Housing Supply and Quality,2000,NA
+Access to Care,2000,NA
+Food Affordability,2000,NA
+Stress and Anxiety,2000,NA
+Nutritious Diets,2000,NA
+Food Access,2000,NA
+Access to Social Support,2000,NA
+Educational Attainment,2000,NA
+"Mobility, Pain",2000,NA
+Food Insecurity,2000,NA
+Prevalence of Diet-Related Disease,2000,NA
+Carbon Stocks,2000,NA
+Biodiversity,2000,NA
+Sensitive or Rare Habitats,2000,NA
+Land Use Diversity,2000,NA
+Water Quality,2000,NA
+Embodied Carbon,2000,NA
+Farm Insurance,2000,NA
+Operations Diversification,2000,NA
+Market Mix,2000,NA
+Access to Land,2000,NA
+Participatory Governance,2001,NA
+Social Connectedness,2001,NA
+Producer Gender Diversity,2001,NA
+Producer Racial Diversity,2001,NA
+Producer Age Diversity,2001,NA
+Outmigration,2001,NA
+Conservation Program,2001,NA
+Total Quantity Imported,2001,NA
+Total Quantity Forest Products,2001,NA
+Total Quantity Food Products,2001,NA
+Value Added Market,2001,NA
+Certificates of Assurance,2001,NA
+Technology Adoption,2001,NA
+Yield,2001,NA
+Inputs,2001,NA
+Crop Diversity,2001,NA
+Access to Culturally Appropriate Food,2001,NA
+Housing Supply and Quality,2001,NA
+Access to Care,2001,NA
+Food Affordability,2001,NA
+Stress and Anxiety,2001,NA
+Nutritious Diets,2001,NA
+Food Access,2001,NA
+Access to Social Support,2001,NA
+Educational Attainment,2001,NA
+"Mobility, Pain",2001,NA
+Food Insecurity,2001,NA
+Prevalence of Diet-Related Disease,2001,NA
+Carbon Stocks,2001,NA
+Biodiversity,2001,NA
+Sensitive or Rare Habitats,2001,NA
+Land Use Diversity,2001,NA
+Water Quality,2001,NA
+Embodied Carbon,2001,NA
+Operations Diversification,2001,NA
+Market Mix,2001,NA
+Access to Land,2001,NA
+Social Connectedness,2002,NA
+Producer Gender Diversity,2002,NA
+Producer Racial Diversity,2002,NA
+Producer Age Diversity,2002,NA
+Outmigration,2002,NA
+Conservation Program,2002,NA
+Total Quantity Imported,2002,NA
+Total Quantity Forest Products,2002,NA
+Technology Adoption,2002,NA
+Crop Diversity,2002,NA
+Access to Culturally Appropriate Food,2002,NA
+Housing Supply and Quality,2002,NA
+Access to Care,2002,NA
+Food Affordability,2002,NA
+Stress and Anxiety,2002,NA
+Nutritious Diets,2002,NA
+Food Access,2002,NA
+Access to Social Support,2002,NA
+Educational Attainment,2002,NA
+"Mobility, Pain",2002,NA
+Food Insecurity,2002,NA
+Prevalence of Diet-Related Disease,2002,NA
+Carbon Stocks,2002,NA
+Biodiversity,2002,NA
+Sensitive or Rare Habitats,2002,NA
+Land Use Diversity,2002,NA
+Water Quality,2002,NA
+Farm Insurance,2002,NA
+Market Mix,2002,NA
+Participatory Governance,2003,NA
+Social Connectedness,2003,NA
+Producer Gender Diversity,2003,NA
+Producer Racial Diversity,2003,NA
+Producer Age Diversity,2003,NA
+Outmigration,2003,NA
+Conservation Program,2003,NA
+Total Quantity Imported,2003,NA
+Total Quantity Forest Products,2003,NA
+Total Quantity Food Products,2003,NA
+Value Added Market,2003,NA
+Certificates of Assurance,2003,NA
+Technology Adoption,2003,NA
+Inputs,2003,NA
+Crop Diversity,2003,NA
+Access to Culturally Appropriate Food,2003,NA
+Housing Supply and Quality,2003,NA
+Access to Care,2003,NA
+Food Affordability,2003,NA
+Stress and Anxiety,2003,NA
+Nutritious Diets,2003,NA
+Food Access,2003,NA
+Access to Social Support,2003,NA
+Educational Attainment,2003,NA
+"Mobility, Pain",2003,NA
+Food Insecurity,2003,NA
+Prevalence of Diet-Related Disease,2003,NA
+Carbon Stocks,2003,NA
+Biodiversity,2003,NA
+Sensitive or Rare Habitats,2003,NA
+Land Use Diversity,2003,NA
+Water Quality,2003,NA
+Embodied Carbon,2003,NA
+Farm Insurance,2003,NA
+Operations Diversification,2003,NA
+Market Mix,2003,NA
+Access to Land,2003,NA
+Social Connectedness,2004,NA
+Producer Gender Diversity,2004,NA
+Producer Racial Diversity,2004,NA
+Producer Age Diversity,2004,NA
+Outmigration,2004,NA
+Conservation Program,2004,NA
+Total Quantity Imported,2004,NA
+Total Quantity Forest Products,2004,NA
+Total Quantity Food Products,2004,NA
+Value Added Market,2004,NA
+Certificates of Assurance,2004,NA
+Technology Adoption,2004,NA
+Inputs,2004,NA
+Crop Diversity,2004,NA
+Access to Culturally Appropriate Food,2004,NA
+Housing Supply and Quality,2004,NA
+Access to Care,2004,NA
+Food Affordability,2004,NA
+Stress and Anxiety,2004,NA
+Nutritious Diets,2004,NA
+Food Access,2004,NA
+Access to Social Support,2004,NA
+Educational Attainment,2004,NA
+"Mobility, Pain",2004,NA
+Food Insecurity,2004,NA
+Prevalence of Diet-Related Disease,2004,NA
+Carbon Stocks,2004,NA
+Biodiversity,2004,NA
+Sensitive or Rare Habitats,2004,NA
+Land Use Diversity,2004,NA
+Water Quality,2004,NA
+Embodied Carbon,2004,NA
+Farm Insurance,2004,NA
+Operations Diversification,2004,NA
+Market Mix,2004,NA
+Access to Land,2004,NA
+Income Stability,2004,NA
+Business Failure Rate,2004,NA
+Wealth and Income Distribution,2004,NA
+Participatory Governance,2005,NA
+Social Connectedness,2005,NA
+Producer Gender Diversity,2005,NA
+Producer Racial Diversity,2005,NA
+Producer Age Diversity,2005,NA
+Outmigration,2005,NA
+Conservation Program,2005,NA
+Total Quantity Imported,2005,NA
+Total Quantity Forest Products,2005,NA
+Total Quantity Food Products,2005,NA
+Value Added Market,2005,NA
+Certificates of Assurance,2005,NA
+Technology Adoption,2005,NA
+Inputs,2005,NA
+Crop Diversity,2005,NA
+Access to Culturally Appropriate Food,2005,NA
+Housing Supply and Quality,2005,NA
+Access to Care,2005,NA
+Food Affordability,2005,NA
+Stress and Anxiety,2005,NA
+Nutritious Diets,2005,NA
+Food Access,2005,NA
+Access to Social Support,2005,NA
+Educational Attainment,2005,NA
+"Mobility, Pain",2005,NA
+Food Insecurity,2005,NA
+Prevalence of Diet-Related Disease,2005,NA
+Carbon Stocks,2005,NA
+Biodiversity,2005,NA
+Sensitive or Rare Habitats,2005,NA
+Land Use Diversity,2005,NA
+Water Quality,2005,NA
+Embodied Carbon,2005,NA
+Farm Insurance,2005,NA
+Operations Diversification,2005,NA
+Market Mix,2005,NA
+Access to Land,2005,NA
+Social Connectedness,2006,NA
+Producer Gender Diversity,2006,NA
+Producer Racial Diversity,2006,NA
+Producer Age Diversity,2006,NA
+Outmigration,2006,NA
+Conservation Program,2006,NA
+Total Quantity Imported,2006,NA
+Total Quantity Forest Products,2006,NA
+Total Quantity Food Products,2006,NA
+Value Added Market,2006,NA
+Certificates of Assurance,2006,NA
+Technology Adoption,2006,NA
+Inputs,2006,NA
+Crop Diversity,2006,NA
+Access to Culturally Appropriate Food,2006,NA
+Housing Supply and Quality,2006,NA
+Access to Care,2006,NA
+Food Affordability,2006,NA
+Stress and Anxiety,2006,NA
+Nutritious Diets,2006,NA
+Food Access,2006,NA
+Access to Social Support,2006,NA
+Educational Attainment,2006,NA
+"Mobility, Pain",2006,NA
+Food Insecurity,2006,NA
+Prevalence of Diet-Related Disease,2006,NA
+Carbon Stocks,2006,NA
+Biodiversity,2006,NA
+Sensitive or Rare Habitats,2006,NA
+Land Use Diversity,2006,NA
+Water Quality,2006,NA
+Embodied Carbon,2006,NA
+Farm Insurance,2006,NA
+Operations Diversification,2006,NA
+Market Mix,2006,NA
+Access to Land,2006,NA
+Participatory Governance,2007,NA
+Social Connectedness,2007,NA
+Producer Gender Diversity,2007,NA
+Producer Racial Diversity,2007,NA
+Producer Age Diversity,2007,NA
+Outmigration,2007,NA
+Conservation Program,2007,NA
+Total Quantity Imported,2007,NA
+Total Quantity Forest Products,2007,NA
+Technology Adoption,2007,NA
+Crop Diversity,2007,NA
+Access to Culturally Appropriate Food,2007,NA
+Housing Supply and Quality,2007,NA
+Access to Care,2007,NA
+Food Affordability,2007,NA
+Stress and Anxiety,2007,NA
+Nutritious Diets,2007,NA
+Food Access,2007,NA
+Access to Social Support,2007,NA
+Educational Attainment,2007,NA
+"Mobility, Pain",2007,NA
+Food Insecurity,2007,NA
+Prevalence of Diet-Related Disease,2007,NA
+Carbon Stocks,2007,NA
+Biodiversity,2007,NA
+Sensitive or Rare Habitats,2007,NA
+Land Use Diversity,2007,NA
+Market Mix,2007,NA
+Social Connectedness,2008,NA
+Producer Gender Diversity,2008,NA
+Producer Racial Diversity,2008,NA
+Producer Age Diversity,2008,NA
+Outmigration,2008,NA
+Conservation Program,2008,NA
+Total Quantity Imported,2008,NA
+Total Quantity Food Products,2008,NA
+Value Added Market,2008,NA
+Certificates of Assurance,2008,NA
+Technology Adoption,2008,NA
+Inputs,2008,NA
+Access to Culturally Appropriate Food,2008,NA
+Housing Supply and Quality,2008,NA
+Access to Care,2008,NA
+Food Affordability,2008,NA
+Stress and Anxiety,2008,NA
+Nutritious Diets,2008,NA
+Food Access,2008,NA
+Access to Social Support,2008,NA
+Educational Attainment,2008,NA
+"Mobility, Pain",2008,NA
+Food Insecurity,2008,NA
+Prevalence of Diet-Related Disease,2008,NA
+Carbon Stocks,2008,NA
+Biodiversity,2008,NA
+Sensitive or Rare Habitats,2008,NA
+Land Use Diversity,2008,NA
+Water Quality,2008,NA
+Embodied Carbon,2008,NA
+Operations Diversification,2008,NA
+Market Mix,2008,NA
+Access to Land,2008,NA
+Participatory Governance,2009,NA
+Social Connectedness,2009,NA
+Producer Gender Diversity,2009,NA
+Producer Racial Diversity,2009,NA
+Producer Age Diversity,2009,NA
+Outmigration,2009,NA
+Conservation Program,2009,NA
+Total Quantity Imported,2009,NA
+Total Quantity Food Products,2009,NA
+Value Added Market,2009,NA
+Certificates of Assurance,2009,NA
+Technology Adoption,2009,NA
+Inputs,2009,NA
+Access to Culturally Appropriate Food,2009,NA
+Housing Supply and Quality,2009,NA
+Access to Care,2009,NA
+Stress and Anxiety,2009,NA
+Nutritious Diets,2009,NA
+Food Access,2009,NA
+Access to Social Support,2009,NA
+Educational Attainment,2009,NA
+"Mobility, Pain",2009,NA
+Prevalence of Diet-Related Disease,2009,NA
+Carbon Stocks,2009,NA
+Biodiversity,2009,NA
+Sensitive or Rare Habitats,2009,NA
+Land Use Diversity,2009,NA
+Water Quality,2009,NA
+Embodied Carbon,2009,NA
+Operations Diversification,2009,NA
+Market Mix,2009,NA
+Access to Land,2009,NA
+Social Connectedness,2010,NA
+Producer Gender Diversity,2010,NA
+Producer Racial Diversity,2010,NA
+Producer Age Diversity,2010,NA
+Outmigration,2010,NA
+Conservation Program,2010,NA
+Total Quantity Imported,2010,NA
+Total Quantity Food Products,2010,NA
+Value Added Market,2010,NA
+Certificates of Assurance,2010,NA
+Technology Adoption,2010,NA
+Inputs,2010,NA
+Access to Culturally Appropriate Food,2010,NA
+Housing Supply and Quality,2010,NA
+Access to Care,2010,NA
+Nutritious Diets,2010,NA
+Food Access,2010,NA
+Access to Social Support,2010,NA
+Educational Attainment,2010,NA
+"Mobility, Pain",2010,NA
+Prevalence of Diet-Related Disease,2010,NA
+Carbon Stocks,2010,NA
+Biodiversity,2010,NA
+Sensitive or Rare Habitats,2010,NA
+Land Use Diversity,2010,NA
+Water Quality,2010,NA
+Embodied Carbon,2010,NA
+Operations Diversification,2010,NA
+Market Mix,2010,NA
+Access to Land,2010,NA
+Participatory Governance,2011,NA
+Social Connectedness,2011,NA
+Producer Gender Diversity,2011,NA
+Producer Racial Diversity,2011,NA
+Producer Age Diversity,2011,NA
+Outmigration,2011,NA
+Conservation Program,2011,NA
+Total Quantity Imported,2011,NA
+Total Quantity Food Products,2011,NA
+Value Added Market,2011,NA
+Certificates of Assurance,2011,NA
+Technology Adoption,2011,NA
+Inputs,2011,NA
+Access to Culturally Appropriate Food,2011,NA
+Housing Supply and Quality,2011,NA
+Access to Care,2011,NA
+Nutritious Diets,2011,NA
+Food Access,2011,NA
+Access to Social Support,2011,NA
+Educational Attainment,2011,NA
+"Mobility, Pain",2011,NA
+Carbon Stocks,2011,NA
+Biodiversity,2011,NA
+Sensitive or Rare Habitats,2011,NA
+Land Use Diversity,2011,NA
+Water Quality,2011,NA
+Embodied Carbon,2011,NA
+Operations Diversification,2011,NA
+Market Mix,2011,NA
+Access to Land,2011,NA
+Social Connectedness,2012,NA
+Producer Gender Diversity,2012,NA
+Producer Racial Diversity,2012,NA
+Producer Age Diversity,2012,NA
+Outmigration,2012,NA
+Total Quantity Imported,2012,NA
+Technology Adoption,2012,NA
+Access to Culturally Appropriate Food,2012,NA
+Housing Supply and Quality,2012,NA
+Nutritious Diets,2012,NA
+Access to Social Support,2012,NA
+Educational Attainment,2012,NA
+"Mobility, Pain",2012,NA
+Carbon Stocks,2012,NA
+Biodiversity,2012,NA
+Sensitive or Rare Habitats,2012,NA
+Land Use Diversity,2012,NA
+Market Mix,2012,NA
+Participatory Governance,2013,NA
+Social Connectedness,2013,NA
+Producer Gender Diversity,2013,NA
+Producer Racial Diversity,2013,NA
+Producer Age Diversity,2013,NA
+Conservation Program,2013,NA
+Total Quantity Imported,2013,NA
+Total Quantity Food Products,2013,NA
+Value Added Market,2013,NA
+Certificates of Assurance,2013,NA
+Technology Adoption,2013,NA
+Inputs,2013,NA
+Access to Culturally Appropriate Food,2013,NA
+Nutritious Diets,2013,NA
+Access to Social Support,2013,NA
+"Mobility, Pain",2013,NA
+Carbon Stocks,2013,NA
+Biodiversity,2013,NA
+Sensitive or Rare Habitats,2013,NA
+Land Use Diversity,2013,NA
+Water Quality,2013,NA
+Embodied Carbon,2013,NA
+Operations Diversification,2013,NA
+Market Mix,2013,NA
+Access to Land,2013,NA
+Income Stability,2013,NA
+Business Failure Rate,2013,NA
+Social Connectedness,2014,NA
+Producer Gender Diversity,2014,NA
+Producer Racial Diversity,2014,NA
+Producer Age Diversity,2014,NA
+Conservation Program,2014,NA
+Total Quantity Imported,2014,NA
+Total Quantity Food Products,2014,NA
+Value Added Market,2014,NA
+Certificates of Assurance,2014,NA
+Technology Adoption,2014,NA
+Inputs,2014,NA
+Access to Culturally Appropriate Food,2014,NA
+Housing Supply and Quality,2014,NA
+Nutritious Diets,2014,NA
+Access to Social Support,2014,NA
+Educational Attainment,2014,NA
+"Mobility, Pain",2014,NA
+Carbon Stocks,2014,NA
+Biodiversity,2014,NA
+Sensitive or Rare Habitats,2014,NA
+Land Use Diversity,2014,NA
+Water Quality,2014,NA
+Embodied Carbon,2014,NA
+Operations Diversification,2014,NA
+Market Mix,2014,NA
+Access to Land,2014,NA
+Income Stability,2014,NA
+Business Failure Rate,2014,NA
+Wealth and Income Distribution,2014,NA
+Participatory Governance,2015,NA
+Community Safety,2015,NA
+Social Connectedness,2015,NA
+Producer Gender Diversity,2015,NA
+Producer Racial Diversity,2015,NA
+Producer Age Diversity,2015,NA
+Conservation Program,2015,NA
+Total Quantity Imported,2015,NA
+Total Quantity Food Products,2015,NA
+Value Added Market,2015,NA
+Certificates of Assurance,2015,NA
+Technology Adoption,2015,NA
+Inputs,2015,NA
+Access to Culturally Appropriate Food,2015,NA
+Housing Supply and Quality,2015,NA
+Nutritious Diets,2015,NA
+Access to Social Support,2015,NA
+Educational Attainment,2015,NA
+"Mobility, Pain",2015,NA
+Carbon Stocks,2015,NA
+Biodiversity,2015,NA
+Sensitive or Rare Habitats,2015,NA
+Water Quality,2015,NA
+Embodied Carbon,2015,NA
+Operations Diversification,2015,NA
+Market Mix,2015,NA
+Access to Land,2015,NA
+Social Connectedness,2016,NA
+Producer Gender Diversity,2016,NA
+Producer Racial Diversity,2016,NA
+Producer Age Diversity,2016,NA
+Conservation Program,2016,NA
+Total Quantity Imported,2016,NA
+Total Quantity Food Products,2016,NA
+Value Added Market,2016,NA
+Certificates of Assurance,2016,NA
+Technology Adoption,2016,NA
+Inputs,2016,NA
+Access to Culturally Appropriate Food,2016,NA
+Housing Supply and Quality,2016,NA
+Nutritious Diets,2016,NA
+Access to Social Support,2016,NA
+Educational Attainment,2016,NA
+Carbon Stocks,2016,NA
+Biodiversity,2016,NA
+Sensitive or Rare Habitats,2016,NA
+Water Quality,2016,NA
+Embodied Carbon,2016,NA
+Operations Diversification,2016,NA
+Market Mix,2016,NA
+Access to Land,2016,NA
+Participatory Governance,2017,NA
+Social Connectedness,2017,NA
+Total Quantity Imported,2017,NA
+Technology Adoption,2017,NA
+Access to Culturally Appropriate Food,2017,NA
+Housing Supply and Quality,2017,NA
+Access to Social Support,2017,NA
+Educational Attainment,2017,NA
+Carbon Stocks,2017,NA
+Biodiversity,2017,NA
+Sensitive or Rare Habitats,2017,NA
+Social Connectedness,2018,NA
+Producer Gender Diversity,2018,NA
+Producer Racial Diversity,2018,NA
+Producer Age Diversity,2018,NA
+Conservation Program,2018,NA
+Total Quantity Imported,2018,NA
+Total Quantity Food Products,2018,NA
+Value Added Market,2018,NA
+Certificates of Assurance,2018,NA
+Technology Adoption,2018,NA
+Inputs,2018,NA
+Access to Culturally Appropriate Food,2018,NA
+Nutritious Diets,2018,NA
+Access to Social Support,2018,NA
+Carbon Stocks,2018,NA
+Sensitive or Rare Habitats,2018,NA
+Water Quality,2018,NA
+Embodied Carbon,2018,NA
+Operations Diversification,2018,NA
+Market Mix,2018,NA
+Access to Land,2018,NA
+Participatory Governance,2019,NA
+Social Connectedness,2019,NA
+Producer Gender Diversity,2019,NA
+Producer Racial Diversity,2019,NA
+Producer Age Diversity,2019,NA
+Conservation Program,2019,NA
+Total Quantity Food Products,2019,NA
+Value Added Market,2019,NA
+Certificates of Assurance,2019,NA
+Technology Adoption,2019,NA
+Inputs,2019,NA
+Access to Culturally Appropriate Food,2019,NA
+Housing Supply and Quality,2019,NA
+Access to Social Support,2019,NA
+Educational Attainment,2019,NA
+Carbon Stocks,2019,NA
+Sensitive or Rare Habitats,2019,NA
+Water Quality,2019,NA
+Embodied Carbon,2019,NA
+Operations Diversification,2019,NA
+Market Mix,2019,NA
+Access to Land,2019,NA
+Social Connectedness,2020,NA
+Producer Gender Diversity,2020,NA
+Producer Racial Diversity,2020,NA
+Producer Age Diversity,2020,NA
+Conservation Program,2020,NA
+Total Quantity Food Products,2020,NA
+Value Added Market,2020,NA
+Certificates of Assurance,2020,NA
+Technology Adoption,2020,NA
+Inputs,2020,NA
+Access to Culturally Appropriate Food,2020,NA
+Housing Supply and Quality,2020,NA
+Nutritious Diets,2020,NA
+Access to Social Support,2020,NA
+Educational Attainment,2020,NA
+Sensitive or Rare Habitats,2020,NA
+Water Quality,2020,NA
+Embodied Carbon,2020,NA
+Operations Diversification,2020,NA
+Market Mix,2020,NA
+Access to Land,2020,NA
+Participatory Governance,2021,NA
+Social Connectedness,2021,NA
+Producer Gender Diversity,2021,NA
+Producer Racial Diversity,2021,NA
+Producer Age Diversity,2021,NA
+Conservation Program,2021,NA
+Total Quantity Food Products,2021,NA
+Value Added Market,2021,NA
+Certificates of Assurance,2021,NA
+Technology Adoption,2021,NA
+Inputs,2021,NA
+Access to Culturally Appropriate Food,2021,NA
+Housing Supply and Quality,2021,NA
+Access to Social Support,2021,NA
+Educational Attainment,2021,NA
+Carbon Stocks,2021,NA
+Sensitive or Rare Habitats,2021,NA
+Water Quality,2021,NA
+Embodied Carbon,2021,NA
+Operations Diversification,2021,NA
+Market Mix,2021,NA
+Access to Land,2021,NA
+Social Connectedness,2022,NA
+Access to Culturally Appropriate Food,2022,NA
+Housing Supply and Quality,2022,NA
+Nutritious Diets,2022,NA
+Access to Social Support,2022,NA
+Educational Attainment,2022,NA
+Carbon Stocks,2022,NA
+Participatory Governance,2023,NA
+Community Safety,2023,NA
+Social Connectedness,2023,NA
+Producer Gender Diversity,2023,NA
+Producer Racial Diversity,2023,NA
+Producer Age Diversity,2023,NA
+Conservation Program,2023,NA
+Total Quantity Exported,2023,NA
+Total Quantity Food Products,2023,NA
+Value Added Market,2023,NA
+Certificates of Assurance,2023,NA
+Technology Adoption,2023,NA
+Yield,2023,NA
+Inputs,2023,NA
+Nutritious Diets,2023,NA
+Access to Social Support,2023,NA
+Carbon Stocks,2023,NA
+Sensitive or Rare Habitats,2023,NA
+Water Quality,2023,NA
+Embodied Carbon,2023,NA
+Carbon Fluxes,2023,NA
+Operations Diversification,2023,NA
+Market Mix,2023,NA
+Access to Land,2023,NA
+Community Safety,2024,NA
+Producer Gender Diversity,2024,NA
+Producer Racial Diversity,2024,NA
+Producer Age Diversity,2024,NA
+Outmigration,2024,NA
+Conservation Program,2024,NA
+Total Quantity Exported,2024,NA
+Total Quantity Forest Products,2024,NA
+Total Quantity Food Products,2024,NA
+Value Added Market,2024,NA
+Certificates of Assurance,2024,NA
+Technology Adoption,2024,NA
+Yield,2024,NA
+Inputs,2024,NA
+Access to Culturally Appropriate Food,2024,NA
+Housing Supply and Quality,2024,NA
+Food Affordability,2024,NA
+Nutritious Diets,2024,NA
+Educational Attainment,2024,NA
+Food Insecurity,2024,NA
+Forest Complexity,2024,NA
+Carbon Stocks,2024,NA
+Forest Health,2024,NA
+Sensitive or Rare Habitats,2024,NA
+Water Quality,2024,NA
+Embodied Carbon,2024,NA
+Carbon Fluxes,2024,NA
+Operations Diversification,2024,NA
+Market Mix,2024,NA
+Access to Land,2024,NA

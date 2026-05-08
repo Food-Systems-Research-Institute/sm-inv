@@ -1,13 +1,89 @@
-# inventory
+# root
 
 project:
   type: website
-  # execute-dir: 
-  output-dir: ../_site/inventory
-  # pre-render:
-  #   - Rscript -e "devtools::load_all()"
-    # - renv::restore()  # Restore subproject renv
-    # - Rscript -e "devtools::install_local('../', dependencies = FALSE)"  # Install root package
+  execute-dir: project
+  output-dir: _site/
+  preview:
+    browser: true
+  render:
+    - 1_intro/src/dp_intro.qmd
+    - 2_eda/src/dp_eda.qmd
+    - 3_coverage/src/dp_coverage.qmd
+    - 4_correlations/src/dp_correlations.qmd
+    - 5_trends/src/dp_trends.qmd
+
+website:
+  title: "Inventory and Evaluation of Sustainability Metrics"
+  reader-mode: false
+  page-navigation: true
+  bread-crumbs: false
+  back-to-top-navigation: true
+  repo-url: https://github.com/Food-Systems-Research-Institute/SMdocs
+  navbar:
+    logo: assets/images/UVM_FSRI_Inline Horiz W.png
+    logo-href: https://www.uvm.edu/ovpr/food-systems-research
+    search: true
+    tools:
+      - icon: tree
+        menu:
+          - text: FSRI
+            href: https://www.uvm.edu/ovpr/food-systems-research
+          - text: UVM
+            href: https://www.uvm.edu
+      - icon: github
+        menu:
+          - text: Source Code
+            href: https://github.com/Food-Systems-Research-Institute/SMdocs
+          - text: FSRI GitHub
+            href: https://github.com/Food-Systems-Research-Institute
+  sidebar:
+    title: "Table of Contents"
+    style: "docked"
+    contents:
+      - text: Introduction
+        href: 1_intro/src/dp_intro.qmd
+      - text: Exploratory
+        href: 2_eda/src/dp_eda.qmd
+      - text: Coverage
+        href: 3_coverage/src/dp_coverage.qmd
+      - text: Correlations
+        href: 4_correlations/src/dp_correlations.qmd
+      - text: Trends
+        href: 5_trends/src/dp_trends.qmd
 
 format:
-  html: default
+  html:
+    page-layout: article
+    theme: assets/custom_theme.scss
+    fig-align: left
+    css: assets/styles.css
+    toc: true
+    toc-title: "On This Page"
+    toc-location: right
+    toc-depth: 4
+    number-sections: true
+    number-depth: 4
+    code-fold: true
+    grid:
+      body-width: 900px
+      sidebar-width: 250px
+      margin-width: 250px
+    mainfont: Lora
+    smooth-scroll: true
+    link-external-newwindow: true
+    link-external-icon: true
+    title-block-style: default
+
+bibliography:
+  - assets/fsrc.bib
+  - assets/FSRI.bib
+  - assets/SM_Data_Survey.bib
+
+execute:
+  warning: false
+  cache: true
+  freeze: auto
+
+editor_options:
+  chunk_output_type: console

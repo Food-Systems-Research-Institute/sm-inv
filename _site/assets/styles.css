@@ -1,0 +1,18 @@
+/* css styles */
+/* note that other styles are in the custom_theme.scss file*/
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.callout-note {
+  border-left: 4px solid #154734 !important;
+}
+
+.download-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+}

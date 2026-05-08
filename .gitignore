@@ -4,3 +4,5 @@
 .Rhistory
 .RData
 renv/
+.renv_restored
+site_libs/
