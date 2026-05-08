@@ -1,0 +1,13 @@
+# inventory
+
+project:
+  type: website
+  # execute-dir: 
+  output-dir: ../_site/inventory
+  # pre-render:
+  #   - Rscript -e "devtools::load_all()"
+    # - renv::restore()  # Restore subproject renv
+    # - Rscript -e "devtools::install_local('../', dependencies = FALSE)"  # Install root package
+
+format:
+  html: default

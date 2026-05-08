@@ -1,0 +1,562 @@
+---
+title: "Correlations"
+format:
+  html:
+    fig-dpi: 200
+    code-fold: true
+editor_options: 
+  chunk_output_type: console
+warnings: false
+execute:
+  cache: false
+---
+
+```{r}
+#| label: prep
+#| cache: false
+#| output: false
+options(scipen = 999)
+
+pacman::p_load(
+  dplyr,
+  htmltools,
+  stringr,
+  tidyr,
+  reactable,
+  purrr,
+  broom,
+  knitr,
+  kableExtra,
+  ggplot2,
+  ggpubr,
+  psych,
+  tibble,
+  Hmisc,
+  reshape2,
+  viridisLite,
+  conflicted,
+  readr,
+  ggtext,
+  snakecase
+)
+
+# GitHub packages
+pacman::p_load_current_gh(
+  'ChrisDonovan307/projecter',
+  'Food-Systems-Research-Institute/SMdata'
+)
+
+# SMdocs project
+devtools::load_all()
+
+conflicts_prefer(
+  dplyr::select(),
+  dplyr::filter(),
+  dplyr::pull(),
+  dplyr::summarize(),
+  stats::lag(),
+  base::setdiff(),
+  .quiet = TRUE
+)
+```
+
+This page explores correlations among metrics across counties using the latest available time point for each metric.
+
+## Wrangling
+
+Here, filter our dataset to latest time points for each metric, filter to county data only, and join with a crosswalk that matches variable names to metric names. We then make an ordered framework that we use to arrange axes in a correlation matrix below.
+
+```{r}
+#| label: wrangle
+#| output: false
+#| fig-height: 10
+#| fig-width: 10
+# metric crosswalk
+crosswalk <- SMdocs::dp_meta %>% 
+  select(variable_name, metric)
+
+# Get df ready
+get_str(SMdata::metrics)
+df <- SMdata::metrics %>% 
+  filter(variable_name %in% SMdocs::dp_meta$variable_name) %>% 
+  SMdocs::get_latest_year() %>% 
+  SMdata::filter_fips('new') %>% 
+  mutate(variable_name = str_split_i(variable_name, '_', 1)) %>% 
+  left_join(crosswalk) %>% 
+  select(-variable_name) %>% 
+  pivot_wider(
+    id_cols = fips,
+    values_from = value,
+    names_from = metric
+  )
+projecter::get_str(df)
+
+# Get an ordered framework from which we will pull metrics in alphabetical order
+# and get the counts of metrics per dimension that we will use to draw lines
+# between dimensions
+projecter::get_str(dp_meta)
+ordered_framework <- dp_meta %>% 
+  arrange(dimension, metric) %>% 
+  filter(metric %in% names(df))
+ordered_framework
+```
+
+## Figure
+
+This figure shows absolute values of Spearman rank correlation coefficients among county level metrics. Green cells show significant correlations, while grey cells are insignificant. Darker green cells are stronger correlations and lighter green cells are weaker (but still significant).
+
+Also, credits to Isabella and Tessa for making and improving this figure substantially.
+
+```{r}
+#| label: make_cor_table
+#| output: false
+# Get line placements to divide dimensions
+# Reverse them to match alphabetical order of dimensions top to bottom
+# Get cumulative sums to space them out across graph
+# Then add 0.5 to each to put them in between cells
+counts <- ordered_framework %>% 
+  group_by(dimension) %>% 
+  summarize(count = n()) %>% 
+  pull(count)
+hline_placements <- counts %>% 
+  rev() %>% 
+  cumsum() %>% 
+  {. + 0.5}
+hline_placements
+
+vline_placements <- counts %>% 
+  cumsum() %>% 
+  {. + 0.5}
+vline_placements
+
+# Reorder our df in proper metric order
+metric_order <- ordered_framework %>% 
+  pull(metric)
+df <- df %>% 
+  select(fips, any_of(metric_order)) %>% 
+  select(rev(everything()))
+get_str(df)
+
+# Create matrix of values
+mat <- df %>% 
+  na.omit() %>% 
+  select(-fips) %>% 
+  as.matrix()
+
+# Get correlations
+cor <- rcorr(mat, type = 'spearman')
+
+# Melt correlation values and rename columns
+cor_r <- reshape2::melt(cor$r) %>% 
+  setNames(c('var_1', 'var_2', 'value'))
+
+# Save p values
+cor_p <- melt(cor$P)
+p.value <- cor_p$value
+
+# Absolute values of correlations
+cor_r <- cor_r %>%
+  mutate(value = abs(value))
+
+# Pulling out significant p values
+cor_r <- cor_r %>%
+  mutate(p_value = ifelse(var_1 == var_2, 1, cor_p$value)) %>% # Make diagonal line non-significant
+  mutate(significant = ifelse(p_value <= 0.05, TRUE, FALSE))
+
+# Reverse the order to use for x-axis labels (start at Economics)
+reversed_metric_order <- rev(metric_order)
+
+# Create a reversed version of the cor_r data frame for the x-axis
+cor_r <- cor_r %>%
+  mutate(
+    var_1 = factor(var_1, levels = reversed_metric_order)
+  )
+
+# Remove last cols []
+get_str(cor_r)
+cor_r <- cor_r %>%
+  filter(var_1 != var_2)
+  # filter(!(var_1 == "Average Weekly Wages" & var_2 == "Violent Crime Rate")) %>%
+  # filter(!(var_1 == "Violent Crime Rate" & var_2 == "Average Weekly Wages"))
+get_str(cor_r)
+  
+# Only set values for lower triangle of the matrix
+cor_r <- cor_r %>%
+  mutate(
+    row_idx = as.integer(factor(var_1, levels = reversed_metric_order)),
+    col_idx = as.integer(factor(var_2, levels = reversed_metric_order)),
+    value = ifelse(row_idx <= col_idx, NA, value)  # Set upper triangle to NA
+  ) %>%
+  select(-row_idx, -col_idx)  # Remove temporary columns
+
+# Pasting dimension colors to metrics
+colored_labels <- ordered_framework %>%
+  mutate(
+    label = paste0(
+      "<span style='color:",
+      dp_text_palette[dimension],
+      "'>",
+      to_title_case(str_replace_all(metric, "_", " ")),
+      "</span>"
+    )
+  ) %>%
+  select(metric, label) %>%
+  deframe()
+
+## Removing topmost y axis label and rightmost x axis label
+# Create modified label vectors
+x_labels <- colored_labels
+x_labels[metric_order[length(metric_order)]] <- ""  # remove last x-axis label
+y_labels <- colored_labels
+y_labels[reversed_metric_order[length(reversed_metric_order)]] <- "" # Blank topmost y-axis label
+
+# Create tick vectors (TRUE = show tick, FALSE = hide tick)
+x_ticks <- rep(TRUE, length(metric_order))
+x_ticks[length(metric_order)] <- FALSE  # Hide rightmost x-axis tick
+
+y_ticks <- rep(TRUE, length(reversed_metric_order))
+y_ticks[length(reversed_metric_order)] <- FALSE  # Hide topmost y-axis tick
+
+# Dummy data frame for dimension legend
+dimension_legend_df <- tibble(
+  x = -Inf,
+  y = -Inf,
+  dimension = factor(names(dp_text_palette), levels = names(dp_text_palette))
+)
+
+# Make heatmap
+corplot <- ggplot(cor_r, aes(x = var_1, y = var_2)) +
+  
+  # Color in significant correlations
+  geom_tile(
+    data = cor_r %>% filter(!is.na(value) & significant), 
+    aes(fill = value)
+  ) +
+  
+  # Make non-significant correlations white
+  geom_tile(
+    data = cor_r %>% filter(!is.na(value) & !significant), 
+    fill = "gray90"
+  ) +
+  
+  # Grid lines for lower triangle
+  geom_tile(
+    data = cor_r %>% filter(!is.na(value)),
+    color = "gray60",
+    linewidth = 0.2,
+    fill = NA
+  ) +
+
+  geom_point(
+    data = dimension_legend_df,
+    aes(x = x, y = y, color = dimension),
+    shape = 15,
+    size = 5,
+    inherit.aes = FALSE,
+    show.legend = TRUE,
+    alpha = 0  # fully transparent points, so they don't show up
+  ) +
+  
+  scale_fill_gradient2(
+    low = "white", 
+    high = "#1b7837", 
+    midpoint = 0,
+    name = "Correlation",
+    na.value = "transparent"
+  ) +
+  scale_color_manual(
+    values = dp_text_palette,
+    labels = str_to_title(names(dp_text_palette)),
+    name = "Dimension"
+  ) +
+  
+  # Legend overrides
+  guides(
+    fill = guide_colorbar(
+    title = "Correlation", 
+    order = 1
+  ),
+    color = guide_legend(
+      override.aes = list(shape = 15, size = 5, alpha = 1),
+      nrow = 2,
+      order = 2
+    )
+  ) +
+  
+  # Horizontal Lines
+  geom_segment(
+    x = 0,
+    xend = vline_placements[4],
+    y = hline_placements[1], 
+    yend = hline_placements[1]
+  ) +
+  geom_segment(
+    x = 0,
+    xend = vline_placements[3],
+    y = hline_placements[2], 
+    yend = hline_placements[2]
+  ) +
+  geom_segment(
+    x = 0,
+    xend = vline_placements[2],
+    y = hline_placements[3], 
+    yend = hline_placements[3]
+  ) +
+  geom_segment(
+    x = 0,
+    xend = vline_placements[1],
+    y = hline_placements[4], 
+    yend = hline_placements[4]
+  ) +
+    
+  # Vertical Lines
+  geom_segment(
+    x = vline_placements[1],
+    xend = vline_placements[1],
+    y = 0, 
+    yend = hline_placements[4] 
+  ) +
+  geom_segment(
+    x = vline_placements[2],
+    xend = vline_placements[2],
+    y = 0, 
+    yend = hline_placements[3] 
+  ) +
+  geom_segment(
+    x = vline_placements[3],
+    xend = vline_placements[3],
+    y = 0, 
+    yend = hline_placements[2] 
+  ) +
+  geom_segment(
+    x = vline_placements[4],
+    xend = vline_placements[4],
+    y = 0, 
+    yend = hline_placements[1] 
+  ) +
+    
+  # Correct x and y axis labels with the order
+  scale_x_discrete(
+    labels = x_labels,
+    limits = metric_order
+  ) +
+  scale_y_discrete(
+    labels = y_labels,
+    limits = reversed_metric_order
+  ) +
+  
+  theme(
+    axis.text.x = element_markdown(angle = 45, hjust = 1),
+    axis.text.y = element_markdown(),
+    axis.text = element_text(family = "Times New Roman"),
+    axis.title = element_blank(),
+    axis.ticks.length.x = unit(ifelse(x_ticks, 0.15, 0), "cm"),
+    axis.ticks.length.y = unit(ifelse(y_ticks, 0.15, 0), "cm"),
+    plot.title = element_text(hjust = 0),
+    legend.position = "top",
+    legend.title.position = "top",
+    legend.justification = "center",
+    legend.title = element_text(
+      size = 10,
+      family = "Times New Roman",
+      hjust = 0.5
+    ),
+    legend.text = element_text(size = 9, family = "Times New Roman"),
+    legend.key = element_rect(fill = "transparent", colour = NA),
+    legend.background = element_rect(fill = "transparent", colour = NA),
+    plot.background = element_rect(fill = "transparent", colour = NA),
+    panel.background = element_rect(fill = "transparent", colour = NA)
+  )
+
+ggsave(
+  plot = corplot,
+  filename = '../outputs/fig_corplot.png',
+  height = 9,
+  width = 9,
+  dpi = 300,
+  bg = 'white'
+)
+```
+
+
+```{r}
+#| label: show_cor_table
+#| echo: false
+#| fig-height: 9
+#| fig-width: 9
+corplot
+```
+
+Reading the tea leaves here, it looks like we have lots of strong correlations within the Health dimension. This might suggest that the health metrics are particularly cohesive. It might also suggest that they are redundant, and we could use fewer metrics to measure the dimension. In contrast, the Economics dimension, for example, has very few correlations within its metrics. Again, this might signify a lack of theoretical coherence among metrics or that it is indeed a diverse dimension that requires disparate data sources to measure.
+
+As for significant inter-dimension correlations, there are surprisingly few. This is probably a good thing on average, as strong correlations between dimensions would mean double counting of similar constructs. On the other hand, we might want to see more of these if we are to expect that changes in one dimension cause subsequent changes in another. For example, stricter environmental policies might lead to better environmental outcomes, but we would also want to see any changes it causes in the Production and Economic dimensions.
+
+## LaTeX Table
+
+Making $\LaTeX$ table for paper.
+
+```{r}
+#| label: latex_table
+#| output: false
+# Latex table
+head(cor_r)
+head(cor_p)
+df <- full_join(cor_r, cor_p, by = join_by(var_1 == Var1, var_2 == Var2)) %>% 
+  select(1:4) %>% 
+  setNames(c('var_1', 'var_2', 'r', 'p'))
+get_str(df)
+
+# Format and add stars
+df <- df %>% 
+  filter(!is.na(r)) %>% 
+  mutate(
+    stars = case_when(
+      p < 0.001 ~ '***',
+      p > 0.001 & p < 0.01~ '***',
+      p > 0.01 & p < 0.05 ~ '**',
+      .default = ''
+    ),
+    r = format(round(r, 3), nsmall = 3),
+    r = paste0(r, stars)
+  ) %>% 
+  select(-c(stars, p))
+get_str(df)
+
+# Pivot
+df <- df %>%
+  pivot_wider(
+    names_from = var_2,
+    values_from = r,
+    id_cols = var_1
+  )
+get_str(df)
+
+# Make names short, remove var header, turn NA into ''
+truncate_strings <- function(x) {
+  if (str_length(x) > 20) {
+    paste0(str_sub(x, end = 20), '...')
+  } else {
+    x
+  }
+}
+df <- df %>% 
+  mutate(
+    var_1 = as.character(var_1),
+    var_1 = map_vec(var_1, truncate_strings),
+    across(!var_1, ~ ifelse(is.na(.x), '', .x))
+  ) %>%
+  setNames(c(map(names(.), truncate_strings)))
+get_str(df)
+colnames(df)[1] <- ' '
+get_str(df)
+
+# Paste rotatebox around column names
+colnames(df)[2:ncol(df)] <- paste0(
+  '\\makecell{\\rotatebox{90}{',
+  colnames(df)[2:ncol(df)],
+  '}}'
+)
+
+df %>% 
+  kbl(
+    format = "latex",
+    caption = 'Correlation matrix of county level metrics',
+    label = 'tab_correlations',
+    booktabs = TRUE,
+    escape = FALSE
+    # align = 'c'
+  ) %>%
+  kable_styling(
+    font_size = 8,
+    bootstrap_options = c(
+      "condensed"
+    ),
+    latex_options = 'scale_down'
+  ) %>% 
+  landscape() %>% 
+  footnote(
+    general_title = "",
+    general = 
+      '\\\\textit{Note: }
+    Spearman correlations among county level metrics using latest time points
+    available. Connecticut counties are not included in analyses.
+    ***: p < 0.001, **: p < 0.01, *: p < 0.05. ',
+    threeparttable = TRUE,
+    escape = FALSE
+  ) %>% 
+  save_kable(
+    file = '../outputs/tab_correlations.tex'
+  )
+```
+
+## Long Table
+
+Also including a long-format interactive table that shows p-values and coefficients. Use this for reporting in paper.
+
+```{r}
+#| label: cor_table_long
+# Create long table with p values and stars
+tab <- cor_r %>% 
+  rename(rho = value, p = p_value) %>% 
+  filter(!is.na(rho)) %>% 
+  mutate(sig = ifelse(p < 0.05, '*', ''))
+
+tab %>% 
+  get_reactable(
+    defaultColDef = colDef(
+      format = colFormat(digits = 3)
+    )
+  )
+```
+
+Reporting for paper: 
+
+```{r}
+#| output: false
+# Join dimensions back to correlations for reporting
+tree <- SMdocs::dp_tree %>% 
+  select(dimension, metric) %>% 
+  filter(str_detect(metric, 'NONE', negate = TRUE))
+
+# How many correlations are significant overall
+(perc_sig <- round(mean(tab$sig == '*') * 100, 2))
+(perc_unsig <- 100 - perc_sig)
+
+# Internal correlations among each dimension
+dimensions <- unique(tree$dimension)
+internal_cors <- map(dimensions, ~ {
+  dim_metrics <- tree %>% 
+    filter(dimension == .x) %>% 
+    pull(metric)
+  dim_cors <- tab %>% 
+    filter(var_1 %in% dim_metrics & var_2 %in% dim_metrics) %>% 
+    pull(sig)
+  dim_sig_cors <- round(mean(dim_cors == '*') * 100, 2)
+}) %>% 
+  setNames(c(dimensions)) %>% 
+  as.data.frame()
+internal_cors
+
+# Check percentage of sig correlations for a couple of examples in paper:
+get_str(tab)
+vars <- c(
+  'Violent Crime Rate',
+  'Land and Building Value per Acre'
+)
+examples <- map(vars, ~ {
+  sigs <- tab %>% 
+    filter(var_1 == .x | var_2 == .x) %>% 
+    pull(sig)
+  round(mean(sigs == '*') * 100, 2)
+}) %>% 
+  setNames(c(vars)) %>% 
+  bind_rows()
+examples
+```
+
+Percentage of significant internal correlations in each dimension:
+
+```{r}
+internal_cors
+```
+

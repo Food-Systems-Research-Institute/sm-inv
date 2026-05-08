@@ -1,0 +1,154 @@
+# root
+
+project:
+  type: website
+  execute-dir: project
+  preview:
+    browser: true
+  render:
+    # Same order as pages show on website. Make sure they run in right order
+    # Also note that listing a qmd here changes the working directory to project
+    - pages/index.qmd
+    - pages/overview.qmd
+    - pages/refine_economics.qmd
+    - pages/refine_environment.qmd
+    - pages/refine_production.qmd
+    - pages/current_framework.qmd
+    - pages/metadata_table.qmd
+    - pages/metrics_table.qmd
+    - pages/explorer.qmd
+    - pages/refined_framework.qmd
+    - pages/refined_metadata.qmd
+    - pages/metric_distributions.qmd
+    - pages/aggregation.qmd
+    - pages/indicator_distributions.qmd
+    - pages/comparison.qmd
+    - pages/indicator_correlations.qmd
+    - pages/validation.qmd
+    - pages/sensitivity.qmd
+    - inventory/dp_intro.qmd
+    - inventory/dp_eda.qmd
+    - inventory/dp_coverage.qmd
+    - inventory/dp_correlations.qmd
+    - inventory/dp_trends.qmd
+    # - inventory/bnlearn.qmd
+    # - inventory/regional_bn.qmd
+
+website:
+  title: "Sustainability Metrics"
+  reader-mode: false
+  page-navigation: true
+  bread-crumbs: false
+  back-to-top-navigation: true
+  repo-url: https://github.com/Food-Systems-Research-Institute/SMdocs
+  navbar:
+    logo: assets/images/UVM_FSRI_Inline Horiz W.png
+    logo-href: https://www.uvm.edu/ovpr/food-systems-research
+    search: true
+    tools:
+      - icon: tree
+        menu:
+          - text: FSRI
+            href: https://www.uvm.edu/ovpr/food-systems-research
+          - text: UVM
+            href: https://www.uvm.edu
+      - icon: github
+        menu:
+          - text: Source Code
+            href: https://github.com/Food-Systems-Research-Institute/SMdocs
+          - text: FSRI GitHub
+            href: https://github.com/Food-Systems-Research-Institute
+  sidebar:
+    title: "Table of Contents"
+    style: "docked"
+    contents:
+      - text: Home
+        href: pages/index.qmd
+      - text: Overview
+        href: pages/overview.qmd
+      - section: Indicator Refinement
+        contents:
+          - text: Economics
+            href: pages/refine_economics.qmd
+          - text: Environment
+            href: pages/refine_environment.qmd
+          - text: Production
+            href: pages/refine_production.qmd
+      - text: Current Framework
+        href: pages/current_framework.qmd
+      - section: Secondary Data
+        contents:
+          - text: Metadata
+            href: pages/metadata_table.qmd
+          - text: Metrics Data
+            href: pages/metrics_table.qmd
+          - text: SMexplorer
+            href: pages/explorer.qmd
+      - section: National Analyses - Index Development
+        contents:
+          - text: State Secondary Data Framework
+            href: pages/refined_framework.qmd
+          - text: State Secondary Metadata
+            href: pages/refined_metadata.qmd
+          - text: Metric Distributions
+            href: pages/metric_distributions.qmd
+          - text: Aggregation
+            href: pages/aggregation.qmd
+          - text: Indicator Distributions
+            href: pages/indicator_distributions.qmd
+          - text: Comparisons
+            href: pages/comparison.qmd
+          - text: Indicator Correlations
+            href: pages/indicator_correlations.qmd
+          - text: Validation
+            href: pages/validation.qmd
+          - text: Sensitivity and Uncertainty
+            href: pages/sensitivity.qmd
+      - section: Regional Analyses - Data Survey
+        contents:
+          - text: Introduction
+            href: inventory/dp_intro.qmd
+          - text: Exploratory
+            href: inventory/dp_eda.qmd
+          - text: Coverage
+            href: inventory/dp_coverage.qmd
+          - text: Correlations
+            href: inventory/dp_correlations.qmd
+          - text: Trends
+            href: inventory/dp_trends.qmd
+
+format:
+  html:
+    page-layout: article
+    theme: assets/custom_theme.scss
+    fig-align: left
+    css: assets/styles.css
+    toc: true
+    toc-title: "On This Page"
+    toc-location: right
+    toc-depth: 4
+    number-sections: true
+    number-depth: 4
+    code-fold: true
+    grid:
+      body-width: 900px
+      sidebar-width: 250px
+      margin-width: 250px
+    mainfont: Roboto
+    smooth-scroll: true
+    link-external-newwindow: true
+    link-external-icon: true
+    title-block-style: default
+
+bibliography:
+  - assets/fsrc.bib
+  - assets/FSRI.bib
+  - assets/SM_Data_Survey.bib
+
+execute:
+  warning: false
+  cache: true
+  freeze: auto
+
+editor_options:
+  chunk_output_type: console
