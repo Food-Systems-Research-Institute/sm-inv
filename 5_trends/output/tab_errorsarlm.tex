@@ -1,0 +1,60 @@
+\begin{table}
+\centering
+\caption{\label{tab:tab_errorsarlm}Spatial error models of year and state on metric}
+\centering
+\fontsize{9}{11}\selectfont
+\begin{threeparttable}
+\begin{tabular}[t]{llllll}
+\toprule
+Metric & $\beta$ & SE & $z$-value & p-value & Outcome\\
+\midrule
+Land and Building Value per Acre & 0.003 & 0.002 & 1.422 & 0.155 & \textemdash\\
+Change in Agricultural Establishments & 0.046 & 0.010 & 4.532 & 0.000*** & Better\\
+Average Weekly Wages & 0.749 & 0.055 & 13.664 & 0.000*** & Better\\
+Gini Index & 0.464 & 0.112 & 4.142 & 0.000*** & Worse\\
+Expenses per Operation & 0.695 & 0.085 & 8.137 & 0.000*** & Worse\\
+\addlinespace
+Percent Change in Wages & 0.037 & 0.008 & 4.746 & 0.000*** & Better\\
+Sales from Agritourism and Recreation & 0.529 & 0.082 & 6.463 & 0.000*** & Better\\
+Fuel Expenses & 0.089 & 0.015 & 6.113 & 0.000*** & Worse\\
+Tree Size Diversity & 0.205 & 0.016 & 12.674 & 0.000*** & Better\\
+Tree Species Diversity & -0.116 & 0.023 & -5.099 & 0.000*** & Worse\\
+\addlinespace
+Proportion of Invasive Species & 0.031 & 0.009 & 3.560 & 0.000*** & Worse\\
+Rarefied Richness of Plants & 3.212 & 0.208 & 15.452 & 0.000*** & Better\\
+Land Use Diversity & -0.042 & 0.140 & -0.297 & 0.766 & \textemdash\\
+Weeks of Extreme Drought & -0.413 & 0.038 & -10.978 & 0.000*** & Better\\
+High School Graduation Rate & -1.029 & 0.117 & -8.819 & 0.000*** & Worse\\
+\addlinespace
+Limited Access to Healthy Foods & -0.033 & 0.044 & -0.745 & 0.456 & \textemdash\\
+Price of a Meal & 1.169 & 0.054 & 21.448 & 0.000*** & Worse\\
+Food Insecurity Rate, Overall & -0.716 & 0.085 & -8.406 & 0.000*** & Better\\
+Poor Mental Health Days & 2.118 & 0.034 & 62.299 & 0.000*** & Worse\\
+Proportion Uninsured & -3.365 & 0.064 & -52.745 & 0.000*** & Better\\
+\addlinespace
+Frequent Physical Distress & -0.384 & 0.127 & -3.031 & 0.002** & Better\\
+Diabetes Prevalence & 0.136 & 0.045 & 2.985 & 0.003** & Worse\\
+Heart Disease Prevalence & -2.074 & 0.273 & -7.594 & 0.000*** & Better\\
+Proportion of Organic Operations & 0.436 & 0.103 & 4.241 & 0.000*** & Better\\
+Crop Diversity & 0.073 & 0.050 & 1.457 & 0.145 & \textemdash\\
+\addlinespace
+Total Animal and Crop Sales & 0.350 & 0.094 & 3.728 & 0.000*** & Better\\
+Sales from Value-Added Products & 0.302 & 0.167 & 1.802 & 0.072 & \textemdash\\
+Producer Age Skew & -0.418 & 0.170 & -2.456 & 0.014* & Better\\
+Racial Diversity of Producers & 0.198 & 0.117 & 1.694 & 0.090 & \textemdash\\
+Violent Crime Rate & -0.149 & 0.024 & -6.320 & 0.000*** & Better\\
+\addlinespace
+Acres in Conservation Easements & 0.211 & 0.382 & 0.553 & 0.580 & \textemdash\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\item \textit{Note: }The table shows coefficients of the effect of year on
+      normalized, inflation-adjusted metrics with state as a covariate. 
+      Metrics are weighted by variables shown in Table \ref{tab:tab_metrics_body}. 
+      Significant p-values
+      indicated change over time, and the direction of the outcome was determined
+      based on desirable directions of change for each metric. ***: p < 0.001,
+      **: p < 0.01, *: p < 0.05.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

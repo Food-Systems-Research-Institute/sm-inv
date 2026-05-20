@@ -26,13 +26,7 @@ To clear results and outputs, use:
 make clean
 ```
 
-In the root or a task folder. Note that `5_trends` will take ~20 minutes to run, so clean at your own risk.
-
-To preview a page:
-
-```sh
-quarto preview 3_correlations/src/dp_correlations.qmd
-```
+Note that `5_trends` will take ~20 minutes to run. To avoid having to re-run this, we are using Quarto's freeze feature, which caches outputs in `_freeze/`. Cells will only re-run when code has changed. `make clean` will erase this as is expected to ensure that you get a clean, reproducible run. If you'd rather not lose this cache, but you do want to erase outputs in task folders, you can use `make mostlyclean` instead. This repo is shipped with the freeze cache intact for convenience, so remember to use `make clean` first to erase it.
 
 ## Structure
 

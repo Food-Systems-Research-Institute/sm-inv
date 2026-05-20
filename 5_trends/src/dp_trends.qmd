@@ -448,7 +448,6 @@ where $y_i$ is the normalized value of the metric across counties, $x_{1i}$ is t
 ```{r}
 #| label: regressions
 #| output: false
-#| eval: false
 # Get a crosswalk to add state as a fixed effect
 state_link <- SMdata::fips_key %>% 
   filter(str_length(fips) == 2, fips != '00') %>% 
@@ -483,11 +482,8 @@ res <- map(SMdocs::series_vars, ~ {
           weight_name = variable_name,
           weight_year = year
         )
-      # str(weight_df)
       
       # Depending on whether weight has a year, do appropriate join
-      # Note that we might be losing some years here if weighting var doesn't
-      # cover the variable enough
       if (all(is.na(weight_df$weight_year))) {
         df <- df %>% 
           inner_join(weight_df, by = join_by(fips))
@@ -516,14 +512,14 @@ res <- map(SMdocs::series_vars, ~ {
 }) %>% 
   setNames(c(SMdocs::series_vars)) %>%
   discard(\(x) is.null(x))
-str(res, 1)
 str(res)
 
 # Robust SEs
 lmtest::coeftest(res[[1]])
 
 # Save immediate output
-saveRDS(res, '5_trends/output/weighted_ols_outs.rds')
+# saveRDS(res, '5_trends/output/weighted_ols_outs.rds')
+# saveRDS(res, 'test.rds')
 ```
 
 We are saving these outputs to a file so we don't have to rerun it every time we want them.
@@ -536,7 +532,7 @@ Now that we have regression outputs, let's put them in a table to see which ones
 #| label: make_reg_table
 #| output: false
 # Put together one table of results from all models, add stars
-res <- readRDS('5_trends/output/weighted_ols_outs.rds')
+# res <- readRDS('5_trends/output/weighted_ols_outs.rds')
 str(res)
 
 # Check for NA outputs
@@ -584,7 +580,7 @@ Note that we only have 2 years for the mobility disability metric - 2023 and 202
 
 Out of `{r} n_metrics` metrics with \> 1 time point, we have `{r} n_change` metrics that change significantly over time (`{r} round(perc_sig, 2)`%).
 
-Still have to make sense of the directional values of our metrics. These were defined in the [Aggregation](../pages/aggregation.qmd) from the main analysis branch. In this next chunk, we assign normative directions to each metric so we can tell whether they are getting better or worse over time based on whether high values or low values are desirable.
+Still have to make sense of the directional values of our metrics. In this next chunk, we assign normative directions to each metric so we can tell whether they are getting better or worse over time based on whether high values or low values are desirable.
 
 ```{r}
 #| label: make_sense_of_trends
@@ -736,10 +732,8 @@ str(dat)
 (vars <- names(dat)[!names(dat) %in% c('fips', 'year', 'state_code')])
 
 tic()
-get_time()
 plan(multisession, workers = availableCores(omit = 2))
-# out <- map(vars[1], \(var) {
-out <- future_map(vars, \(var) {
+sar_outs <- future_map(vars, \(var) {
   cat('\n\nStarting', var)
   
   tryCatch({
@@ -810,7 +804,7 @@ out <- future_map(vars, \(var) {
       return(paste0('Error with ', var, ': ', e))
     }
   )
-}, .progress = FALSE) %>% 
+}, .progress = FALSE, .options = furrr_options(seed = TRUE)) %>% 
   setNames(c(vars))
 plan(sequential)
 toc()
@@ -819,14 +813,11 @@ toc()
 # out
 # out[[1]]
 
-str(out)
-str(out[[1]])
-map(out, class)
-# str(out[[1]])
-# map(out, ~ .x['fips'])
-# map(out, ~ summary(.x))
+str(sar_outs)
+str(sar_outs[[1]])
+map(sar_outs, class)
 
-saveRDS(out, '5_trends/output/errorsarlm_outs.rds')
+# saveRDS(out, '5_trends/output/errorsarlm_outs.rds')
 ```
 
 #### Reactable Table
@@ -835,7 +826,7 @@ First we wrangle our outputs to get the relevant results in a nicely formatted t
 
 ```{r}
 #| output: false
-sar_outs <- readRDS('5_trends/output/errorsarlm_outs.rds')
+# sar_outs <- readRDS('5_trends/output/errorsarlm_outs.rds')
 start <- length(sar_outs)
 sar_outs <- sar_outs[names(sar_outs) != 'state_code'] %>% 
   keep(~ class(.x) == 'Sarlm')
@@ -936,7 +927,7 @@ sar_model_outputs
 (print_lost <- lost %>% paste0(collapse = ', '))
 
 # proportion getting better or worse
-(tab <- get_table(sar_model_outputs$outcome))
+(tab <- table(sar_model_outputs$outcome))
 (percs <- round(prop.table(tab), 3) * 100)
 ```
 

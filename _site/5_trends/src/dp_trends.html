@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Metric Analysis – Inventory and Evaluation of Sustainability Metrics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../4_correlations/src/dp_correlations.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5244af2e4f675c9f5e34064ef86683bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="../../site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="../../site_libs/react-18.2.0/react.min.js"></script>
+<script src="../../site_libs/react-18.2.0/react-dom.min.js"></script>
+<script src="../../site_libs/reactwidget-2.0.0/react-tools.js"></script>
+<link href="../../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="../../site_libs/reactable-0.4.5/reactable.css" rel="stylesheet">
+<script src="../../site_libs/reactable-binding-0.4.5/reactable.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="https://www.uvm.edu/ovpr/food-systems-research" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/images/UVM_FSRI_Inline Horiz W.png" alt="" class="navbar-logo light-content">
+    <img src="../../assets/images/UVM_FSRI_Inline Horiz W.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="https://www.uvm.edu/ovpr/food-systems-research">
+    <span class="navbar-title">Inventory and Evaluation of Sustainability Metrics</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-tree"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://www.uvm.edu/ovpr/food-systems-research">
+            FSRI
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://www.uvm.edu">
+            UVM
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/Food-Systems-Research-Institute/SMdocs">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/Food-Systems-Research-Institute">
+            FSRI GitHub
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Metric Analysis</h1>
+        </a>     
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../1_intro/src/dp_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_eda/src/dp_eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploratory</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../3_coverage/src/dp_coverage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coverage</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../4_correlations/src/dp_correlations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Correlations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../5_trends/src/dp_trends.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Trends</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#time-series" id="toc-time-series" class="nav-link active" data-scroll-target="#time-series"><span class="header-section-number">1</span> Time Series</a>
+  <ul>
+  <li><a href="#county-data" id="toc-county-data" class="nav-link" data-scroll-target="#county-data"><span class="header-section-number">1.1</span> County Data</a></li>
+  <li><a href="#state-data" id="toc-state-data" class="nav-link" data-scroll-target="#state-data"><span class="header-section-number">1.2</span> State Data</a></li>
+  <li><a href="#tiny-trend-graphs" id="toc-tiny-trend-graphs" class="nav-link" data-scroll-target="#tiny-trend-graphs"><span class="header-section-number">1.3</span> Tiny Trend Graphs</a></li>
+  </ul></li>
+  <li><a href="#sec-ols" id="toc-sec-ols" class="nav-link" data-scroll-target="#sec-ols"><span class="header-section-number">2</span> Linear Models</a>
+  <ul>
+  <li><a href="#regressions" id="toc-regressions" class="nav-link" data-scroll-target="#regressions"><span class="header-section-number">2.1</span> Regressions</a></li>
+  <li><a href="#wrangling" id="toc-wrangling" class="nav-link" data-scroll-target="#wrangling"><span class="header-section-number">2.2</span> Wrangling</a></li>
+  <li><a href="#table" id="toc-table" class="nav-link" data-scroll-target="#table"><span class="header-section-number">2.3</span> Table</a></li>
+  <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure"><span class="header-section-number">2.4</span> Figure</a></li>
+  </ul></li>
+  <li><a href="#sec-spdep" id="toc-sec-spdep" class="nav-link" data-scroll-target="#sec-spdep"><span class="header-section-number">3</span> Spatial Regressions</a>
+  <ul>
+  <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models"><span class="header-section-number">3.1</span> Models</a>
+  <ul class="collapse">
+  <li><a href="#reactable-table" id="toc-reactable-table" class="nav-link" data-scroll-target="#reactable-table"><span class="header-section-number">3.1.1</span> Reactable Table</a></li>
+  <li><a href="#latex-table" id="toc-latex-table" class="nav-link" data-scroll-target="#latex-table"><span class="header-section-number">3.1.2</span> LaTeX Table</a></li>
+  <li><a href="#figure-1" id="toc-figure-1" class="nav-link" data-scroll-target="#figure-1"><span class="header-section-number">3.1.3</span> Figure</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Metric Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  conflicted,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  dplyr,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  htmltools,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  stringr,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  tidyr,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  reactable,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  purrr,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  broom,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  knitr,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  kableExtra,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  tictoc,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  furrr,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  parallelly,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  splm,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  spdep,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  spatialreg,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  sf,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  skimr,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  ggplot2,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  ggpubr,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  readr,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  lmtest,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  sandwich,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  performance,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  snakecase,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  ggtext</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load_gh</span>(</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Food-Systems-Research-Institute/SMdata'</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Food-Systems-Research-Institute/SMdocs'</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">conflicts_prefer</span>(</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  stats<span class="sc">::</span><span class="fu">lag</span>(),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  base<span class="sc">::</span><span class="fu">setdiff</span>(),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">.quiet =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>This page explores time series data at the state and county level, then runs some regressions to see whether metrics are improving or declining over time at the county level. We first run weighted OLS models with robust SEs in <a href="#sec-ols" class="quarto-xref">Section&nbsp;2</a>. Then in <a href="#sec-spdep" class="quarto-xref">Section&nbsp;3</a>, we use spatial error models weighted by both geography and weighting variables.</p>
+<section id="time-series" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="time-series"><span class="header-section-number">1</span> Time Series</h2>
+<p>Plot time series of each metric that has at least two data points. These are unweighted values. LOESS curves are shown in blue, while individual county/state data are shown in black</p>
+<section id="county-data" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="county-data"><span class="header-section-number">1.1</span> County Data</h3>
+<p>First, we prepare a vector names of our time series variables for counties:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare vector of county variables that are time series</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(SMdocs<span class="sc">::</span>dp_metrics_county_adj)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">unique</span>(SMdocs<span class="sc">::</span>dp_metrics_county_adj<span class="sc">$</span>variable_name)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>series_vars <span class="ot">&lt;-</span> <span class="fu">map</span>(vars, <span class="sc">~</span> {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  count <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_metrics_county_adj <span class="sc">%&gt;%</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable_name <span class="sc">==</span> .x) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">length</span>()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (count <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(.x)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">keep</span>(<span class="sc">~</span> <span class="sc">!</span><span class="fu">is.null</span>(.x)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">'5_trends/output/trend_plots'</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(series_vars, <span class="st">'5_trends/output/series_vars.rds'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Now we plot each graph individually and arrange them together:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">map</span>(series_vars, <span class="sc">~</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_metrics_county_adj <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable_name <span class="sc">==</span> .x) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">group =</span> fips),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha =</span> <span class="fl">0.3</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'loess'</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">'Year'</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> .x</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">plotlist =</span> plots,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">4</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">11</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dp_trends_files/figure-html/county_time_series-1.png" class="img-fluid figure-img" width="2400"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="state-data" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="state-data"><span class="header-section-number">1.2</span> State Data</h3>
+<p>Again, start by getting a vector of time series metrics for state data, then plot all metrics:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">unique</span>(SMdocs<span class="sc">::</span>dp_metrics_state_adj<span class="sc">$</span>variable_name)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>state_series_vars <span class="ot">&lt;-</span> <span class="fu">map</span>(vars, <span class="sc">~</span> {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  count <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_metrics_state_adj <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable_name <span class="sc">==</span> .x) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">length</span>()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (count <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(.x)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">keep</span>(<span class="sc">~</span> <span class="sc">!</span><span class="fu">is.null</span>(.x)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(state_series_vars, <span class="st">'5_trends/output/state_series_vars.rds'</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">map</span>(state_series_vars, <span class="sc">~</span> {</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_metrics_state_adj <span class="sc">%&gt;%</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable_name <span class="sc">==</span> .x) <span class="sc">%&gt;%</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(year, value), as.numeric)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">group =</span> fips),</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha =</span> <span class="fl">0.3</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'loess'</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">'Year'</span>,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> .x</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">plotlist =</span> plots,</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">3</span>,</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">5</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dp_trends_files/figure-html/state_time_series-1.png" class="img-fluid figure-img" width="2400"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="tiny-trend-graphs" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="tiny-trend-graphs"><span class="header-section-number">1.3</span> Tiny Trend Graphs</h3>
+<p>Outputs not shown here - these will be added to a table in the paper.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>all_series_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(series_vars, state_series_vars)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to get tiny plots from county and state vars</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>get_tiny_plots <span class="ot">&lt;-</span> <span class="cf">function</span>(df, vars) {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(vars, <span class="sc">~</span> {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(variable_name <span class="sc">==</span> .x, <span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">group =</span> fips),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">alpha =</span> <span class="fl">0.25</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">'grey'</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_smooth</span>(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">"loess"</span>, </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">linewdith =</span> <span class="fl">0.75</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2024</span>)) <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_y_discrete</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="fu">rep</span>(<span class="fl">0.5</span>, <span class="dv">4</span>))</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">setNames</span>(<span class="fu">c</span>(vars))</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for counties</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>county_plots <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_metrics_county_adj <span class="sc">%&gt;%</span> </span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_tiny_plots</span>(</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">vars =</span> series_vars</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots for states</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>state_plots <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_metrics_state_adj <span class="sc">%&gt;%</span> </span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_tiny_plots</span>(</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">vars =</span> state_series_vars</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="co"># One more plot for CPI - food at home</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>system_plots <span class="ot">&lt;-</span> SMdata<span class="sc">::</span>metrics <span class="sc">%&gt;%</span> </span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable_name <span class="sc">==</span> <span class="st">'cpiFoodAtHome'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_tiny_plots</span>(<span class="at">vars =</span> <span class="st">'cpiFoodAtHome'</span>)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Save them all to outputs with variable names</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="fu">iwalk</span>(<span class="fu">c</span>(county_plots, state_plots, system_plots), \(plot, var) {</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">filename =</span> <span class="fu">paste0</span>(<span class="st">'5_trends/output/trend_plots/fig_trend_'</span>, var, <span class="st">'.png'</span>),</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot =</span> plot,</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">1.5</span>,</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="fl">1.5</span>,</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">units =</span> <span class="st">'cm'</span>,</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">dpi =</span> <span class="dv">300</span>,</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg =</span> <span class="cn">NULL</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="sec-ols" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-ols"><span class="header-section-number">2</span> Linear Models</h2>
+<p>First trying linear models with time as independent variable. Min max normalizing dataset with stored function before we do anything else.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(SMdocs<span class="sc">::</span>dp_metrics_county_adj)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">unique</span>(SMdocs<span class="sc">::</span>dp_metrics_county_adj<span class="sc">$</span>variable_name)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>dp_metrics_county_adj_normed <span class="ot">&lt;-</span> <span class="fu">map</span>(vars, <span class="sc">~</span> {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  SMdocs<span class="sc">::</span>dp_metrics_county_adj <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable_name <span class="sc">==</span> .x) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(year, value), as.numeric)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>(value) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(variable_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">normed_value =</span> <span class="fu">min_max</span>(value)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list_rbind</span>()</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dp_metrics_county_adj_normed)  </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">'5_trends/output/'</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dp_metrics_county_adj_normed, <span class="st">'5_trends/output/dp_metrics_county_adj_normed.rds'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="regressions" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="regressions"><span class="header-section-number">2.1</span> Regressions</h3>
+<p>First create a weights crosswalk that links <code>variable_name</code>s to weighting variables.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>weights_crosswalk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="fu">c</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GDP'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GDP from agriculture'</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Total number of producers'</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Total number of operations'</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Population (annual)'</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Population (5 year)'</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Population (5 year, smooth)'</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Acres of land'</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Acres of water'</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Area under agriculture (CDL)'</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Number employed in agriculture'</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Acres operated'</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Acres operated, smooth'</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Acres of cropland ag land'</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Acres of woodland ag land'</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Acres of pasture ag land'</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Total farm income'</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Total sales from commodities'</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable_name =</span> <span class="fu">c</span>(</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gdp'</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gdpFromAg'</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nProducers'</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nOperations'</span>,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">'populationAnnual'</span>,</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">'population5Year'</span>,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">'population5YearSmooth'</span>,</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'landAcres'</span>,</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'waterAcres'</span>,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cdlAgAcres'</span>,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'annualAvgEmplvlNAICS11'</span>,</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">'acresOperated'</span>,</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">'acresOperatedSmooth'</span>,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">'agLandCropAcres'</span>,</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">'agLandWoodAcres'</span>,</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">'agLandPastureAcres'</span>,</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">'totalFarmIncome'</span>,</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">'totalSalesCommodities'</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Link weight vars to the appropriate variables</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>weights_crosswalk <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_meta <span class="sc">%&gt;%</span> </span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(variable_name, weighting) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable_name <span class="sc">%in%</span> SMdocs<span class="sc">::</span>dp_metrics_county_adj_normed<span class="sc">$</span>variable_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(weights_crosswalk, <span class="at">by =</span> <span class="fu">join_by</span>(weighting <span class="sc">==</span> metric)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">'variable_name'</span>, <span class="st">'weight_metric'</span>, <span class="st">'weight_variable'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>weight_metric) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(weights_crosswalk)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  variable_name               weight_variable      
+  &lt;chr&gt;                       &lt;chr&gt;                
+1 landValPerAcre              totalFarmIncome      
+2 annualAvgWklyWageNAICS11    gdp                  
+3 gini                        population5YearSmooth
+4 totalIndemnities            totalFarmIncome      
+5 expPF                       gdpFromAg            
+6 totalEcosystemCarbonPerAcre landAcres            </code></pre>
+</div>
+</div>
+<p>Run weighted OLS regressions for all time series variables where time points &gt; 1. The general formula is:</p>
+<p><span class="math display">\[
+\Large y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \epsilon_i,
+\]</span></p>
+<p>where <span class="math inline">\(y_i\)</span> is the normalized value of the metric across counties, <span class="math inline">\(x_{1i}\)</span> is the year, <span class="math inline">\(x_{2i}\)</span> is the state each county is part of, and <span class="math inline">\(\epsilon\)</span> is the error term.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a crosswalk to add state as a fixed effect</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>state_link <span class="ot">&lt;-</span> SMdata<span class="sc">::</span>fips_key <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_length</span>(fips) <span class="sc">==</span> <span class="dv">2</span>, fips <span class="sc">!=</span> <span class="st">'00'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(fips, state_code)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">map</span>(SMdocs<span class="sc">::</span>series_vars, <span class="sc">~</span> {</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      df <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_metrics_county_adj_normed <span class="sc">%&gt;%</span> </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(variable_name <span class="sc">==</span> .x) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">value =</span> <span class="fu">as.numeric</span>(value),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">year =</span> <span class="fu">as.numeric</span>(year),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">state_fips =</span> <span class="fu">str_sub</span>(fips, <span class="at">end =</span> <span class="dv">2</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">left_join</span>(state_link, <span class="at">by =</span> <span class="fu">join_by</span>(state_fips <span class="sc">==</span> fips))</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Add weighting variable</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      weight_var <span class="ot">&lt;-</span> weights_crosswalk<span class="sc">$</span>weight_variable[weights_crosswalk<span class="sc">$</span>variable_name <span class="sc">==</span> .x]</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      weight_df <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_weights</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(weight_var) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(weight_var) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        weight_df <span class="ot">&lt;-</span> weight_df <span class="sc">%&gt;%</span> </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(variable_name <span class="sc">==</span> weight_var)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      weight_df <span class="ot">&lt;-</span> weight_df <span class="sc">%&gt;%</span> </span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>          <span class="at">value =</span> <span class="fu">as.numeric</span>(value), </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>          <span class="at">year =</span> <span class="fu">as.numeric</span>(year)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rename</span>(</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">weight_value =</span> value, </span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">weight_name =</span> variable_name,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>          <span class="at">weight_year =</span> year</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Depending on whether weight has a year, do appropriate join</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(weight_df<span class="sc">$</span>weight_year))) {</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>        df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>          <span class="fu">inner_join</span>(weight_df, <span class="at">by =</span> <span class="fu">join_by</span>(fips))</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>          <span class="fu">inner_join</span>(weight_df, <span class="at">by =</span> <span class="fu">join_by</span>(fips, year <span class="sc">==</span> weight_year))</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Reduce to county fips only. Remove dupes </span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>      df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(<span class="fu">str_length</span>(fips) <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">distinct</span>()</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Weighted OLS </span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>      model <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>        normed_value <span class="sc">~</span> year <span class="sc">+</span> state_code, </span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> df,</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>        <span class="at">weights =</span> weight_value</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(model)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>      <span class="fu">message</span>(<span class="fu">paste</span>(<span class="st">'Error with var'</span>, .x))</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(SMdocs<span class="sc">::</span>series_vars)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">discard</span>(\(x) <span class="fu">is.null</span>(x))</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(res)</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust SEs</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">coeftest</span>(res[[<span class="dv">1</span>]])</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Save immediate output</span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(res, '5_trends/output/weighted_ols_outs.rds')</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(res, 'test.rds')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>We are saving these outputs to a file so we don’t have to rerun it every time we want them.</p>
+</section>
+<section id="wrangling" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="wrangling"><span class="header-section-number">2.2</span> Wrangling</h3>
+<p>Now that we have regression outputs, let’s put them in a table to see which ones change significantly over time.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put together one table of results from all models, add stars</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># res &lt;- readRDS('5_trends/output/weighted_ols_outs.rds')</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(res)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for NA outputs</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>res[[<span class="dv">1</span>]]<span class="sc">$</span>coefficients[[<span class="st">'year'</span>]]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>coefs <span class="ot">&lt;-</span> <span class="fu">map</span>(res, <span class="sc">~</span> .x<span class="sc">$</span>coefficients[[<span class="st">'year'</span>]])</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(coefs[<span class="fu">is.na</span>(coefs)])</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Mobility disability is NA because there is only 1 year after we join with </span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># weighting variable. So we need to just throw it out if we can't get smoothed</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># population for 2024.</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> res <span class="sc">%&gt;%</span> </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">discard</span>(<span class="sc">~</span> <span class="fu">is.na</span>(.x<span class="sc">$</span>coefficients[[<span class="dv">2</span>]]))</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a table of regression outputs, including robust standard errors</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>res_df <span class="ot">&lt;-</span> <span class="fu">imap</span>(res, <span class="sc">~</span> {</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  vcov <span class="ot">=</span> <span class="fu">vcovHC</span>(.x, <span class="at">type =</span> <span class="st">'HC0'</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(.x, <span class="at">vcov =</span> vcov) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">'year'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">term =</span> .y)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  conf_ints <span class="ot">&lt;-</span> <span class="fu">coefci</span>(.x)[<span class="st">'year'</span>, ]</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  df<span class="sc">$</span>ci_low <span class="ot">&lt;-</span> conf_ints[<span class="dv">1</span>]</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  df<span class="sc">$</span>ci_high <span class="ot">&lt;-</span> conf_ints[<span class="dv">2</span>]</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  df</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sig =</span> <span class="fu">ifelse</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">'*'</span>, <span class="st">''</span>))</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>res_df</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># How many time series metrics total</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>(n_metrics <span class="ot">&lt;-</span> <span class="fu">nrow</span>(res_df))</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co"># How many change over time significantly</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>  n_change <span class="ot">&lt;-</span> res_df <span class="sc">%&gt;%</span> </span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(sig <span class="sc">==</span> <span class="st">'*'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>()</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Percentage significant</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>(perc_sig <span class="ot">&lt;-</span> <span class="fu">mean</span>(res_df<span class="sc">$</span>sig <span class="sc">==</span> <span class="st">'*'</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Note that we only have 2 years for the mobility disability metric - 2023 and 2024. But we don’t have a smoothed 5-year population for 2024, only 2023. So we can only use a single year, which means there is no variation in year. So we are dropping this from the analysis.</p>
+<p>Out of 38 metrics with &gt; 1 time point, we have 24 metrics that change significantly over time (63.16%).</p>
+<p>Still have to make sense of the directional values of our metrics. In this next chunk, we assign normative directions to each metric so we can tell whether they are getting better or worse over time based on whether high values or low values are desirable.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Of those that are significant, what are trends</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># leaving in all of them, even if not significant though</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>raw_outputs <span class="ot">&lt;-</span> res_df <span class="sc">%&gt;%</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">trend =</span> <span class="fu">case_when</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    estimate <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> sig <span class="sc">==</span> <span class="st">'*'</span> <span class="sc">~</span> <span class="st">'increasing'</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    sig <span class="sc">==</span> <span class="st">''</span> <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="st">'decreasing'</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Bring in directional values. Keep only the ones without question marks, </span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># clearly higher or lower</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(SMdocs<span class="sc">::</span>dp_meta)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>directions <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_meta <span class="sc">%&gt;%</span> </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(desirable, <span class="st">'higher|lower'</span>), <span class="sc">!</span><span class="fu">is.na</span>(variable_name)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">desirable =</span> <span class="fu">str_remove_all</span>(desirable, <span class="st">'</span><span class="sc">\\</span><span class="st">?'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(variable_name, desirable)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>reverse <span class="ot">&lt;-</span> directions <span class="sc">%&gt;%</span> </span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(desirable <span class="sc">==</span> <span class="st">'lower'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(variable_name)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduce to only vars that have a direction.</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we lose a few metrics</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>model_outputs <span class="ot">&lt;-</span> raw_outputs <span class="sc">%&gt;%</span> </span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">%in%</span> directions<span class="sc">$</span>variable_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">reverse =</span> <span class="fu">ifelse</span>(term <span class="sc">%in%</span> reverse, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="fu">case_when</span>(</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>      reverse <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> trend <span class="sc">==</span> <span class="st">'increasing'</span> <span class="sc">~</span> <span class="st">'better'</span>,</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>      reverse <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> trend <span class="sc">==</span> <span class="st">'decreasing'</span> <span class="sc">~</span> <span class="st">'worse'</span>,</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>      reverse <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">&amp;</span> trend <span class="sc">==</span> <span class="st">'increasing'</span> <span class="sc">~</span> <span class="st">'worse'</span>,</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>      reverse <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">&amp;</span> trend <span class="sc">==</span> <span class="st">'decreasing'</span> <span class="sc">~</span> <span class="st">'better'</span>,</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="cn">NA</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">format</span>(<span class="fu">round</span>(.x, <span class="dv">3</span>), <span class="at">nsmall =</span> <span class="dv">3</span>))</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>model_outputs</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="co"># See what we lost</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>(lost <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(raw_outputs<span class="sc">$</span>term, model_outputs<span class="sc">$</span>term))</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>(n_lost <span class="ot">&lt;-</span> <span class="fu">length</span>(lost))</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>(print_lost <span class="ot">&lt;-</span> lost <span class="sc">%&gt;%</span> <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">', '</span>))</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a><span class="co"># proportion getting better or worse</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>(tab <span class="ot">&lt;-</span> <span class="fu">table</span>(model_outputs<span class="sc">$</span>outcome))</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>(percs <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">prop.table</span>(tab), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>59.1% are getting better and 40.9% are getting worse. We drop 4 metrics here that don’t have proper directions (vacancyRate, populationChangePerc, annualPrecipCMSqKm, ftmProdRatio).</p>
+</section>
+<section id="table" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="table"><span class="header-section-number">2.3</span> Table</h3>
+<p>Now we can check out the outputs table for each regression. In each model,</p>
+<p>Trend is just whether it is going up or down, outcome is whether that is good or bad.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add framework info</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>framed_outputs <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_meta <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dimension, index, indicator, metric, variable_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(model_outputs, <span class="at">by =</span> <span class="fu">join_by</span>(variable_name <span class="sc">==</span> term))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interactive table for Quarto</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">get_reactable</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  framed_outputs, </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">defaultPageSize =</span> <span class="dv">10</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>   <span class="at">variable_name =</span> <span class="fu">colDef</span>(<span class="at">minWidth =</span> <span class="dv">200</span>),</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>   <span class="at">sig =</span> <span class="fu">colDef</span>(<span class="at">minWidth =</span> <span class="dv">50</span>),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>   <span class="at">reverse =</span> <span class="fu">colDef</span>(<span class="at">minWidth =</span> <span class="dv">75</span>),</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>   <span class="at">statistic =</span> <span class="fu">colDef</span>(<span class="at">minWidth =</span> <span class="dv">75</span>),</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>   <span class="at">outcome =</span> <span class="fu">colDef</span>(<span class="at">minWidth =</span> <span class="dv">75</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-19d2ec2b81b867049a12" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-19d2ec2b81b867049a12">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"dimension":["Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Health","Health","Health","Health","Health","Health","Health","Health","Health","Production","Production","Production","Production","Social","Social","Social","Social"],"index":["Community Economy","Community Economy","Community Economy","Community Economy","Food Business Resilience","Food Business Resilience","Food Business Resilience","Food Business Resilience","Food Business Resilience","Carbon, GHG, and Nutrients","Forests","Forests","Forests","Species and Habitat","Species and Habitat","Species and Habitat","Water","Education","Food Security","Food Security","Food Security","Mental Health","Physical Health","Physical Health","Physical Health","Physical Health","Product Quality","Production Diversity","Production Margins","Production Margins","Food and Farmworker Diversity","Food and Farmworker Diversity","Food System Governance","Stewardship Participation"],"indicator":["Access to Land","Business Failure Rate","Wealth and Income Distribution","Wealth and Income Distribution","Farm Insurance","Income Stability","Income Stability","Market Mix","Operations Diversification","Embodied Carbon","Forest Complexity","Forest Complexity","Forest Health","Biodiversity","Biodiversity","Land Use Diversity","Water Quantity","Educational Attainment","Food Access","Food Affordability","Food Insecurity","Stress and Anxiety","Access to Care","Mobility, Pain","Prevalence of Diet-Related Disease","Prevalence of Diet-Related Disease","Certificates of Assurance","Crop Diversity","Total Quantity Food Products","Value Added Market","Producer Age Diversity","Producer Racial Diversity","Community Safety","Conservation Program"],"metric":["Land and Building Value per Acre","Change in Agricultural Establishments","Average Weekly Wages","Gini Index","Total Indemnities","Expenses per Operation","Percent Change in Wages","Market Channel Ratio","Sales from Agritourism and Recreation","Fuel Expenses","Tree Size Diversity","Tree Species Diversity","Proportion of Invasive Species","Rarefied Richness of Animals","Rarefied Richness of Plants","Land Use Diversity","Weeks of Extreme Drought","High School Graduation Rate","Limited Access to Healthy Foods","Price of a Meal","Food Insecurity Rate, Overall","Poor Mental Health Days","Proportion Uninsured","Frequent Physical Distress","Diabetes Prevalence","Heart Disease Prevalence","Proportion of Organic Operations","Crop Diversity","Total Animal and Crop Sales","Sales from Value-Added Products","Producer Age Skew","Racial Diversity of Producers","Violent Crime Rate","Acres in Conservation Easements"],"variable_name":["landValPerAcre","otyAnnualAvgEstabsCountPctChgNAICS11","annualAvgWklyWageNAICS11","gini","totalIndemnities","expPF","otyAnnualAvgWklyWagePctChgNAICS11","retailSalesPropWholesale","incomeAgTourismRecPropTotal","fuelExpensePropTotalExpense","sizeDiversity","treeDiversity","propInvasive","plantRar","animalRar","lulcDiversity","droughtNonConWeeksCat2","edPercHSOrMore","limitedAccessToHealthyFoods","costPerMeal","foodInsecurityRate","poorMentalHealthDays","uninsured","frequentPhysicalDistress","diabetesPrevalence","heartDisease","propOpsOrganic","cropDiversity","salesAnimalAndCrop","salesValueAddedPropTotal","producerAgeSkew","producerRacialDiversity","violentCrimeArrestsPer100k","consEasementAcres"],"estimate":[" 0.002"," 0.058"," 0.691"," 0.484"," 0.073"," 0.726"," 0.043","-0.220"," 0.392"," 0.087"," 0.206","-0.118"," 0.031"," 1.422"," 3.054","-0.046","-0.417","-1.002","-0.032"," 1.135","-0.602"," 2.129","-3.368","-0.275"," 0.136","-2.150"," 0.430"," 0.070"," 0.306"," 0.290","-0.447"," 0.205","-0.141"," 0.185"],"std.error":["0.002","0.018","0.221","0.313","0.024","0.132","0.018","0.095","0.075","0.019","0.017","0.022","0.007","0.613","0.360","0.150","0.073","0.274","0.107","0.140","0.256","0.078","0.181","0.369","0.118","0.524","0.110","0.063","0.322","0.226","0.303","0.120","0.044","0.577"],"statistic":["  0.834","  3.133","  3.132","  1.546","  3.054","  5.488","  2.341"," -2.310","  5.210","  4.561"," 12.301"," -5.363","  4.284","  2.322","  8.485"," -0.306"," -5.670"," -3.662"," -0.296","  8.106"," -2.348"," 27.249","-18.558"," -0.747","  1.145"," -4.101","  3.913","  1.122","  0.951","  1.283"," -1.477","  1.708"," -3.205","  0.321"],"p.value":["0.404","0.002","0.002","0.123","0.002","0.000","0.019","0.021","0.000","0.000","0.000","0.000","0.000","0.021","0.000","0.759","0.000","0.000","0.768","0.000","0.019","0.000","0.000","0.455","0.252","0.000","0.000","0.262","0.342","0.200","0.140","0.088","0.001","0.749"],"ci_low":["-0.002"," 0.051"," 0.579"," 0.180"," 0.037"," 0.563"," 0.037","-0.292"," 0.345"," 0.059"," 0.174","-0.162"," 0.015"," 0.763"," 2.662","-0.308","-0.487","-1.311","-0.153"," 0.989","-0.815"," 2.042","-3.532","-0.615"," 0.012","-2.895"," 0.233","-0.022"," 0.111","-0.035","-0.775","-0.019","-0.203","-0.550"],"ci_high":[" 0.005"," 0.065"," 0.803"," 0.787"," 0.109"," 0.889"," 0.048","-0.148"," 0.439"," 0.115"," 0.237","-0.074"," 0.048"," 2.081"," 3.446"," 0.216","-0.347","-0.692"," 0.090"," 1.282","-0.389"," 2.215","-3.203"," 0.064"," 0.259","-1.405"," 0.627"," 0.162"," 0.502"," 0.614","-0.120"," 0.430","-0.080"," 0.920"],"sig":["","*","*","","*","*","*","*","*","*","*","*","*","*","*","","*","*","","*","*","*","*","","","*","*","","","","","","*",""],"trend":[null,"increasing","increasing",null,"increasing","increasing","increasing","decreasing","increasing","increasing","increasing","decreasing","increasing","increasing","increasing",null,"decreasing","decreasing",null,"increasing","decreasing","increasing","decreasing",null,null,"decreasing","increasing",null,null,null,null,null,"decreasing",null],"reverse":[false,false,false,true,true,true,false,false,false,true,false,false,true,false,false,false,true,false,true,true,true,true,true,true,true,true,false,false,false,false,true,false,true,false],"outcome":[null,"better","better",null,"worse","worse","better","worse","better","worse","better","worse","worse","better","better",null,"better","worse",null,"worse","better","worse","better",null,null,"better","better",null,null,null,null,null,"better",null]},"columns":[{"id":"dimension","name":"dimension","type":"character"},{"id":"index","name":"index","type":"character"},{"id":"indicator","name":"indicator","type":"character"},{"id":"metric","name":"metric","type":"character"},{"id":"variable_name","name":"variable_name","type":"character","minWidth":200},{"id":"estimate","name":"estimate","type":"character"},{"id":"std.error","name":"std.error","type":"character"},{"id":"statistic","name":"statistic","type":"character","minWidth":75},{"id":"p.value","name":"p.value","type":"character"},{"id":"ci_low","name":"ci_low","type":"character"},{"id":"ci_high","name":"ci_high","type":"character"},{"id":"sig","name":"sig","type":"character","minWidth":50},{"id":"trend","name":"trend","type":"character"},{"id":"reverse","name":"reverse","type":"logical","minWidth":75},{"id":"outcome","name":"outcome","type":"character","minWidth":75}],"resizable":true,"filterable":true,"searchable":true,"defaultPageSize":10,"showPageSizeOptions":true,"onClick":"select","highlight":true,"bordered":true,"striped":true,"compact":true,"style":{"fontSize":"14px"},"dataKey":"1758d23097dedf88641ace782c8e2f2c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="figure" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="figure"><span class="header-section-number">2.4</span> Figure</h3>
+<p>Figure below shows 95% confidence intervals for the coefficients of each metric, including state as a covariate.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combined label for indicator and metric</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># See repository for function definitions!</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>processed_lm_data <span class="ot">&lt;-</span> <span class="fu">prepare_figure_data</span>(framed_outputs)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>lm_figure <span class="ot">&lt;-</span> <span class="fu">pct_change_graph</span>(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">figure_data =</span> processed_lm_data<span class="sc">$</span>figure_data,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">dp_text_palette =</span> dp_text_palette,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">label_dimension_lookup =</span> processed_lm_data<span class="sc">$</span>label_dimension_lookup</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'5_trends/output/fig_lm.png'</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> lm_figure,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">8</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">5</span>,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">units =</span> <span class="st">'in'</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">bg =</span> <span class="st">'white'</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>lm_figure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dp_trends_files/figure-html/regression_figure-1.png" class="img-fluid figure-img" width="1400"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-spdep" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-spdep"><span class="header-section-number">3</span> Spatial Regressions</h2>
+<section id="models" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="models"><span class="header-section-number">3.1</span> Models</h3>
+<p>Here we run the same process but using spatial error models with the <code>spatialreg</code> package. We are now working with:</p>
+<p><span class="math display">\[
+\Large y = X\beta + u, u = \lambda Wu + \epsilon,
+\]</span></p>
+<p>where <span class="math inline">\(y\)</span> are normalized metric values, <span class="math inline">\(X\)</span> is an <span class="math inline">\(n * k\)</span> matrix, <span class="math inline">\(\beta\)</span> is a vector of predictors, <span class="math inline">\(u\)</span> is the spatial autocorrelation error term, <span class="math inline">\(\lambda\)</span> is the spatial error parameter, <span class="math inline">\(W\)</span> is the county weights matrix, and <span class="math inline">\(\epsilon\)</span> is the error term.</p>
+<p>We run this portion of the code in parallel because it has a pretty long run time. Again, results are saved so it doesn’t need to be run again unless something changes.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(SMdocs<span class="sc">::</span>dp_metrics_county_adj)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>state_link <span class="ot">&lt;-</span> SMdata<span class="sc">::</span>fips_key <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_length</span>(fips) <span class="sc">==</span> <span class="dv">2</span>, fips <span class="sc">!=</span> <span class="st">'00'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(fips, state_code)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_metrics_county_adj <span class="sc">%&gt;%</span> </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> fips<span class="sc">:</span>year,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> variable_name,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> value</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(fips, <span class="st">'^09'</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">link =</span> <span class="fu">str_sub</span>(fips, <span class="at">end =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(state_link, <span class="at">by =</span> <span class="fu">join_by</span>(link <span class="sc">==</span> fips)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>link) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="sc">!</span><span class="fu">c</span>(fips, state_code), as.numeric))</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dat)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Get vector of vars</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>(vars <span class="ot">&lt;-</span> <span class="fu">names</span>(dat)[<span class="sc">!</span><span class="fu">names</span>(dat) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'fips'</span>, <span class="st">'year'</span>, <span class="st">'state_code'</span>)])</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(multisession, <span class="at">workers =</span> <span class="fu">availableCores</span>(<span class="at">omit =</span> <span class="dv">2</span>))</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>sar_outs <span class="ot">&lt;-</span> <span class="fu">future_map</span>(vars, \(var) {</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">'</span><span class="sc">\n\n</span><span class="st">Starting'</span>, var)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reduce to relevant variable, remove NAs</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span> </span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(fips, year, <span class="sc">!!</span><span class="fu">sym</span>(var), state_code) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">drop_na</span>(<span class="sc">!!</span><span class="fu">sym</span>(var)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">normed =</span> <span class="fu">min_max</span>(<span class="sc">!!</span><span class="fu">sym</span>(var)))</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Regular weights</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    weight_var <span class="ot">&lt;-</span> weights_crosswalk<span class="sc">$</span>weight_variable[weights_crosswalk<span class="sc">$</span>variable_name <span class="sc">==</span> var]</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(weight_var) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(weight_var) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>      weight_df <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_weights <span class="sc">%&gt;%</span> </span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">value =</span> <span class="fu">as.numeric</span>(value), </span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">year =</span> <span class="fu">as.numeric</span>(year)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rename</span>(</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>          <span class="at">weight_value =</span> value, </span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>          <span class="at">weight_name =</span> variable_name,</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>          <span class="at">weight_year =</span> year</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(weight_name <span class="sc">==</span> weight_var, <span class="fu">str_length</span>(fips) <span class="sc">==</span> <span class="dv">5</span>)</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Join weights back to df</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>      <span class="co"># df &lt;- df %&gt;% </span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   inner_join(weight_df, by = join_by(fips, year == weight_year))</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(weight_df<span class="sc">$</span>weight_year))) {</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>        df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>          <span class="fu">inner_join</span>(weight_df, <span class="at">by =</span> <span class="fu">join_by</span>(fips))</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>        df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>          <span class="fu">inner_join</span>(weight_df, <span class="at">by =</span> <span class="fu">join_by</span>(fips, year <span class="sc">==</span> weight_year))</span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">'</span><span class="sc">\n</span><span class="st">Joined to weights:'</span>, weight_var)</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">'</span><span class="sc">\n</span><span class="st">No weighting variable'</span>)</span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># List weights</span></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>    lw <span class="ot">&lt;-</span> SMdata<span class="sc">::</span>neast_counties_2024 <span class="sc">%&gt;%</span> </span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>      <span class="fu">right_join</span>(df) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(fips, year, normed) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>      <span class="fu">poly2nb</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nb2listw</span>(<span class="at">zero.policy =</span> <span class="cn">TRUE</span>)   </span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">'</span><span class="sc">\n</span><span class="st">Created lw'</span>)</span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assign weights arg if variable is weighted. Otherwise NULL</span></span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(weight_var) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(weight_var) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>      weights_arg <span class="ot">&lt;-</span> df[[<span class="st">'weight_value'</span>]]</span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>      weights_arg <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run error sar model with appropriate (or no) weighting</span></span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">errorsarlm</span>(</span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>      normed <span class="sc">~</span> <span class="fu">as.numeric</span>(year) <span class="sc">+</span> state_code,</span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> df,</span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>      <span class="at">listw =</span> lw,</span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>      <span class="at">weights =</span> weights_arg</span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>    ) </span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">'</span><span class="sc">\n</span><span class="st">Ran model'</span>)</span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(model)</span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">paste0</span>(<span class="st">'Error with '</span>, var, <span class="st">': '</span>, e))</span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a>}, <span class="at">.progress =</span> <span class="cn">FALSE</span>, <span class="at">.options =</span> <span class="fu">furrr_options</span>(<span class="at">seed =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(vars))</span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(sequential)</span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 to 12 minutes or so</span></span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a><span class="co"># out</span></span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a><span class="co"># out[[1]]</span></span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sar_outs)</span>
+<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sar_outs[[<span class="dv">1</span>]])</span>
+<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(sar_outs, class)</span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(out, '5_trends/output/errorsarlm_outs.rds')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="reactable-table" class="level4" data-number="3.1.1">
+<h4 data-number="3.1.1" class="anchored" data-anchor-id="reactable-table"><span class="header-section-number">3.1.1</span> Reactable Table</h4>
+<p>First we wrangle our outputs to get the relevant results in a nicely formatted table:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sar_outs &lt;- readRDS('5_trends/output/errorsarlm_outs.rds')</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">length</span>(sar_outs)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sar_outs <span class="ot">&lt;-</span> sar_outs[<span class="fu">names</span>(sar_outs) <span class="sc">!=</span> <span class="st">'state_code'</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">keep</span>(<span class="sc">~</span> <span class="fu">class</span>(.x) <span class="sc">==</span> <span class="st">'Sarlm'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">length</span>(sar_outs)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>(lost <span class="ot">&lt;-</span> start <span class="sc">-</span> end)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 42 down to 38 here</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>sar_df <span class="ot">&lt;-</span> <span class="fu">imap</span>(sar_outs, <span class="sc">~</span> {</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>      df <span class="ot">&lt;-</span> <span class="fu">tidy</span>(.x)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      est <span class="ot">&lt;-</span> df[<span class="dv">2</span>, <span class="st">'estimate'</span>] <span class="sc">%&gt;%</span> as.numeric</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      se <span class="ot">&lt;-</span> df[<span class="dv">2</span>, <span class="st">'std.error'</span>] <span class="sc">%&gt;%</span> as.numeric</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>      alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>      confints <span class="ot">&lt;-</span> <span class="fu">c</span>(est <span class="sc">-</span> z <span class="sc">*</span> se, est <span class="sc">+</span> z <span class="sc">*</span> se)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>      <span class="co"># confints &lt;- confint(.x)[3, ]</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>      out <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(<span class="fu">str_detect</span>(term, <span class="st">'year'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">variable_name =</span> .y,</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">conf_low =</span> confints[<span class="dv">1</span>],</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">conf_high =</span> confints[<span class="dv">2</span>]</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(<span class="sc">-</span>term) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">sig =</span> <span class="fu">case_when</span>(</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>            p.value <span class="sc">&lt;</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">'***'</span>,</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>            p.value <span class="sc">&gt;</span> <span class="fl">0.001</span> <span class="sc">&amp;</span> p.value <span class="sc">&lt;</span> <span class="fl">0.01</span> <span class="sc">~</span> <span class="st">'**'</span>,</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>            p.value <span class="sc">&gt;</span> <span class="fl">0.01</span> <span class="sc">&amp;</span> p.value <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">'*'</span>,</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>            p.value <span class="sc">&gt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">' '</span>,</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">.default =</span> <span class="cn">NA</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(out)</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>        <span class="fu">message</span>(<span class="st">'Error'</span>)</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(e)</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">keep</span>(is.data.frame) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sar_df)</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a><span class="co"># sar_df</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a><span class="co"># 38 down to 36.</span></span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>(lost <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(sar_outs), sar_df<span class="sc">$</span>variable_name))</span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>check <span class="ot">&lt;-</span> sar_outs[<span class="fu">names</span>(sar_outs) <span class="sc">%in%</span> lost]</span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Not defined because of singularities. Single time points. </span></span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a><span class="co"># At least while including the weighting variables.</span></span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>sar_raw_outputs <span class="ot">&lt;-</span> sar_df <span class="sc">%&gt;%</span> </span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">trend =</span> <span class="fu">case_when</span>(</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>    estimate <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="fu">str_detect</span>(sig, <span class="st">'</span><span class="sc">\\</span><span class="st">*'</span>) <span class="sc">~</span> <span class="st">'increasing'</span>,</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>    estimate <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="fu">str_detect</span>(sig, <span class="st">'</span><span class="sc">\\</span><span class="st">*'</span>) <span class="sc">~</span> <span class="st">'decreasing'</span>,</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(sig, <span class="st">'</span><span class="sc">\\</span><span class="st">*'</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">'no change'</span>,</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="cn">NA_character_</span></span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sar_raw_outputs)</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Bring in directional values. Keep only the ones without question marks, </span></span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a><span class="co"># clearly higher or lower</span></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(SMdocs<span class="sc">::</span>dp_meta)</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>directions <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_meta <span class="sc">%&gt;%</span> </span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(desirable, <span class="st">'higher|lower'</span>), <span class="sc">!</span><span class="fu">is.na</span>(variable_name)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">desirable =</span> <span class="fu">str_remove_all</span>(desirable, <span class="st">'</span><span class="sc">\\</span><span class="st">?'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(variable_name, desirable)</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>reverse <span class="ot">&lt;-</span> directions <span class="sc">%&gt;%</span> </span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(desirable <span class="sc">==</span> <span class="st">'lower'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(variable_name)</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduce to only vars that have a direction.</span></span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we lose a few metrics</span></span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>sar_model_outputs <span class="ot">&lt;-</span> sar_raw_outputs <span class="sc">%&gt;%</span> </span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable_name <span class="sc">%in%</span> directions<span class="sc">$</span>variable_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">reverse =</span> <span class="fu">ifelse</span>(variable_name <span class="sc">%in%</span> reverse, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="fu">case_when</span>(</span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>      reverse <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> trend <span class="sc">==</span> <span class="st">'increasing'</span> <span class="sc">~</span> <span class="st">'better'</span>,</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>      reverse <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> trend <span class="sc">==</span> <span class="st">'decreasing'</span> <span class="sc">~</span> <span class="st">'worse'</span>,</span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>      reverse <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">&amp;</span> trend <span class="sc">==</span> <span class="st">'increasing'</span> <span class="sc">~</span> <span class="st">'worse'</span>,</span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>      reverse <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">&amp;</span> trend <span class="sc">==</span> <span class="st">'decreasing'</span> <span class="sc">~</span> <span class="st">'better'</span>,</span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>      trend <span class="sc">==</span> <span class="st">'no change'</span> <span class="sc">~</span> <span class="st">'no change'</span>,</span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="cn">NA</span></span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">format</span>(<span class="fu">round</span>(.x, <span class="dv">3</span>), <span class="at">nsmall =</span> <span class="dv">3</span>))</span>
+<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a>sar_model_outputs</span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>(n_metrics <span class="ot">&lt;-</span> <span class="fu">dim</span>(sar_model_outputs)[<span class="dv">1</span>])</span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a><span class="co"># See what we lost</span></span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a>(lost <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(sar_raw_outputs<span class="sc">$</span>variable_name, sar_model_outputs<span class="sc">$</span>variable_name))</span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a>(n_lost <span class="ot">&lt;-</span> <span class="fu">length</span>(lost))</span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>(print_lost <span class="ot">&lt;-</span> lost <span class="sc">%&gt;%</span> <span class="fu">paste0</span>(<span class="at">collapse =</span> <span class="st">', '</span>))</span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a><span class="co"># proportion getting better or worse</span></span>
+<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a>(tab <span class="ot">&lt;-</span> <span class="fu">table</span>(sar_model_outputs<span class="sc">$</span>outcome))</span>
+<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a>(percs <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">prop.table</span>(tab), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>We have 31 metrics modeled. 48.4% are getting better, 29% are getting worse, and 29% are stable. We drop 4 metrics here that don’t have proper directions (vacancyRate, populationChangePerc, annualPrecipCMSqKm, ftmProdRatio).</p>
+<p>Now we present the table, including normative outcomes:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sar_framed_outputs <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_meta <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dimension, index, indicator, metric, variable_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(sar_model_outputs, <span class="at">by =</span> <span class="fu">join_by</span>(variable_name <span class="sc">==</span> variable_name))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Create interactive table for Quarto</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">get_reactable</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  sar_framed_outputs, </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">defaultPageSize =</span> <span class="dv">10</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>   <span class="at">variable_name =</span> <span class="fu">colDef</span>(<span class="at">minWidth =</span> <span class="dv">200</span>),</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>   <span class="at">sig =</span> <span class="fu">colDef</span>(<span class="at">minWidth =</span> <span class="dv">50</span>),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>   <span class="at">reverse =</span> <span class="fu">colDef</span>(<span class="at">minWidth =</span> <span class="dv">75</span>),</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>   <span class="at">statistic =</span> <span class="fu">colDef</span>(<span class="at">minWidth =</span> <span class="dv">75</span>),</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>   <span class="at">outcome =</span> <span class="fu">colDef</span>(<span class="at">minWidth =</span> <span class="dv">75</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-de2e7e4591daacb438b6" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-de2e7e4591daacb438b6">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"dimension":["Economics","Economics","Economics","Economics","Economics","Economics","Economics","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Health","Health","Health","Health","Health","Health","Health","Health","Health","Production","Production","Production","Production","Social","Social","Social","Social"],"index":["Community Economy","Community Economy","Community Economy","Community Economy","Food Business Resilience","Food Business Resilience","Food Business Resilience","Carbon, GHG, and Nutrients","Forests","Forests","Forests","Species and Habitat","Species and Habitat","Water","Education","Food Security","Food Security","Food Security","Mental Health","Physical Health","Physical Health","Physical Health","Physical Health","Product Quality","Production Diversity","Production Margins","Production Margins","Food and Farmworker Diversity","Food and Farmworker Diversity","Food System Governance","Stewardship Participation"],"indicator":["Access to Land","Business Failure Rate","Wealth and Income Distribution","Wealth and Income Distribution","Income Stability","Income Stability","Operations Diversification","Embodied Carbon","Forest Complexity","Forest Complexity","Forest Health","Biodiversity","Land Use Diversity","Water Quantity","Educational Attainment","Food Access","Food Affordability","Food Insecurity","Stress and Anxiety","Access to Care","Mobility, Pain","Prevalence of Diet-Related Disease","Prevalence of Diet-Related Disease","Certificates of Assurance","Crop Diversity","Total Quantity Food Products","Value Added Market","Producer Age Diversity","Producer Racial Diversity","Community Safety","Conservation Program"],"metric":["Land and Building Value per Acre","Change in Agricultural Establishments","Average Weekly Wages","Gini Index","Expenses per Operation","Percent Change in Wages","Sales from Agritourism and Recreation","Fuel Expenses","Tree Size Diversity","Tree Species Diversity","Proportion of Invasive Species","Rarefied Richness of Plants","Land Use Diversity","Weeks of Extreme Drought","High School Graduation Rate","Limited Access to Healthy Foods","Price of a Meal","Food Insecurity Rate, Overall","Poor Mental Health Days","Proportion Uninsured","Frequent Physical Distress","Diabetes Prevalence","Heart Disease Prevalence","Proportion of Organic Operations","Crop Diversity","Total Animal and Crop Sales","Sales from Value-Added Products","Producer Age Skew","Racial Diversity of Producers","Violent Crime Rate","Acres in Conservation Easements"],"variable_name":["landValPerAcre","otyAnnualAvgEstabsCountPctChgNAICS11","annualAvgWklyWageNAICS11","gini","expPF","otyAnnualAvgWklyWagePctChgNAICS11","incomeAgTourismRecPropTotal","fuelExpensePropTotalExpense","sizeDiversity","treeDiversity","propInvasive","animalRar","lulcDiversity","droughtNonConWeeksCat2","edPercHSOrMore","limitedAccessToHealthyFoods","costPerMeal","foodInsecurityRate","poorMentalHealthDays","uninsured","frequentPhysicalDistress","diabetesPrevalence","heartDisease","propOpsOrganic","cropDiversity","salesAnimalAndCrop","salesValueAddedPropTotal","producerAgeSkew","producerRacialDiversity","violentCrimeArrestsPer100k","consEasementAcres"],"estimate":[" 0.003"," 0.046"," 0.749"," 0.464"," 0.695"," 0.037"," 0.529"," 0.089"," 0.205","-0.116"," 0.031"," 3.212","-0.042","-0.413","-1.029","-0.033"," 1.169","-0.716"," 2.118","-3.365","-0.384"," 0.136","-2.074"," 0.436"," 0.073"," 0.350"," 0.302","-0.418"," 0.198","-0.149"," 0.211"],"std.error":["0.002","0.010","0.055","0.112","0.085","0.008","0.082","0.015","0.016","0.023","0.009","0.208","0.140","0.038","0.117","0.044","0.054","0.085","0.034","0.064","0.127","0.045","0.273","0.103","0.050","0.094","0.167","0.170","0.117","0.024","0.382"],"statistic":["  1.422","  4.532"," 13.664","  4.142","  8.137","  4.746","  6.463","  6.113"," 12.674"," -5.099","  3.560"," 15.452"," -0.297","-10.978"," -8.819"," -0.745"," 21.448"," -8.406"," 62.299","-52.745"," -3.031","  2.985"," -7.594","  4.241","  1.457","  3.728","  1.802"," -2.456","  1.694"," -6.320","  0.553"],"p.value":["0.155","0.000","0.000","0.000","0.000","0.000","0.000","0.000","0.000","0.000","0.000","0.000","0.766","0.000","0.000","0.456","0.000","0.000","0.000","0.000","0.002","0.003","0.000","0.000","0.145","0.000","0.072","0.014","0.090","0.000","0.580"],"conf_low":["-0.001"," 0.026"," 0.642"," 0.244"," 0.527"," 0.022"," 0.369"," 0.061"," 0.174","-0.160"," 0.014"," 2.804","-0.315","-0.487","-1.257","-0.119"," 1.062","-0.882"," 2.051","-3.490","-0.632"," 0.047","-2.610"," 0.234","-0.025"," 0.166","-0.026","-0.752","-0.031","-0.195","-0.537"],"conf_high":[" 0.006"," 0.066"," 0.857"," 0.683"," 0.862"," 0.053"," 0.690"," 0.118"," 0.237","-0.071"," 0.048"," 3.619"," 0.232","-0.339","-0.800"," 0.053"," 1.276","-0.549"," 2.184","-3.240","-0.136"," 0.225","-1.539"," 0.637"," 0.170"," 0.534"," 0.630","-0.085"," 0.428","-0.103"," 0.959"],"sig":[" ","***","***","***","***","***","***","***","***","***","***","***"," ","***","***"," ","***","***","***","***","**","**","***","***"," ","***"," ","*"," ","***"," "],"trend":["no change","increasing","increasing","increasing","increasing","increasing","increasing","increasing","increasing","decreasing","increasing","increasing","no change","decreasing","decreasing","no change","increasing","decreasing","increasing","decreasing","decreasing","increasing","decreasing","increasing","no change","increasing","no change","decreasing","no change","decreasing","no change"],"reverse":[false,false,false,true,true,false,false,true,false,false,true,false,false,true,false,true,true,true,true,true,true,true,true,false,false,false,false,true,false,true,false],"outcome":["no change","better","better","worse","worse","better","better","worse","better","worse","worse","better","no change","better","worse","no change","worse","better","worse","better","better","worse","better","better","no change","better","no change","better","no change","better","no change"]},"columns":[{"id":"dimension","name":"dimension","type":"character"},{"id":"index","name":"index","type":"character"},{"id":"indicator","name":"indicator","type":"character"},{"id":"metric","name":"metric","type":"character"},{"id":"variable_name","name":"variable_name","type":"character","minWidth":200},{"id":"estimate","name":"estimate","type":"character"},{"id":"std.error","name":"std.error","type":"character"},{"id":"statistic","name":"statistic","type":"character","minWidth":75},{"id":"p.value","name":"p.value","type":"character"},{"id":"conf_low","name":"conf_low","type":"character"},{"id":"conf_high","name":"conf_high","type":"character"},{"id":"sig","name":"sig","type":"character","minWidth":50},{"id":"trend","name":"trend","type":"character"},{"id":"reverse","name":"reverse","type":"logical","minWidth":75},{"id":"outcome","name":"outcome","type":"character","minWidth":75}],"resizable":true,"filterable":true,"searchable":true,"defaultPageSize":10,"showPageSizeOptions":true,"onClick":"select","highlight":true,"bordered":true,"striped":true,"compact":true,"style":{"fontSize":"14px"},"dataKey":"d3481c03bfe6be969ce5d596b3defcdc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="latex-table" class="level4" data-number="3.1.2">
+<h4 data-number="3.1.2" class="anchored" data-anchor-id="latex-table"><span class="header-section-number">3.1.2</span> LaTeX Table</h4>
+<p>Saving table to <span class="math inline">\(\LaTeX\)</span> for paper:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sar_framed_outputs)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduce to specific columns</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>latex_df <span class="ot">&lt;-</span> sar_framed_outputs <span class="sc">%&gt;%</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(metric, estimate<span class="sc">:</span>p.value, sig, outcome) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># p.value = ifelse(sig == '*', paste0(p.value, '*'), p.value),</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span> <span class="fu">case_when</span>(</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(sig, <span class="st">'</span><span class="sc">\\</span><span class="st">*'</span>) <span class="sc">~</span> <span class="fu">paste0</span>(p.value, sig),</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> p.value</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="fu">case_when</span>(</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      outcome <span class="sc">==</span> <span class="st">'no change'</span> <span class="sc">~</span> <span class="st">'</span><span class="sc">\\</span><span class="st">textemdash'</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="fu">str_to_title</span>(outcome)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>sig) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Metric'</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'$</span><span class="sc">\\</span><span class="st">beta$'</span>,</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SE'</span>,</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'$z$-value'</span>,</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'p-value'</span>,</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Outcome'</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(latex_df)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to latex</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>latex_df <span class="sc">%&gt;%</span> </span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">format =</span> <span class="st">'latex'</span>,</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">'Spatial error models of year and state on metric'</span>,</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">'tab_errorsarlm'</span>,</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">escape =</span> <span class="cn">FALSE</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">font_size =</span> <span class="dv">9</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">general_title =</span> <span class="st">""</span>,</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">general =</span> </span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>      <span class="st">'</span><span class="sc">\\\\</span><span class="st">textit{Note: }The table shows coefficients of the effect of year on</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="st">      normalized, inflation-adjusted metrics with state as a covariate. </span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="st">      Metrics are weighted by variables shown in Table </span><span class="sc">\\\\</span><span class="st">ref{tab:tab_metrics_body}. </span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="st">      Significant p-values</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="st">      indicated change over time, and the direction of the outcome was determined</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="st">      based on desirable directions of change for each metric. ***: p &lt; 0.001,</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="st">      **: p &lt; 0.01, *: p &lt; 0.05.'</span>,</span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">threeparttable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">escape =</span> <span class="cn">FALSE</span></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_kable</span>(</span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="st">'5_trends/output/tab_errorsarlm.tex'</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="figure-1" class="level4" data-number="3.1.3">
+<h4 data-number="3.1.3" class="anchored" data-anchor-id="figure-1"><span class="header-section-number">3.1.3</span> Figure</h4>
+<p>Finally, the figure below shows coefficient estimates and confidence intervals for the errorsar models. Green points represent metrics that are trending in a “good” direction, while purple represents trends in a “bad” direction.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using functions at top of script to process outputs and make graph</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>errorsar_figure_data <span class="ot">&lt;-</span> <span class="fu">prepare_figure_data</span>(<span class="at">model_output_df =</span> sar_framed_outputs)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>errorsar_figure <span class="ot">&lt;-</span> <span class="fu">pct_change_graph</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">figure_data =</span> errorsar_figure_data<span class="sc">$</span>figure_data,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dp_text_palette =</span> dp_text_palette,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">label_dimension_lookup =</span> errorsar_figure_data<span class="sc">$</span>label_dimension_lookup</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'5_trends/output/fig_errorsarlm.png'</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> errorsar_figure,</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="fl">8.5</span>,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">6</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">units =</span> <span class="st">'in'</span>,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">bg =</span> <span class="st">'white'</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>errorsar_figure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dp_trends_files/figure-html/errorsar_figure-1.png" class="img-fluid figure-img" width="1400"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../4_correlations/src/dp_correlations.html" class="pagination-link" aria-label="Correlations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Correlations</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
