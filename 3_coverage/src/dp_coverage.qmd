@@ -42,8 +42,8 @@ pacman::p_load(
 
 # GitHub packages
 pacman::p_load_current_gh(
-  'Food-Systems-Research-Institute/SMdata',
-  'Food-Systems-Research-Institute/SMdocs'
+  "Food-Systems-Research-Institute/SMdata",
+  "Food-Systems-Research-Institute/SMdocs"
 )
 
 conflicts_prefer(
@@ -71,10 +71,10 @@ Explore coverage by dimension. Things we are interested in:
 Indicators without any metrics:
 
 ```{r}
-SMdocs::dp_meta %>% 
-  filter(is.na(variable_name)) %>% 
-  select(dimension, indicator) %>% 
-  unique() %>% 
+SMdocs::dp_meta %>%
+  filter(is.na(variable_name)) %>%
+  select(dimension, indicator) %>%
+  unique() %>%
   get_reactable()
 ```
 
@@ -85,84 +85,84 @@ Proportion of indicator coverage by dimension:
 ```{r}
 #| label: indicator_coverage_by_dimension
 # Dimensions, indicators, metrics, and indicator representation
-tab <- SMdocs::dp_meta %>% 
-  group_by(dimension, indicator) %>% 
+tab <- SMdocs::dp_meta %>%
+  group_by(dimension, indicator) %>%
   summarize(
     has_metric = any(!is.na(variable_name)),
-    n_metrics = sum(metric != 'NONE'),
-    .groups = 'drop_last'
-  ) %>% 
+    n_metrics = sum(metric != "NONE"),
+    .groups = "drop_last"
+  ) %>%
   summarize(
     indicators = n(),
     perc_rep_ind = sum(has_metric) / indicators * 100,
     metrics = sum(n_metrics),
     rep_ind = sum(has_metric),
     .groups = "drop"
-  ) 
+  )
 tab
 
 # County metrics
-county_metrics <- SMdocs::dp_metrics_county %>% 
-  select(variable_name) %>% 
+county_metrics <- SMdocs::dp_metrics_county %>%
+  select(variable_name) %>%
   distinct()
 dim(county_metrics)
-county_col <- SMdocs::dp_meta %>% 
-  select(dimension, variable_name) %>% 
-  right_join(county_metrics) %>% 
-  group_by(dimension) %>% 
+county_col <- SMdocs::dp_meta %>%
+  select(dimension, variable_name) %>%
+  right_join(county_metrics) %>%
+  group_by(dimension) %>%
   summarize(`County Scale` = n())
-tab <- tab %>% 
+tab <- tab %>%
   inner_join(county_col)
 
 # Add row of totals
-totals <- tab %>% 
+totals <- tab %>%
   summarize(across(c(indicators:metrics, `County Scale`), base::sum))
 totals
 
 str(tab)
-latex_tab <- tab %>% 
+latex_tab <- tab %>%
   add_row(
-    'dimension' = 'Total',
-    'indicators' = as.double(totals[1, 'indicators']),
-    'metrics' = as.double(totals[1, 'metrics']),
-    'perc_rep_ind' = sum(.[['rep_ind']]) / sum(.[['indicators']]) * 100,
-    'County Scale' = as.double(totals[1, 'County Scale'])
-  ) %>% 
-  select(-rep_ind) %>% 
+    "dimension" = "Total",
+    "indicators" = as.double(totals[1, "indicators"]),
+    "metrics" = as.double(totals[1, "metrics"]),
+    "perc_rep_ind" = sum(.[["rep_ind"]]) / sum(.[["indicators"]]) * 100,
+    "County Scale" = as.double(totals[1, "County Scale"])
+  ) %>%
+  select(-rep_ind) %>%
   setNames(c(
-    names(.) %>% 
-      str_to_title() %>% 
-      str_replace('Perc_rep_ind', 'Representation (\\\\%)')
+    names(.) %>%
+      str_to_title() %>%
+      str_replace("Perc_rep_ind", "Representation (\\\\%)")
   ))
 latex_tab
 
 # Save to latex
-latex_tab %>% 
+latex_tab %>%
   kbl(
-    format = 'latex',
-    caption = 'Indicators and metrics by dimension.',
-    label = 'tab_metric_breakdown',
+    format = "latex",
+    caption = "Indicators and metrics by dimension.",
+    label = "tab_metric_breakdown",
     booktabs = TRUE,
     escape = FALSE,
     digits = 1
-  ) %>% 
+  ) %>%
   kable_styling(
     font_size = 10
-  ) %>% 
+  ) %>%
   footnote(
     general_title = "",
-    general = 
-      '\\\\textit{Note:} Representation is the percentage of indicators that are represented by at least one metric in the available data. The County Scale column shows metrics that are available at or below the county level and included in correlation and regression analyses.',
+    general =
+      "\\\\textit{Note:} Representation is the percentage of indicators that are represented by at least one metric in the available data. The County Scale column shows metrics that are available at or below the county level and included in correlation and regression analyses.",
     threeparttable = TRUE,
     escape = FALSE
-  ) %>% 
-  row_spec(6, bold = TRUE) %>% 
+  ) %>%
+  row_spec(6, bold = TRUE) %>%
   save_kable(
-    file = '3_coverage/output/tab_metric_breakdown.tex'
+    file = "3_coverage/output/tab_metric_breakdown.tex"
   )
 
 # Show table
-tab %>% 
+tab %>%
   get_reactable()
 ```
 
@@ -171,23 +171,23 @@ Looks like all Economics and Health indicators had a secondary metric to represe
 How many metrics are at the state level vs county level? Note that we are prioritizing county and only counting state if they are not available at the county level.
 
 ```{r}
-dat <- SMdocs::dp_meta %>% 
+dat <- SMdocs::dp_meta %>%
   filter(
     !is.na(variable_name),
-    metric != 'NONE'
-  ) %>% 
+    metric != "NONE"
+  ) %>%
   select(
     dimension,
     metric,
     resolution
-  ) %>% 
+  ) %>%
   mutate(resolution = case_when(
-    resolution %in% c('state', 'system') ~ 'state',
-    .default = 'county'
+    resolution %in% c("state", "system") ~ "state",
+    .default = "county"
   ))
 
 # Overall
-overall_county <- round(mean(dat$resolution == 'county') * 100, 2)
+overall_county <- round(mean(dat$resolution == "county") * 100, 2)
 overall_state <- 100 - overall_county
 ```
 
@@ -203,13 +203,13 @@ Break down by dimension:
 
 ```{r}
 # By Dimension:
-dat %>% 
-  group_by(dimension) %>% 
+dat %>%
+  group_by(dimension) %>%
   summarize(
-    prop_county = mean(resolution == 'county')
+    prop_county = mean(resolution == "county")
     # prop_state = mean(resolution == 'state')
-  ) %>% 
-  mutate(across(starts_with('prop'), ~ format(round(.x, 3), nsmall = 3))) %>% 
+  ) %>%
+  mutate(across(starts_with("prop"), ~ format(round(.x, 3), nsmall = 3))) %>%
   get_reactable()
 ```
 
@@ -230,26 +230,26 @@ First wrangle up a Start with metrics in each county, including a population cou
 ```{r}
 #| label: geo_summary_stats
 # str(SMdocs::dp_metrics_county)
-n_county_metrics <- SMdocs::dp_metrics_county$variable_name %>% 
-  unique %>% 
-  length
+n_county_metrics <- SMdocs::dp_metrics_county$variable_name %>%
+  unique() %>%
+  length()
 
 # Latest population of each county
-pops <- SMdocs::dp_weights %>% 
-  filter(variable_name == 'population5YearSmooth', year == '2023') %>% 
+pops <- SMdocs::dp_weights %>%
+  filter(variable_name == "population5YearSmooth", year == "2023") %>%
   select(fips, value)
 
 # Metrics per county
 # str(SMdocs::dp_metrics_county)
-tab_metrics <- SMdocs::dp_metrics_county %>% 
-  group_by(fips) %>% 
-  summarize(n_metrics = length(unique(variable_name))) %>% 
-  ungroup() %>% 
-  left_join(SMdata::fips_key) %>% 
-  select(-state_code) %>% 
-  left_join(pops) %>% 
-  rename(population_2023 = value) %>% 
-  mutate(population_2023 = as.numeric(population_2023)) %>% 
+tab_metrics <- SMdocs::dp_metrics_county %>%
+  group_by(fips) %>%
+  summarize(n_metrics = length(unique(variable_name))) %>%
+  ungroup() %>%
+  left_join(SMdata::fips_key) %>%
+  select(-state_code) %>%
+  left_join(pops) %>%
+  rename(population_2023 = value) %>%
+  mutate(population_2023 = as.numeric(population_2023)) %>%
   arrange(n_metrics)
 get_reactable(tab_metrics)
 ```
@@ -257,17 +257,17 @@ get_reactable(tab_metrics)
 Now break them down by dimension:
 
 ```{r}
-dims <- SMdocs::dp_meta %>% 
-  select(variable_name, dimension) %>% 
-  na.omit() %>% 
-  filter(variable_name != 'NONE')
-tab_metrics_dim <- SMdocs::dp_metrics_county %>% 
-  left_join(dims) %>% 
-  group_by(fips, dimension) %>% 
+dims <- SMdocs::dp_meta %>%
+  select(variable_name, dimension) %>%
+  na.omit() %>%
+  filter(variable_name != "NONE")
+tab_metrics_dim <- SMdocs::dp_metrics_county %>%
+  left_join(dims) %>%
+  group_by(fips, dimension) %>%
   summarize(n_metrics = length(unique(variable_name)))
-  # distinct(fips) %>%
-  # left_join(pops, by = 'fips') %>% 
-  # rename(population_2023 = value)
+# distinct(fips) %>%
+# left_join(pops, by = 'fips') %>%
+# rename(population_2023 = value)
 get_reactable(tab_metrics_dim)
 ```
 
@@ -275,28 +275,28 @@ Average number of metrics in each county in across years:
 
 ```{r}
 # Get total number of county metrics
-total_metrics <- SMdocs::dp_metrics %>% 
-  filter(year >= 2000, year < 2025) %>% 
-  SMdata::filter_fips('counties') %>% 
-  pull(variable_name) %>% 
-  unique() %>% 
+total_metrics <- SMdocs::dp_metrics %>%
+  filter(year >= 2000, year < 2025) %>%
+  SMdata::filter_fips("counties") %>%
+  pull(variable_name) %>%
+  unique() %>%
   length()
 
 # Metric counts by county and year
-tab <- SMdocs::dp_metrics %>% 
-  filter(year >= 2000, year < 2025) %>% 
-  SMdata::filter_fips('counties') %>% 
-  group_by(fips, year) %>% 
+tab <- SMdocs::dp_metrics %>%
+  filter(year >= 2000, year < 2025) %>%
+  SMdata::filter_fips("counties") %>%
+  group_by(fips, year) %>%
   summarize(
     n_metrics = length(unique(variable_name)),
-    prop_metrics = n_metrics/total_metrics
-  ) %>% 
-  ungroup() %>% 
-  left_join(fips_key) %>% 
-  select(-state_code) %>% 
+    prop_metrics = n_metrics / total_metrics
+  ) %>%
+  ungroup() %>%
+  left_join(fips_key) %>%
+  select(-state_code) %>%
   arrange(desc(year)) %>%
-  mutate(prop_metrics =  format(round(prop_metrics, 3), nsmall = 3)) %>% 
-  filter(state_name != 'Connecticut')
+  mutate(prop_metrics = format(round(prop_metrics, 3), nsmall = 3)) %>%
+  filter(state_name != "Connecticut")
 get_reactable(tab)
 ```
 
@@ -305,21 +305,21 @@ Overall figures for metrics across years:
 ```{r}
 # Average coverage of county overall
 mean_metrics_overall <- round(mean(tab$n_metrics, na.rm = TRUE), 3)
-prop_metrics_overall <- mean_metrics_overall/total_metrics
+prop_metrics_overall <- mean_metrics_overall / total_metrics
 ```
 
 Average coverage of counties by state in any given year:
 
 ```{r}
-tab %>% 
-  group_by(state_name) %>% 
+tab %>%
+  group_by(state_name) %>%
   summarize(
     mean_metrics = mean(n_metrics, na.rm = TRUE),
-    prop_metrics = mean_metrics/total_metrics
-  ) %>% 
-  ungroup() %>% 
-  arrange(mean_metrics) %>% 
-  mutate(across(where(is.numeric), ~ format(round(.x, 3), nsmall = 3))) %>% 
+    prop_metrics = mean_metrics / total_metrics
+  ) %>%
+  ungroup() %>%
+  arrange(mean_metrics) %>%
+  mutate(across(where(is.numeric), ~ format(round(.x, 3), nsmall = 3))) %>%
   get_reactable()
 ```
 
@@ -339,12 +339,12 @@ The first map shows the total number of metrics with data in each county across 
 # bbox_new <- st_bbox(neast_counties_2024)
 # xrange <- bbox_new$xmax - bbox_new$xmin # range of x values
 # yrange <- bbox_new$ymax - bbox_new$ymin # range of y values
-# 
+#
 # bbox_new[1] <- bbox_new[1] - (0.05 * xrange) # xmin - left
 # bbox_new[3] <- bbox_new[3] + (0.05 * xrange) # xmax - right
 # bbox_new[2] <- bbox_new[2] - (0.05 * yrange) # ymin - bottom
 # bbox_new[4] <- bbox_new[4] + (0.05 * yrange) # ymax - top
-# 
+#
 # tiles <- get_tiles(
 #   bbox_new,
 #   provider = "CartoDB.PositronNoLabels",
@@ -354,24 +354,24 @@ The first map shows the total number of metrics with data in each county across 
 # terra::saveRDS(tiles, 'data/data_paper/neast_tiles.rds')
 
 # Load tiles for background
-tiles <- terra::readRDS('3_coverage/data/data_paper/neast_tiles.rds')
+tiles <- terra::readRDS("3_coverage/data/data_paper/neast_tiles.rds")
 
 # Counts of unique metrics in each county
-# var_counts <- datasets$dp_metrics_all %>% 
-var_counts <- dp_metrics_county %>% 
-  group_by(fips) %>% 
+# var_counts <- datasets$dp_metrics_all %>%
+var_counts <- dp_metrics_county %>%
+  group_by(fips) %>%
   summarize(n_metrics = length(unique(variable_name)))
- 
-# Join 
-df <- neast_counties_2024 %>% 
+
+# Join
+df <- neast_counties_2024 %>%
   left_join(var_counts)
 
-tmap_mode('plot')
+tmap_mode("plot")
 map <- tm_shape(tiles) +
   tm_rgb() +
   tm_shape(df) +
   tm_polygons(
-    "n_metrics", 
+    "n_metrics",
     palette = "brewer.greens",
     title = "Metric\nRepresentation",
     breaks = c(seq(22, 43, 3)),
@@ -380,10 +380,10 @@ map <- tm_shape(tiles) +
       reverse = TRUE
     )
   ) +
-  tm_borders(col = 'black', lwd = 1.25) +
+  tm_borders(col = "black", lwd = 1.25) +
   tm_layout(
-    legend.position = c('left', 'top'),
-    legend.title.fontface = 'bold',
+    legend.position = c("left", "top"),
+    legend.title.fontface = "bold",
     legend.width = 8,
     legend.height = 12,
     legend.title.size = 1.1,
@@ -417,54 +417,54 @@ Let's try an interactive map so we can explore each dimension individually. Use 
 #| label: var_counts
 #| output: false
 # How many total metrics at county level
-total_count <- dp_metrics_county %>% 
-  pull(variable_name) %>% 
-  unique %>% 
-  length
+total_count <- dp_metrics_county %>%
+  pull(variable_name) %>%
+  unique() %>%
+  length()
 total_count
 
 # Dimension crosswalk
-crosswalk <- dp_meta %>% 
+crosswalk <- dp_meta %>%
   select(dimension, variable_name)
 
-dimension_counts <- dp_meta %>% 
-  select(dimension, variable_name, resolution) %>% 
-  filter(!is.na(variable_name), resolution != 'state') %>% 
-  select(-resolution) %>% 
-  group_by(dimension) %>% 
+dimension_counts <- dp_meta %>%
+  select(dimension, variable_name, resolution) %>%
+  filter(!is.na(variable_name), resolution != "state") %>%
+  select(-resolution) %>%
+  group_by(dimension) %>%
   summarize(count = n())
 dimension_counts
-  
+
 # Counts of unique metrics in each county by dimension
-var_counts <- dp_metrics_county %>% 
-  left_join(crosswalk) %>% 
-  group_by(dimension, fips) %>% 
+var_counts <- dp_metrics_county %>%
+  left_join(crosswalk) %>%
+  group_by(dimension, fips) %>%
   summarize(
     n_metrics = length(unique(variable_name))
-  ) %>% 
-  left_join(dimension_counts) %>% 
+  ) %>%
+  left_join(dimension_counts) %>%
   mutate(prop_metrics = n_metrics / count)
 var_counts
- 
-# Join 
-df <- neast_counties_2024 %>% 
+
+# Join
+df <- neast_counties_2024 %>%
   left_join(var_counts)
 str(df)
 
 maps <- df %>%
   split(.$dimension) %>%
   imap(~ {
-    to_hide <- ifelse(.y == 'economics', FALSE, TRUE)
+    to_hide <- ifelse(.y == "economics", FALSE, TRUE)
     mapview(
-      .x, 
-      layer.name = .y, 
+      .x,
+      layer.name = .y,
       zcol = "prop_metrics",
       hide = to_hide,
       # col.regions = brewer.pal(5, "Greens"),
       col.regions = rev(viridis(5)),
       alpha.regions = 0.7
     )
-  }) 
+  })
 ```
 
 ```{r}
@@ -483,10 +483,10 @@ This section explores the growth in metric and indicator counts over time.
 #| include: false
 # dat <- SMdocs::dp_metrics
 # str(dat)
-#   
-# n_county_vars <- SMdocs::dp_metrics_county %>% 
-#   pull(variable_name) %>% 
-#   unique() %>% 
+#
+# n_county_vars <- SMdocs::dp_metrics_county %>%
+#   pull(variable_name) %>%
+#   unique() %>%
 #   length()
 # SMdocs::series_vars
 # SMdocs::state_series_vars
@@ -502,36 +502,56 @@ Here we show the total number of indicators represented each year, colored by di
 #| fig-align: center
 # Join based on 'variable_name'
 merged_df <- SMdocs::dp_metrics %>%
-  left_join(SMdocs::dp_meta %>%
-              select(variable_name,
-                     dimension = dimension,
-                     index = index,
-                     indicator = indicator
-              ),
-            by = "variable_name") 
+  left_join(
+    SMdocs::dp_meta %>%
+      select(variable_name,
+        dimension = dimension,
+        index = index,
+        indicator = indicator
+      ),
+    by = "variable_name"
+  )
 
 # Filter out before 2000 and NAs; create "indicator count"
 indicators_by_year_data <- merged_df %>%
   filter(!is.na(indicator)) %>%
   filter(year >= 2000, year < 2025) %>%
   distinct(indicator, dimension, year) %>%
-  count(year, dimension, name = "indicator_count") %>% 
+  count(year, dimension, name = "indicator_count") %>%
   mutate(year = as.numeric(year))
 str(indicators_by_year_data)
 
+# Temporary save for conference paper graph
+# Add total indicator counts to indicator by year data
+asfs <- latex_tab %>% 
+  select(Dimension, Indicators) %>% 
+  right_join(indicators_by_year_data, by = join_by(Dimension == dimension)) %>% 
+  rename(total_indicators = Indicators) %>% 
+  setNames(c(snakecase::to_snake_case(names(.))))
+asfs
+write_csv(asfs, "3_coverage/output/indicator_temporal_data.csv")
+
+# Economics & 12 & 100.0 & 11 & 9\\
+# Environment & 13 & 76.9 & 16 & 10\\
+# Health & 14 & 100.0 & 15 & 12\\
+# Production & 12 & 83.3 & 12 & 5\\
+# Social & 20 & 40.0 & 8 & 7\\
+
 # Histogram
 indicator_plot <- ggplot(
-    indicators_by_year_data, 
-    aes(x = year, y = indicator_count, fill = dimension)
-  ) +
+  indicators_by_year_data,
+  aes(x = year, y = indicator_count, fill = dimension)
+) +
   geom_col(position = "stack") +
-  scale_y_continuous(breaks = seq(0, max(1000), by = 5)) + 
+  scale_y_continuous(breaks = seq(0, max(1000), by = 5)) +
   # max is set to 1000 values - change max for more data
   scale_x_continuous(
     breaks = seq(
-      min(indicators_by_year_data$year), 
+      min(indicators_by_year_data$year),
       max(indicators_by_year_data$year),
-      by = 5)) +
+      by = 5
+    )
+  ) +
   scale_fill_manual(
     values = dp_fill_palette,
     labels = to_title_case
@@ -546,12 +566,12 @@ indicator_plot <- ggplot(
 # Save to outputs
 ggsave(
   indicator_plot,
-  filename = '3_coverage/output/fig_indicator_coverage.png',
+  filename = "3_coverage/output/fig_indicator_coverage.png",
   width = 5,
   height = 4,
-  units = 'in',
+  units = "in",
   dpi = 300,
-  bg = 'white'
+  bg = "white"
 )
 
 # Render to Quarto
@@ -562,9 +582,9 @@ Same data but in a table for easy reporting:
 
 ```{r}
 # Get totals by year:
-totals <- indicators_by_year_data %>% 
-  group_by(year) %>% 
-  summarize(total_indicators = sum(indicator_count)) %>% 
+totals <- indicators_by_year_data %>%
+  group_by(year) %>%
+  summarize(total_indicators = sum(indicator_count)) %>%
   ungroup()
 get_reactable(totals)
 ```
@@ -572,9 +592,9 @@ get_reactable(totals)
 Breakdown by dimension:
 
 ```{r}
-dim_totals <- indicators_by_year_data %>% 
-  group_by(year, dimension) %>% 
-  summarize(total_indicators = sum(indicator_count)) %>% 
+dim_totals <- indicators_by_year_data %>%
+  group_by(year, dimension) %>%
+  summarize(total_indicators = sum(indicator_count)) %>%
   ungroup()
 get_reactable(dim_totals)
 ```
@@ -590,16 +610,20 @@ Here we have metric representation by year - another graph made by Isabella. Thi
 #| out-width: 80%
 # Join based on "variable_name"
 metrics_and_meta <- SMdocs::dp_metrics %>%
-  left_join(SMdocs::dp_meta %>%
-              select(variable_name,
-                     dimension,
-                     index,
-                     indicator,
-                     metric),
-            by = "variable_name") 
+  left_join(
+    SMdocs::dp_meta %>%
+      select(
+        variable_name,
+        dimension,
+        index,
+        indicator,
+        metric
+      ),
+    by = "variable_name"
+  )
 # str(metrics_and_meta)
 
-# Group dimension columns together in ascending order; filter out before 2000 
+# Group dimension columns together in ascending order; filter out before 2000
 # and NAs
 heatmap_easy_data <- metrics_and_meta %>%
   filter(!is.na(indicator)) %>%
@@ -639,7 +663,7 @@ data_full <- data_full %>%
   )
 
 metric_heatmap <- ggplot(
-  data_full, 
+  data_full,
   aes(x = as.factor(year), y = metric, fill = dimension)
 ) +
   geom_tile(color = "gray80", linewidth = 0.25) +
@@ -659,26 +683,26 @@ metric_heatmap <- ggplot(
     y = "Metric",
     fill = "Dimension"
   ) +
-  SMdocs::dp_theme + 
-  theme( 
-    legend.position = 'right' #
+  SMdocs::dp_theme +
+  theme(
+    legend.position = "right" #
   ) +
   # scale_color_discrete(guide = guide_legend(keywidth = 0.4, keyheight = 0.4)) +
   guides(
     # fill = guide_legend(nrow = 2, byrow = TRUE),
-    fill = guide_legend(direction = 'vertical')
+    fill = guide_legend(direction = "vertical")
   ) +
   coord_fixed(ratio = 1.5) #
 
 # Save to outputs for paper
 ggsave(
   metric_heatmap,
-  filename = '3_coverage/output/fig_metric_heatmap.png',
+  filename = "3_coverage/output/fig_metric_heatmap.png",
   width = 6,
   height = 8,
-  units = 'in',
+  units = "in",
   dpi = 300,
-  bg = 'white'
+  bg = "white"
 )
 
 # Render to Quarto
@@ -695,16 +719,20 @@ metric_heatmap
 ## This is the same as the figure above, but for indicators instead of metrics.
 # confusingly put in the metrics section
 metrics_and_meta <- SMdocs::dp_metrics %>%
-  left_join(SMdocs::dp_meta %>%
-              select(variable_name,
-                     dimension,
-                     index,
-                     indicator,
-                     metric),
-            by = "variable_name") 
+  left_join(
+    SMdocs::dp_meta %>%
+      select(
+        variable_name,
+        dimension,
+        index,
+        indicator,
+        metric
+      ),
+    by = "variable_name"
+  )
 str(metrics_and_meta)
 
-# Group dimension columns together in ascending order; filter out before 2000 
+# Group dimension columns together in ascending order; filter out before 2000
 # and NAs
 heatmap_easy_data <- metrics_and_meta %>%
   filter(!is.na(indicator)) %>%
@@ -741,18 +769,18 @@ data_full <- left_join(full_grid, heatmap_easy_data, by = c("indicator", "year")
 data_full <- data_full %>%
   mutate(
     indicator = factor(
-      indicator, 
+      indicator,
       levels = rev(levels(heatmap_easy_data$indicator))
     )
   )
 
 # Save this for posterity
-data_full %>% 
-  arrange(dimension, year, indicator) %>% 
-  write_csv('3_coverage/output/abstract_indicator_data.csv')
+data_full %>%
+  arrange(dimension, year, indicator) %>%
+  write_csv("3_coverage/output/abstract_indicator_data.csv")
 
 indicator_heatmap <- ggplot(
-  data_full, 
+  data_full,
   aes(x = as.factor(year), y = indicator, fill = dimension)
 ) +
   geom_tile(color = "gray80", linewidth = 0.25) +
@@ -772,25 +800,25 @@ indicator_heatmap <- ggplot(
     y = "Indicator",
     fill = "Dimension"
   ) +
-  SMdocs::dp_theme + 
-  theme( 
-    legend.position = 'right' #
+  SMdocs::dp_theme +
+  theme(
+    legend.position = "right" #
   ) +
   # scale_color_discrete(guide = guide_legend(keywidth = 0.4, keyheight = 0.4)) +
   guides(
     # fill = guide_legend(nrow = 2, byrow = TRUE),
-    fill = guide_legend(direction = 'vertical')
+    fill = guide_legend(direction = "vertical")
   ) +
   coord_fixed(ratio = 1.5) #
 
 ggsave(
   indicator_heatmap,
-  filename = '3_coverage/output/fig_indicator_heatmap.png',
+  filename = "3_coverage/output/fig_indicator_heatmap.png",
   width = 6,
   height = 8,
-  units = 'in',
+  units = "in",
   dpi = 300,
-  bg = 'white'
+  bg = "white"
 )
 
 indicator_heatmap

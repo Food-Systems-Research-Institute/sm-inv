@@ -7,7 +7,8 @@ OUTPUTS = \
     output/fig_indicator_coverage.png \
     output/fig_metric_heatmap.png \
     output/abstract_indicator_data.csv \
-    output/fig_indicator_heatmap.png
+    output/fig_indicator_heatmap.png \
+    output/indicator_temporal_data.png
 
 all: $(OUTPUTS)
 
