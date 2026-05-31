@@ -43,7 +43,7 @@ website:
     contents:
       - text: Introduction
         href: 1_intro/src/dp_intro.qmd
-      - text: Exploratory
+      - text: Exploratory Analysis
         href: 2_eda/src/dp_eda.qmd
       - text: Coverage
         href: 3_coverage/src/dp_coverage.qmd

@@ -10,6 +10,7 @@ OUTPUTS = \
     output/fig_lm.png \
     output/fig_errorsarlm.png \
     output/tab_errorsarlm.tex \
+	output/tab_metrics_body.tex \
     output/.trend_plots_built
 
 all: $(OUTPUTS)

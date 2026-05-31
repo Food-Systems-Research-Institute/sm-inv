@@ -1046,3 +1046,10 @@ ggsave(
 errorsar_figure
 ```
 
+## Metric Table
+
+Now that we have all our trend plots, we can make our giant table of metrics, indicators, and trends for the body of the paper. This is contained in a separate script.
+
+```{r}
+source("5_trends/src/metric_tables.R")
+```

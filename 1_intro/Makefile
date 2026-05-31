@@ -1,7 +1,7 @@
 .PHONY: render clean
 
-render: ../.renv_restored
-	quarto render src/dp_intro.qmd --output-dir .
+OUTPUTS = \
+    output/dp_tree.rds
 
 ../.renv_restored: ../renv.lock
 	Rscript -e "renv::restore(project = '..', prompt = FALSE)"
