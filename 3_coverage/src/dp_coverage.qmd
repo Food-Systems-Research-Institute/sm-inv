@@ -37,7 +37,8 @@ pacman::p_load(
   mapview,
   snakecase,
   knitr,
-  kableExtra
+  kableExtra,
+  colorspace
 )
 
 # GitHub packages
@@ -528,33 +529,69 @@ asfs <- latex_tab %>%
   right_join(indicators_by_year_data, by = join_by(Dimension == dimension)) %>% 
   rename(total_indicators = Indicators) %>% 
   setNames(c(snakecase::to_snake_case(names(.))))
-asfs
 write_csv(asfs, "3_coverage/output/indicator_temporal_data.csv")
 
-# Economics & 12 & 100.0 & 11 & 9\\
-# Environment & 13 & 76.9 & 16 & 10\\
-# Health & 14 & 100.0 & 15 & 12\\
-# Production & 12 & 83.3 & 12 & 5\\
-# Social & 20 & 40.0 & 8 & 7\\
+# Wrangle for graph
+str(asfs)
+out <- asfs %>% 
+  complete(dimension, year) %>% 
+  left_join(
+    select(latex_tab, Dimension, Indicators), 
+    by = join_by(dimension == Dimension)
+  ) %>% 
+  select(-total_indicators) %>% 
+  rename(total_indicators = Indicators) %>% 
+  mutate(
+    indicator_count = case_when(
+      is.na(indicator_count) ~ 0,
+      !is.na(indicator_count) ~ indicator_count,
+      .default = NA
+    ),
+    missing_count = total_indicators - indicator_count
+  ) %>% 
+  pivot_longer(
+    cols = c(indicator_count, missing_count),
+    names_to = 'type',
+    values_to = 'count'
+  ) %>% 
+  # Order type so that missing comes first (top) and counts on bottom
+  mutate(
+    fill_var = paste(dimension, type, sep = "_"),
+    type = factor(type, levels = c("missing_count", "indicator_count"))
+  )
+
+# New color palette with two tones - darker for missing
+dp_palette <- c(
+  "Economics" = "#BF7417FF",
+  "Environment" = "#A8BE74FF",
+  "Health" = "#9CB6A9FF",
+  "Production" = "#635C72FF",
+  "Social" = "#784116FF"
+)
+toned_palette <- c(
+  setNames(dp_palette, paste(names(dp_palette), "indicator_count", sep = "_")),
+  setNames(
+    darken(dp_palette, amount = 0.75), 
+    paste(names(dp_palette), "missing_count", sep = "_"))
+)
 
 # Histogram
 indicator_plot <- ggplot(
-  indicators_by_year_data,
-  aes(x = year, y = indicator_count, fill = dimension)
+  out,
+  aes(x = year, y = count, fill = fill_var, group = type)
 ) +
   geom_col(position = "stack") +
-  scale_y_continuous(breaks = seq(0, max(1000), by = 5)) +
-  # max is set to 1000 values - change max for more data
   scale_x_continuous(
     breaks = seq(
       min(indicators_by_year_data$year),
       max(indicators_by_year_data$year),
-      by = 5
+      by = 6
     )
   ) +
   scale_fill_manual(
-    values = dp_fill_palette,
-    labels = to_title_case
+    values = toned_palette,
+    breaks = paste(names(dp_palette), "indicator_count", sep = "_"),
+    labels = function(x) to_title_case(str_remove(x, "_indicator_count"))
   ) +
   labs(
     x = "Year",
@@ -562,11 +599,52 @@ indicator_plot <- ggplot(
     fill = "Dimension"
   ) +
   SMdocs::dp_theme
+indicator_plot
+
+indicator_plot_alt <- out %>% 
+  # Set orders in fill var for missing on top, counts below
+  mutate(fill_var = factor(fill_var, levels = c(rbind(
+    paste(names(dp_palette), "missing_count", sep = "_"),
+    paste(names(dp_palette), "indicator_count", sep = "_")
+  )))) %>% 
+  ggplot(
+    aes(x = year, y = count, fill = fill_var, group = fill_var)
+  ) +
+  geom_col(position = "stack") +
+  scale_x_continuous(
+    breaks = seq(
+      min(indicators_by_year_data$year),
+      max(indicators_by_year_data$year),
+      by = 6
+    )
+  ) +
+  scale_fill_manual(
+    values = toned_palette,
+    breaks = paste(names(dp_palette), "indicator_count", sep = "_"),
+    labels = function(x) to_title_case(str_remove(x, "_indicator_count"))
+  ) +
+  labs(
+    x = "Year",
+    y = "Number of Indicators Represented",
+    fill = "Dimension"
+  ) +
+  SMdocs::dp_theme
+indicator_plot_alt
 
 # Save to outputs
 ggsave(
   indicator_plot,
   filename = "3_coverage/output/fig_indicator_coverage.png",
+  width = 5,
+  height = 4,
+  units = "in",
+  dpi = 300,
+  bg = "white"
+)
+
+ggsave(
+  indicator_plot_alt,
+  filename = "3_coverage/output/fig_indicator_coverage_alt.png",
   width = 5,
   height = 4,
   units = "in",
