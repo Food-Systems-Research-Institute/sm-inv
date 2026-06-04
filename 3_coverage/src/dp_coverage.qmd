@@ -571,7 +571,7 @@ dp_palette <- c(
 toned_palette <- c(
   setNames(dp_palette, paste(names(dp_palette), "indicator_count", sep = "_")),
   setNames(
-    darken(dp_palette, amount = 0.75), 
+    lighten(dp_palette, amount = 0.8), 
     paste(names(dp_palette), "missing_count", sep = "_"))
 )
 
@@ -588,6 +588,7 @@ indicator_plot <- ggplot(
       by = 6
     )
   ) +
+  scale_y_continuous(breaks = function(x) unique(floor(pretty(x)))) +
   scale_fill_manual(
     values = toned_palette,
     breaks = paste(names(dp_palette), "indicator_count", sep = "_"),
@@ -598,55 +599,16 @@ indicator_plot <- ggplot(
     y = "Number of Indicators Represented",
     fill = "Dimension"
   ) +
-  SMdocs::dp_theme
+  SMdocs::dp_theme +
+  theme(strip.text = element_blank()) +
+  facet_grid(dimension ~ ., scales = "free_y", space = "free_y")
 indicator_plot
 
-indicator_plot_alt <- out %>% 
-  # Set orders in fill var for missing on top, counts below
-  mutate(fill_var = factor(fill_var, levels = c(rbind(
-    paste(names(dp_palette), "missing_count", sep = "_"),
-    paste(names(dp_palette), "indicator_count", sep = "_")
-  )))) %>% 
-  ggplot(
-    aes(x = year, y = count, fill = fill_var, group = fill_var)
-  ) +
-  geom_col(position = "stack") +
-  scale_x_continuous(
-    breaks = seq(
-      min(indicators_by_year_data$year),
-      max(indicators_by_year_data$year),
-      by = 6
-    )
-  ) +
-  scale_fill_manual(
-    values = toned_palette,
-    breaks = paste(names(dp_palette), "indicator_count", sep = "_"),
-    labels = function(x) to_title_case(str_remove(x, "_indicator_count"))
-  ) +
-  labs(
-    x = "Year",
-    y = "Number of Indicators Represented",
-    fill = "Dimension"
-  ) +
-  SMdocs::dp_theme
-indicator_plot_alt
-
-# Save to outputs
 ggsave(
   indicator_plot,
   filename = "3_coverage/output/fig_indicator_coverage.png",
   width = 5,
-  height = 4,
-  units = "in",
-  dpi = 300,
-  bg = "white"
-)
-
-ggsave(
-  indicator_plot_alt,
-  filename = "3_coverage/output/fig_indicator_coverage_alt.png",
-  width = 5,
-  height = 4,
+  height = 6,
   units = "in",
   dpi = 300,
   bg = "white"
