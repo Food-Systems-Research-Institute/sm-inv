@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Correlations – Inventory and Evaluation of Sustainability Metrics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../5_trends/src/dp_trends.html" rel="next">
+<link href="../../3_coverage/src/dp_coverage.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5244af2e4f675c9f5e34064ef86683bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="../../site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="../../site_libs/react-18.2.0/react.min.js"></script>
+<script src="../../site_libs/react-18.2.0/react-dom.min.js"></script>
+<script src="../../site_libs/reactwidget-2.0.0/react-tools.js"></script>
+<link href="../../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="../../site_libs/reactable-0.4.5/reactable.css" rel="stylesheet">
+<script src="../../site_libs/reactable-binding-0.4.5/reactable.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="https://www.uvm.edu/ovpr/food-systems-research" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/images/UVM_FSRI_Inline Horiz W.png" alt="" class="navbar-logo light-content">
+    <img src="../../assets/images/UVM_FSRI_Inline Horiz W.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="https://www.uvm.edu/ovpr/food-systems-research">
+    <span class="navbar-title">Inventory and Evaluation of Sustainability Metrics</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-tree"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://www.uvm.edu/ovpr/food-systems-research">
+            FSRI
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://www.uvm.edu">
+            UVM
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/Food-Systems-Research-Institute/SMdocs">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/Food-Systems-Research-Institute">
+            FSRI GitHub
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Correlations</h1>
+        </a>     
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../1_intro/src/dp_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../2_eda/src/dp_eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploratory Analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../3_coverage/src/dp_coverage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coverage</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../4_correlations/src/dp_correlations.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Correlations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../5_trends/src/dp_trends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Trends</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On This Page</h2>
+   
+  <ul>
+  <li><a href="#wrangling" id="toc-wrangling" class="nav-link active" data-scroll-target="#wrangling"><span class="header-section-number">1</span> Wrangling</a></li>
+  <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure"><span class="header-section-number">2</span> Figure</a></li>
+  <li><a href="#latex-table" id="toc-latex-table" class="nav-link" data-scroll-target="#latex-table"><span class="header-section-number">3</span> LaTeX Table</a></li>
+  <li><a href="#long-table" id="toc-long-table" class="nav-link" data-scroll-target="#long-table"><span class="header-section-number">4</span> Long Table</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Correlations</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  dplyr,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  htmltools,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  stringr,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  tidyr,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  reactable,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  purrr,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  broom,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  knitr,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  kableExtra,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  ggplot2,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  ggpubr,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  psych,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  tibble,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  Hmisc,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  reshape2,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  viridisLite,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  conflicted,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  readr,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  ggtext,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  snakecase</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># GitHub packages</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load_gh</span>(</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Food-Systems-Research-Institute/SMdata'</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Food-Systems-Research-Institute/SMdocs'</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">conflicts_prefer</span>(</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  stats<span class="sc">::</span><span class="fu">lag</span>(),</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  base<span class="sc">::</span><span class="fu">setdiff</span>(),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">.quiet =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>dp_meta <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"0_prep"</span>, <span class="st">"output"</span>, <span class="st">"dp_meta.rds"</span>))</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>dp_tree <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"0_prep"</span>, <span class="st">"output"</span>, <span class="st">"dp_tree.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>This page explores correlations among metrics across counties using the latest available time point for each metric.</p>
+<section id="wrangling" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="wrangling"><span class="header-section-number">1</span> Wrangling</h2>
+<p>Here, filter our dataset to latest time points for each metric, filter to county data only, and join with a crosswalk that matches variable names to metric names. We then make an ordered framework that we use to arrange axes in a correlation matrix below.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># metric crosswalk</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>crosswalk <span class="ot">&lt;-</span> dp_meta <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(variable_name, metric)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get df ready</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(SMdata<span class="sc">::</span>metrics)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> SMdata<span class="sc">::</span>metrics <span class="sc">%&gt;%</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable_name <span class="sc">%in%</span> dp_meta<span class="sc">$</span>variable_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  SMdocs<span class="sc">::</span><span class="fu">get_latest_year</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  SMdata<span class="sc">::</span><span class="fu">filter_fips</span>(<span class="st">'new'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable_name =</span> <span class="fu">str_split_i</span>(variable_name, <span class="st">'_'</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(crosswalk) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>variable_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> fips,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> value,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> metric</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Get an ordered framework from which we will pull metrics in alphabetical order</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># and get the counts of metrics per dimension that we will use to draw lines</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># between dimensions</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dp_meta)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>ordered_framework <span class="ot">&lt;-</span> dp_meta <span class="sc">%&gt;%</span> </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(dimension, metric) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(metric <span class="sc">%in%</span> <span class="fu">names</span>(df))</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>ordered_framework</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="figure" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="figure"><span class="header-section-number">2</span> Figure</h2>
+<p>This figure shows absolute values of Spearman rank correlation coefficients among county level metrics. Green cells show significant correlations, while grey cells are insignificant. Darker green cells are stronger correlations and lighter green cells are weaker (but still significant).</p>
+<p>Also, credits to Isabella and Tessa for making and improving this figure substantially.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get line placements to divide dimensions</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse them to match alphabetical order of dimensions top to bottom</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get cumulative sums to space them out across graph</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then add 0.5 to each to put them in between cells</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> ordered_framework <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dimension) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(count)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>hline_placements <span class="ot">&lt;-</span> counts <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rev</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cumsum</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  {. <span class="sc">+</span> <span class="fl">0.5</span>}</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>hline_placements</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>vline_placements <span class="ot">&lt;-</span> counts <span class="sc">%&gt;%</span> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cumsum</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  {. <span class="sc">+</span> <span class="fl">0.5</span>}</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>vline_placements</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder our df in proper metric order</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>metric_order <span class="ot">&lt;-</span> ordered_framework <span class="sc">%&gt;%</span> </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(metric)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(fips, <span class="fu">any_of</span>(metric_order)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">rev</span>(<span class="fu">everything</span>()))</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Create matrix of values</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>fips) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Get correlations</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>cor <span class="ot">&lt;-</span> <span class="fu">rcorr</span>(mat, <span class="at">type =</span> <span class="st">'spearman'</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt correlation values and rename columns</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>cor_r <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(cor<span class="sc">$</span>r) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">'var_1'</span>, <span class="st">'var_2'</span>, <span class="st">'value'</span>))</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Save p values</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>cor_p <span class="ot">&lt;-</span> <span class="fu">melt</span>(cor<span class="sc">$</span>P)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>p.value <span class="ot">&lt;-</span> cor_p<span class="sc">$</span>value</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Absolute values of correlations</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>cor_r <span class="ot">&lt;-</span> cor_r <span class="sc">%&gt;%</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">abs</span>(value))</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Pulling out significant p values</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>cor_r <span class="ot">&lt;-</span> cor_r <span class="sc">%&gt;%</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p_value =</span> <span class="fu">ifelse</span>(var_1 <span class="sc">==</span> var_2, <span class="dv">1</span>, cor_p<span class="sc">$</span>value)) <span class="sc">%&gt;%</span> <span class="co"># Make diagonal line non-significant</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">significant =</span> <span class="fu">ifelse</span>(p_value <span class="sc">&lt;=</span> <span class="fl">0.05</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse the order to use for x-axis labels (start at Economics)</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>reversed_metric_order <span class="ot">&lt;-</span> <span class="fu">rev</span>(metric_order)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a reversed version of the cor_r data frame for the x-axis</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>cor_r <span class="ot">&lt;-</span> cor_r <span class="sc">%&gt;%</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_1 =</span> <span class="fu">factor</span>(var_1, <span class="at">levels =</span> reversed_metric_order)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove last cols []</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cor_r)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>cor_r <span class="ot">&lt;-</span> cor_r <span class="sc">%&gt;%</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(var_1 <span class="sc">!=</span> var_2)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(!(var_1 == "Average Weekly Wages" &amp; var_2 == "Violent Crime Rate")) %&gt;%</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(!(var_1 == "Violent Crime Rate" &amp; var_2 == "Average Weekly Wages"))</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cor_r)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Only set values for lower triangle of the matrix</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>cor_r <span class="ot">&lt;-</span> cor_r <span class="sc">%&gt;%</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_idx =</span> <span class="fu">as.integer</span>(<span class="fu">factor</span>(var_1, <span class="at">levels =</span> reversed_metric_order)),</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_idx =</span> <span class="fu">as.integer</span>(<span class="fu">factor</span>(var_2, <span class="at">levels =</span> reversed_metric_order)),</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">ifelse</span>(row_idx <span class="sc">&lt;=</span> col_idx, <span class="cn">NA</span>, value)  <span class="co"># Set upper triangle to NA</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>row_idx, <span class="sc">-</span>col_idx)  <span class="co"># Remove temporary columns</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Pasting dimension colors to metrics</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>colored_labels <span class="ot">&lt;-</span> ordered_framework <span class="sc">%&gt;%</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">paste0</span>(</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;span style='color:"</span>,</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>      dp_text_palette[dimension],</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>      <span class="st">"'&gt;"</span>,</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>      <span class="fu">to_title_case</span>(<span class="fu">str_replace_all</span>(metric, <span class="st">"_"</span>, <span class="st">" "</span>)),</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;/span&gt;"</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(metric, label) <span class="sc">%&gt;%</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">deframe</span>()</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="do">## Removing topmost y axis label and rightmost x axis label</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Create modified label vectors</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>x_labels <span class="ot">&lt;-</span> colored_labels</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>x_labels[metric_order[<span class="fu">length</span>(metric_order)]] <span class="ot">&lt;-</span> <span class="st">""</span>  <span class="co"># remove last x-axis label</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>y_labels <span class="ot">&lt;-</span> colored_labels</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>y_labels[reversed_metric_order[<span class="fu">length</span>(reversed_metric_order)]] <span class="ot">&lt;-</span> <span class="st">""</span> <span class="co"># Blank topmost y-axis label</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tick vectors (TRUE = show tick, FALSE = hide tick)</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>x_ticks <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="fu">length</span>(metric_order))</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>x_ticks[<span class="fu">length</span>(metric_order)] <span class="ot">&lt;-</span> <span class="cn">FALSE</span>  <span class="co"># Hide rightmost x-axis tick</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>y_ticks <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="fu">length</span>(reversed_metric_order))</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>y_ticks[<span class="fu">length</span>(reversed_metric_order)] <span class="ot">&lt;-</span> <span class="cn">FALSE</span>  <span class="co"># Hide topmost y-axis tick</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Dummy data frame for dimension legend</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>dimension_legend_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="sc">-</span><span class="cn">Inf</span>,</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="sc">-</span><span class="cn">Inf</span>,</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimension =</span> <span class="fu">factor</span>(<span class="fu">names</span>(dp_text_palette), <span class="at">levels =</span> <span class="fu">names</span>(dp_text_palette))</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Make heatmap</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>corplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cor_r, <span class="fu">aes</span>(<span class="at">x =</span> var_1, <span class="at">y =</span> var_2)) <span class="sc">+</span></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Color in significant correlations</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> cor_r <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(value) <span class="sc">&amp;</span> significant), </span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> value)</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make non-significant correlations white</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> cor_r <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(value) <span class="sc">&amp;</span> <span class="sc">!</span>significant), </span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"gray90"</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Grid lines for lower triangle</span></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> cor_r <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(value)),</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"gray60"</span>,</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.2</span>,</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NA</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> dimension_legend_df,</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> dimension),</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">15</span>,</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>    <span class="at">show.legend =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="dv">0</span>  <span class="co"># fully transparent points, so they don't show up</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">"white"</span>, </span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="st">"#1b7837"</span>, </span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>    <span class="at">midpoint =</span> <span class="dv">0</span>,</span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Correlation"</span>,</span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.value =</span> <span class="st">"transparent"</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> dp_text_palette,</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">str_to_title</span>(<span class="fu">names</span>(dp_text_palette)),</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Dimension"</span></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Legend overrides</span></span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Correlation"</span>, </span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>    <span class="at">order =</span> <span class="dv">1</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">guide_legend</span>(</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>      <span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">shape =</span> <span class="dv">15</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">alpha =</span> <span class="dv">1</span>),</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>      <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>      <span class="at">order =</span> <span class="dv">2</span></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Horizontal Lines</span></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">0</span>,</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> vline_placements[<span class="dv">4</span>],</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> hline_placements[<span class="dv">1</span>], </span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> hline_placements[<span class="dv">1</span>]</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">0</span>,</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> vline_placements[<span class="dv">3</span>],</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> hline_placements[<span class="dv">2</span>], </span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> hline_placements[<span class="dv">2</span>]</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">0</span>,</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> vline_placements[<span class="dv">2</span>],</span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> hline_placements[<span class="dv">3</span>], </span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> hline_placements[<span class="dv">3</span>]</span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">0</span>,</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> vline_placements[<span class="dv">1</span>],</span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> hline_placements[<span class="dv">4</span>], </span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> hline_placements[<span class="dv">4</span>]</span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Vertical Lines</span></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> vline_placements[<span class="dv">1</span>],</span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> vline_placements[<span class="dv">1</span>],</span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">0</span>, </span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> hline_placements[<span class="dv">4</span>] </span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> vline_placements[<span class="dv">2</span>],</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> vline_placements[<span class="dv">2</span>],</span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">0</span>, </span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> hline_placements[<span class="dv">3</span>] </span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> vline_placements[<span class="dv">3</span>],</span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> vline_placements[<span class="dv">3</span>],</span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">0</span>, </span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> hline_placements[<span class="dv">2</span>] </span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> vline_placements[<span class="dv">4</span>],</span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> vline_placements[<span class="dv">4</span>],</span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">0</span>, </span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> hline_placements[<span class="dv">1</span>] </span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Correct x and y axis labels with the order</span></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(</span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> x_labels,</span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> metric_order</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(</span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> y_labels,</span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> reversed_metric_order</span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_markdown</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Times New Roman"</span>),</span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.length.x =</span> <span class="fu">unit</span>(<span class="fu">ifelse</span>(x_ticks, <span class="fl">0.15</span>, <span class="dv">0</span>), <span class="st">"cm"</span>),</span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.length.y =</span> <span class="fu">unit</span>(<span class="fu">ifelse</span>(y_ticks, <span class="fl">0.15</span>, <span class="dv">0</span>), <span class="st">"cm"</span>),</span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.justification =</span> <span class="st">"center"</span>,</span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(</span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">10</span>,</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">"Times New Roman"</span>,</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>      <span class="at">hjust =</span> <span class="fl">0.5</span></span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>, <span class="at">family =</span> <span class="st">"Times New Roman"</span>),</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>)</span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> corplot,</span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">'4_correlations/output/fig_corplot.png'</span>,</span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">9</span>,</span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">9</span>,</span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a>  <span class="at">dpi =</span> <span class="dv">300</span>,</span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>  <span class="at">bg =</span> <span class="st">'white'</span></span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dp_correlations_files/figure-html/show_cor_table-1.png" class="img-fluid figure-img" width="1800"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Reading the tea leaves here, it looks like we have lots of strong correlations within the Health dimension. This might suggest that the health metrics are particularly cohesive. It might also suggest that they are redundant, and we could use fewer metrics to measure the dimension. In contrast, the Economics dimension, for example, has very few correlations within its metrics. Again, this might signify a lack of theoretical coherence among metrics or that it is indeed a diverse dimension that requires disparate data sources to measure.</p>
+<p>As for significant inter-dimension correlations, there are surprisingly few. This is probably a good thing on average, as strong correlations between dimensions would mean double counting of similar constructs. On the other hand, we might want to see more of these if we are to expect that changes in one dimension cause subsequent changes in another. For example, stricter environmental policies might lead to better environmental outcomes, but we would also want to see any changes it causes in the Production and Economic dimensions.</p>
+</section>
+<section id="latex-table" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="latex-table"><span class="header-section-number">3</span> LaTeX Table</h2>
+<p>Making <span class="math inline">\(\LaTeX\)</span> table for paper.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Latex table</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cor_r)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cor_p)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">full_join</span>(cor_r, cor_p, <span class="at">by =</span> <span class="fu">join_by</span>(var_1 <span class="sc">==</span> Var1, var_2 <span class="sc">==</span> Var2)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">'var_1'</span>, <span class="st">'var_2'</span>, <span class="st">'r'</span>, <span class="st">'p'</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Format and add stars</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(r)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">stars =</span> <span class="fu">case_when</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      p <span class="sc">&lt;</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">'***'</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      p <span class="sc">&gt;</span> <span class="fl">0.001</span> <span class="sc">&amp;</span> p <span class="sc">&lt;</span> <span class="fl">0.01</span><span class="sc">~</span> <span class="st">'***'</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      p <span class="sc">&gt;</span> <span class="fl">0.01</span> <span class="sc">&amp;</span> p <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">'**'</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="st">''</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">r =</span> <span class="fu">format</span>(<span class="fu">round</span>(r, <span class="dv">3</span>), <span class="at">nsmall =</span> <span class="dv">3</span>),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">r =</span> <span class="fu">paste0</span>(r, stars)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(stars, p))</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> var_2,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> r,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> var_1</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Make names short, remove var header, turn NA into ''</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>truncate_strings <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">str_length</span>(x) <span class="sc">&gt;</span> <span class="dv">20</span>) {</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="fu">str_sub</span>(x, <span class="at">end =</span> <span class="dv">20</span>), <span class="st">'...'</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    x</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_1 =</span> <span class="fu">as.character</span>(var_1),</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_1 =</span> <span class="fu">map_vec</span>(var_1, truncate_strings),</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="sc">!</span>var_1, <span class="sc">~</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(.x), <span class="st">''</span>, .x))</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="fu">map</span>(<span class="fu">names</span>(.), truncate_strings)))</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">' '</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Paste rotatebox around column names</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)[<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(df)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  <span class="st">'</span><span class="sc">\\</span><span class="st">makecell{</span><span class="sc">\\</span><span class="st">rotatebox{90}{'</span>,</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(df)[<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(df)],</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>  <span class="st">'}}'</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">format =</span> <span class="st">"latex"</span>,</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">'Correlation matrix of county level metrics'</span>,</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">'tab_correlations'</span>,</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">escape =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># align = 'c'</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">font_size =</span> <span class="dv">8</span>,</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>      <span class="st">"condensed"</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">latex_options =</span> <span class="st">'scale_down'</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">landscape</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">footnote</span>(</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">general_title =</span> <span class="st">""</span>,</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">general =</span> </span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>      <span class="st">'</span><span class="sc">\\\\</span><span class="st">textit{Note: }</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="st">    Spearman correlations among county level metrics using latest time points</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="st">    available. Connecticut counties are not included in analyses.</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="st">    ***: p &lt; 0.001, **: p &lt; 0.01, *: p &lt; 0.05. '</span>,</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">threeparttable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">escape =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_kable</span>(</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> <span class="st">'4_correlations/output/tab_correlations.tex'</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="long-table" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="long-table"><span class="header-section-number">4</span> Long Table</h2>
+<p>Also including a long-format interactive table that shows p-values and coefficients. Use this for reporting in paper.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create long table with p values and stars</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> cor_r <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">rho =</span> value, <span class="at">p =</span> p_value) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(rho)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sig =</span> <span class="fu">ifelse</span>(p <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">'*'</span>, <span class="st">''</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>tab <span class="sc">%&gt;%</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_reactable</span>(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">defaultColDef =</span> <span class="fu">colDef</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">format =</span> <span class="fu">colFormat</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-ccdf5beddd2bc40c28a6" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ccdf5beddd2bc40c28a6">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"var_1":["Social Isolation","Ratio of Female to Male Producers","Racial Diversity of Producers","Producer Age Skew","Annual Population Change","Acres in Conservation Easements","Total Animal and Crop Sales","Sales from Value-Added Products","Proportion of Organic Operations","Operations Using Precision Agriculture","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Ratio of Female to Male Producers","Racial Diversity of Producers","Producer Age Skew","Annual Population Change","Acres in Conservation Easements","Total Animal and Crop Sales","Sales from Value-Added Products","Proportion of Organic Operations","Operations Using Precision Agriculture","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Racial Diversity of Producers","Producer Age Skew","Annual Population Change","Acres in Conservation Easements","Total Animal and Crop Sales","Sales from Value-Added Products","Proportion of Organic Operations","Operations Using Precision Agriculture","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Producer Age Skew","Annual Population Change","Acres in Conservation Easements","Total Animal and Crop Sales","Sales from Value-Added Products","Proportion of Organic Operations","Operations Using Precision Agriculture","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Annual Population Change","Acres in Conservation Easements","Total Animal and Crop Sales","Sales from Value-Added Products","Proportion of Organic Operations","Operations Using Precision Agriculture","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Acres in Conservation Easements","Total Animal and Crop Sales","Sales from Value-Added Products","Proportion of Organic Operations","Operations Using Precision Agriculture","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Total Animal and Crop Sales","Sales from Value-Added Products","Proportion of Organic Operations","Operations Using Precision Agriculture","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Sales from Value-Added Products","Proportion of Organic Operations","Operations Using Precision Agriculture","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Proportion of Organic Operations","Operations Using Precision Agriculture","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Operations Using Precision Agriculture","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Crop Diversity","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Rental Vacancy Rate","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Proportion Uninsured","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Price of a Meal","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Poor Mental Health Days","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Limited Access to Healthy Foods","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Lacking Social Support","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","High School Graduation Rate","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Frequent Physical Distress","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Food Insecurity Rate, Overall","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Diabetes Prevalence","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Tree Size Diversity","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Rarefied Richness of Animals","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Proportion of Invasive Species","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Land Use Diversity","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Fuel Expenses","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Annual Precipitation","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Total Indemnities","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Sales from Agritourism and Recreation","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Market Channel Ratio","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Land and Building Value per Acre","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Expenses per Operation","Change in Agricultural Establishments","Average Weekly Wages","Change in Agricultural Establishments","Average Weekly Wages","Average Weekly Wages"],"var_2":["Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Violent Crime Rate","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Social Isolation","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Ratio of Female to Male Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Racial Diversity of Producers","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Producer Age Skew","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Annual Population Change","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Acres in Conservation Easements","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Total Animal and Crop Sales","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Sales from Value-Added Products","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Proportion of Organic Operations","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Operations Using Precision Agriculture","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Crop Diversity","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Rental Vacancy Rate","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Proportion Uninsured","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Price of a Meal","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Poor Mental Health Days","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Limited Access to Healthy Foods","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","Lacking Social Support","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","High School Graduation Rate","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Frequent Physical Distress","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Food Insecurity Rate, Overall","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Diabetes Prevalence","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Tree Size Diversity","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Total Ecosystem Carbon per Acre","Rarefied Richness of Animals","Rarefied Richness of Animals","Rarefied Richness of Animals","Rarefied Richness of Animals","Rarefied Richness of Animals","Rarefied Richness of Animals","Rarefied Richness of Animals","Rarefied Richness of Animals","Rarefied Richness of Animals","Rarefied Richness of Animals","Rarefied Richness of Animals","Proportion of Invasive Species","Proportion of Invasive Species","Proportion of Invasive Species","Proportion of Invasive Species","Proportion of Invasive Species","Proportion of Invasive Species","Proportion of Invasive Species","Proportion of Invasive Species","Proportion of Invasive Species","Proportion of Invasive Species","Land Use Diversity","Land Use Diversity","Land Use Diversity","Land Use Diversity","Land Use Diversity","Land Use Diversity","Land Use Diversity","Land Use Diversity","Land Use Diversity","Fuel Expenses","Fuel Expenses","Fuel Expenses","Fuel Expenses","Fuel Expenses","Fuel Expenses","Fuel Expenses","Fuel Expenses","Annual Precipitation","Annual Precipitation","Annual Precipitation","Annual Precipitation","Annual Precipitation","Annual Precipitation","Annual Precipitation","Total Indemnities","Total Indemnities","Total Indemnities","Total Indemnities","Total Indemnities","Total Indemnities","Sales from Agritourism and Recreation","Sales from Agritourism and Recreation","Sales from Agritourism and Recreation","Sales from Agritourism and Recreation","Sales from Agritourism and Recreation","Market Channel Ratio","Market Channel Ratio","Market Channel Ratio","Market Channel Ratio","Land and Building Value per Acre","Land and Building Value per Acre","Land and Building Value per Acre","Expenses per Operation","Expenses per Operation","Change in Agricultural Establishments"],"rho":[0.294936050118786,0.0602892102335929,0.659621802002225,0.13726362625139,0.369076751946607,0.666740823136819,0.00467185761957731,0.347274749721913,0.341490545050056,0.100011212147256,0.519911012235818,0.648498331479422,0.152391546162403,0.26271854798306,0.462958843159066,0.0589543937708565,0.0728042077885259,0.0883203559510567,0.0666519397548243,0.404635073285412,0.454393926014257,0.173748609566185,0.648053392658509,0.171523915461624,0.248056907744924,0.705528984230061,0.473192436040045,0.277864293659622,0.0199512872005084,0.181312569521691,0.260066740823137,0.734816462736374,0.347274749721913,0.209587938678307,0.233422346677891,0.132665574242111,0.0425153098661798,0.0131330014769875,0.552699028260337,0.403784147106022,0.000445186490745338,0.0505286666995959,0.280467489169563,0.100066882183377,0.0861435859592229,0.0603227694959933,0.0647746344034467,0.0590331937124787,0.582303929894902,0.0511964464357139,0.257852534800732,0.0747913304452168,0.149660021223731,0.363058927549544,0.135614026299744,0.00178074596298135,0.573400200079995,0.317417967901426,0.0670526775703599,0.534505841046581,0.0979410279639744,0.29271011766506,0.38198625836422,0.275125251280619,0.0930439765657757,0.477685104569748,0.318085747637544,0.265379383102371,0.228208851644258,0.00956618464961068,0.335706340378198,0.0211345939933259,0.331256952169077,0.169299221357063,0.300111234705228,0.231145717463849,0.0590266619577344,0.0447163515016685,0.0625139043381535,0.142602892102336,0.00445285674547559,0.172413793103448,0.237819799777531,0.421017605284717,0.0202447163515017,0.14266635934143,0.0753120345652364,0.106470733644517,0.267630700778643,0.203114571746385,0.120800889877642,0.271490855250781,0.358215599057205,0.108342602892102,0.0665183537263626,0.0661913293005102,0.0932146829810901,0.40111234705228,0.23559510567297,0.421134593993326,0.18562863372256,0.121050292271471,0.0478309232480534,0.168854282536151,0.507007786429366,0.0460511679644049,0.487430478309232,0.371301446051168,0.144782378386896,0.596440489432703,0.574193548387097,0.208898776418243,0.239118407232039,0.181312569521691,0.141713014460512,0.244239192489336,0.00289210233592881,0.0376728355135963,0.333779372126403,0.441252140899139,0.0153503893214683,0.276529477196885,0.00867630700778643,0.102309185452399,0.397819559698313,0.527030033370412,0.0651835372636262,0.148578409387315,0.184427141268076,0.0989988876529477,0.492769744160178,0.167074527252503,0.00850891204035862,0.157320876168989,0.0629588431590656,0.025139043381535,0.00956618464961068,0.0273637374860957,0.247608453837597,0.0599176304401153,0.13503893214683,0.0763070077864294,0.092769744160178,0.13959705897066,0.0131256952169077,0.22714126807564,0.0549927808066236,0.121245828698554,0.00200624567823886,0.0628343010278008,0.174407080426061,0.0197997775305895,0.0411568409343715,0.12258064516129,0.166323871322057,0.139948827209306,0.196885428253615,0.123915461624027,0.01126660924264,0.151946607341491,0.450055617352614,0.0780867630700779,0.157730812013348,0.10568964429077,0.19136627087034,0.141713014460512,0.0433815350389321,0.119021134593993,0.0389321468298109,0.0650406992138055,0.0593993325917686,0.171523915461624,0.154616240266963,0.141600844506124,0.433592880978865,0.263626251390434,0.164533056745323,0.0375973303670745,0.102318529590182,0.285205337998528,0.0474440716867828,0.161735261401557,0.41979977753059,0.1706340378198,0.292924343823211,0.394927135606546,0.180867630700779,0.202224694104561,0.263591712072599,0.355283648498331,0.228031145717464,0.248053392658509,0.0731924360400445,0.133903405266696,0.0732087245538859,0.239599555061179,0.10567296996663,0.42825361512792,0.328767369998551,0.37797552836485,0.242269187986652,0.096329254727475,0.125570560222412,0.444271412680756,0.211123470522803,0.201937053407318,0.0135706340378198,0.139322616544365,0.253119737473694,0.514311556454373,0.119466073414905,0.762402669632925,0.196885428253615,0.122885334481932,0.689286910483989,0.155506117908788,0.577308120133482,0.204442013548739,0.2293659621802,0.00378197997775306,0.701001112347052,0.273414905450501,0.452987606780144,0.150200270741255,0.057174638487208,0.2440489432703,0.706315264407456,0.0878754171301446,0.235150166852058,0.356173526140156,0.0598909232266467,0.099888765294772,0.0740823136818687,0.0592229947148254,0.04293659621802,0.0381186678865383,0.0472371341060063,0.0316293811245218,0.274749721913237,0.110122358175751,0.0291434927697442,0.13088717021564,0.165758149874297,0.325027808676307,0.279199110122358,0.61989822937109,0.0420467185761958,0.283203559510567,0.032258064516129,0.632480533926585,0.206676995085553,0.218513579063574,0.0700778642936596,0.0487805244103541,0.470522803114572,0.432703003337041,0.408231368186874,0.150729200834349,0.0153503893214683,0.00823136818687431,0.170767056188989,0.105228031145717,0.0512707228883264,0.0612745843356213,0.0209377593359511,0.151056729699666,0.0309232480533927,0.121690767519466,0.122885334481932,0.0409389256065378,0.267185761957731,0.00645161290322581,0.157263087345184,0.179532814238042,0.0611790878754171,0.208898776418243,0.0109010011123471,0.00156743116532922,0.0120160216593004,0.14366866778392,0.370856507230256,0.201334816462736,0.0789766407119021,0.518312525173359,0.140823136818687,0.42825361512792,0.52721823866431,0.331701890989989,0.358449227845343,0.129010852110272,0.711661075301741,0.00244716351501669,0.246718576195773,0.0909899888765295,0.166038091474425,0.276115253683225,0.280533926585095,0.046496106785317,0.0762843334137085,0.34238042269188,0.438042269187987,0.546607341490545,0.00155728587319244,0.15181690429903,0.0104583892219837,0.135427209321896,0.102461375473803,0.466199258405804,0.215113708404919,0.107361702126898,0.118498808156659,0.307289375167027,0.0948881433735655,0.0328088483095298,0.0497490267676103,0.162689562890277,0.261053765337603,0.227865189368914,0.0196013066123797,0.236343516898076,0.0638227172465598,0.000890968482380897,0.0253926017478556,0.57353886523686,0.127631235101064,0.147232541713443,0.0296247020391648,0.305156705215457,0.266902033976075,0.313690700147621,0.446051167964405,0.239154616240267,0.172770841724453,0.212013348164627,0.293437152391546,0.19792948233639,0.0878754171301446,0.0271957747494601,0.1550804025367,0.445261499069853,0.144382647385984,0.301001112347052,0.346384872080089,0.0951646892615895,0.399154524663743,0.393993325917686,0.0331479421579533,0.00704163077665002,0.134593993325918,0.159955506117909,0.637374860956618,0.186206896551724,0.0429923976776014,0.123943038226488,0.460734149054505,0.0863854208622265,0.298776418242492,0.0945494994438265,0.135144202225184,0.29833147942158,0.172982960701484,0.448752774007059,0.210045819721296,0.25650723025584,0.0647385984427141,0.267630700778643,0.0643004657172902,0.330848817265879,0.560845383759733,0.0135706340378198,0.287767977739097,0.10789766407119,0.367741935483871,0.538598442714127,0.370856507230256,0.137933942548971,0.0821094813385528,0.423244033657455,0.0923248053392658,0.147942157953281,0.32928875632792,0.283203559510567,0.0218457862741565,0.216354986872321,0.0472213295661875,0.296106785317019,0.27741935483871,0.153726362625139,0.258630762107323,0.0166870620678822,0.238709677419355,0.0295884315906563,0.376023083473111,0.0589543937708565,0.0558398220244716,0.204449388209121,0.224026696329255,0.0172417428186214,0.224966627732458,0.198597410848211,0.195480411126378,0.5924688057041,0.644551013907592,0.318126285205277,0.210837392789618,0.572893503213101,0.149170700973432,0.235333478998385,0.0975175627259154,0.122409124923483,0.201514184350488,0.249582620583907,0.140710273157029,0.0745820211100756,0.317933971626957,0.356451182475321,0.19436719694001,0.0193699268428188,0.0280116618187803,0.109564653434481,0.169744160177976,0.019147284005545,0.549276974416018,0.525859283885052,0.730170228610295,0.113375739382969,0.0149054505005562,0.531479421579533,0.236929922135706,0.174897266751029,0.491712095600263,0.0901001112347052,0.200444938820912,0.389636902974634,0.0197997775305895,0.147497219132369,0.534149054505006,0.293882091212458,0.133903405266696,0.106809081416004,0.340198255354335,0.255172413793103,0.503121832865012,0.0307487005029663,0.486691533500565,0.0558398220244716,0.155506117908788,0.149276974416018,0.0894490923089414,0.201802203940923,0.0540600667408231,0.0384872080088988,0.00328609436243667,0.0255839822024472,0.165294771968854,0.37797552836485,0.149276974416018,0.30900785830776,0.239875395346775,0.294111188038663,0.255326461022047,0.00758167250644845,0.393223400648992,0.0500946383866004,0.0883892063976905,0.0251586406119371,0.0393253613948105,0.0649076074454888,0.174774627259917,0.277635618080403,0.117217097744654,0.144049915716135,0.0723589221139784,0.200155910709128,0.105310062030498,0.0412331661972446,0.249415471232965,0.649131935003506,0.697193361404215,0.543490774252347,0.259176863181313,0.0740823136818687,0.00111234705228031,0.156607356502556,0.0776504621558787,0.0402669632925473,0.0665183537263626,0.258427849503056,0.478976640711902,0.064293659621802,0.10567296996663,0.104783092324805,0.138157861286875,0.0416110379683181,0.511051624960705,0.648253740918567,0.331699285468825,0.119260159761977,0.177218368244433,0.169378253388181,0.123955188563673,0.0581811246689269,0.253009871644567,0.319744076378788,0.400134554715417,0.0664290235683533,0.0149353844935559,0.0461436505994938,0.30502887316595,0.0131549819084676,0.10507529868854,0.330659938742044,0.247994954056533,0.0441177007216474,0.256172208103104,0.297604769020925,0.258912970901789,0.0441177007216474,0.236145303038688,0.18983980310527,0.074420767883991,0.479278657839714,0.259804237583034,0.0287063372880097,0.073211565343179,0.185766928576417,0.443256819984496,0.0554627880282108,0.0792580559089189,0.492760385861746,0.485355080776994,0.158369647743204,0.174023982670721,0.309834289747957,0.276422971658673,0.555518848764489,0.195122097641416,0.229798055292295,0.133340826731783,0.356618464961068,0.132369299221357,0.178326624922618,0.0994548899245782,0.0918798665183537,0.268965517241379,0.0124402143720817,0.232035595105673,0.0224694104560623,0.0442714126807564,0.127919911012236,0.0734453460325691,0.143302184233138,0.215572858731924,0.0391518391256389,0.811213710659982,0.119911012235818,0.484315906562848,0.250916776674629,0.203559510567297,0.074972191323693,0.66273637374861,0.356173526140156,0.455002875421282,0.253226530523775,0.240912411554114,0.265658028120685,0.0620689655172414,0.2146829810901,0.0748760072583785,0.125250278086763,0.229810901001112,0.221802002224694,0.161290322580645,0.0214961988388007,0.228081892607091,0.162483918235101,0.161751393759939,0.080589917032337,0.0364836819772854,0.0320073429348289,0.250628926373616,0.289494985651622,0.290352325194519,0.0605485621229815,0.218384392843695,0.291689844946582,0.363555458918928,0.0703067682412037,0.28723996172848,0.0800978979258348,0.715318727309885,0.59939926947833,0.336811248991818,0.156225660252783,0.266740823136819,0.338467719330977,0.118131256952169,0.238264738598443,0.381535038932147,0.469187986651835,0.119348687302925,0.226524260169774,0.201860082263967,0.0985539488320356,0.0402669632925473,0.281423804226919,0.00111234705228031,0.390738197642784,0.321762357765711,0.180735189934017,0.227914116137572,0.11125776627107,0.364287032178694,0.197387016420754,0.183240530654209,0.217352614015573,0.207119021134594,0.053615127919911,0.0678473775849648,0.0436137082448682,0.217797552836485,0.304115684093437,0.128305436819092,0.0643079677692189,0.502558398220245,0.273852616456805,0.261459730549592,0.120020443516637,0.419670682397048,0.0781650307916025],"p":[0.113600210408793,0.751642642695463,7.33814530304855e-05,0.469488045670567,0.0447375682780695,5.74158018171733e-05,0.980452519205199,0.0600704820487135,0.0647605499254225,0.599006851654446,0.00323191156557545,0.000106325695881093,0.421438747212244,0.160734828435901,0.00998789632796582,0.756975472697446,0.702217372444427,0.642573254661921,0.726380031896601,0.0265593402742357,0.0116513403788854,0.358496450223181,0.000107881525906794,0.364778326460748,0.186267876824004,1.33347457886845e-05,0.00826678055378371,0.137090699936794,0.916657887568213,0.337623646617886,0.165156819916906,3.76615070085684e-06,0.0600704820487135,0.266317092102697,0.214451767316916,0.484638340474737,0.823479673026541,0.945086167482005,0.00153867053223466,0.0269095807288735,0.998137124311094,0.790881326624655,0.133297015513235,0.598802453599975,0.650820847820468,0.751508710671699,0.733805825709572,0.756660346217118,0.000735515069324233,0.788179542603495,0.168914846118318,0.694472157326895,0.429906731611856,0.0486175604094878,0.474894710113719,0.992548593236652,0.000925069520016253,0.0874109274294315,0.724798006451102,0.00234400353595099,0.606628851649942,0.116480305639784,0.0372459757254704,0.141166698998295,0.624819518121285,0.00759450655071081,0.086710498800985,0.156383421252871,0.225159091423202,0.959986288836458,0.069731338234315,0.911733458755656,0.0737525096049325,0.371124744962132,0.107109422604324,0.219083928429648,0.756686465708352,0.814494678188017,0.742779564167764,0.452211090122121,0.981368677624222,0.362257818221974,0.205694480001249,0.0205095459473736,0.915436469023578,0.452007786534034,0.692447545807832,0.575492786173081,0.152768207979634,0.28170222907423,0.524858334520429,0.146710027906277,0.0519302816468348,0.568756715729982,0.726907646013355,0.728199784752,0.624181677982413,0.0280338532590534,0.210093618362056,0.0204708299152023,0.326051615887343,0.523996598292684,0.801820080475404,0.37240175317174,0.00424422690312642,0.809056888544351,0.00629385191151233,0.0433673207805754,0.445257608159634,0.000504073681865558,0.000906599815591047,0.267928476113811,0.203156047039561,0.337623646617886,0.455066758949066,0.193356697099064,0.987898472660226,0.843323060349278,0.0714514386355929,0.0146513702511863,0.93583202046693,0.139066199736924,0.963705942101214,0.590594609420558,0.0294717482659226,0.00276810498074465,0.732186353113564,0.433285456929361,0.329248231061758,0.602728902285742,0.00566529469092458,0.377535468371288,0.964405732196857,0.406393958260551,0.74101076920242,0.895093412182641,0.959986288836458,0.885867311252135,0.187091030160438,0.753126056322497,0.476787180889819,0.688584653359964,0.625844736692126,0.461895361713819,0.945116671994447,0.227395389721455,0.772866478199613,0.523321459837813,0.991605036537007,0.741505739896337,0.35664953527959,0.917288629729269,0.829036166887799,0.518723973854669,0.379713038706732,0.460756403991335,0.297034152280255,0.514146301935813,0.952880935518741,0.422811756923131,0.0125787919529996,0.681694084022423,0.405156607532058,0.578314091348924,0.311050645780526,0.455066758949066,0.819940930149648,0.53102759212654,0.83815311814799,0.732751939966478,0.755196633653717,0.364778326460748,0.414610897437214,0.455427398706802,0.0166788523812365,0.15924080560029,0.384937383732618,0.843633242216645,0.590560508292112,0.126590459317674,0.803391744616454,0.393181998798753,0.0209161662575046,0.36730916166814,0.116200787995097,0.030783736430942,0.338830602820737,0.283860833334484,0.159297472761684,0.0540207681204625,0.225530303322644,0.186274319039285,0.700701845490304,0.48053530856102,0.700638284565379,0.202221028902382,0.578374386181772,0.0182256406625187,0.0760793573994194,0.0394565676429779,0.19708696405477,0.612591272688288,0.508497960957694,0.0139106875335364,0.262749460228941,0.284560829912261,0.943259139365723,0.462784984023358,0.177149949146405,0.00364228833270031,0.529482024334448,9.76452916523485e-07,0.297034152280255,0.517677310210174,2.52439113550551e-05,0.411897173366448,0.000837173186306162,0.278501826804151,0.222752077664131,0.98417533304481,1.59980917477931e-05,0.14375611788897,0.0119454909870389,0.428224539610645,0.76410292279531,0.19371478632183,1.29152640644392e-05,0.644255746442509,0.210981109828475,0.0533793892901253,0.753232709605383,0.599456532561358,0.697232283573877,0.755901475816235,0.821758186362863,0.84149201100828,0.804232780197194,0.868218958397406,0.141732316323076,0.562385360029588,0.878496888104743,0.490564464525784,0.381358946948265,0.0796803139415749,0.135135736908621,0.000258674595817077,0.825395403438413,0.129393063121933,0.86562292590261,0.000176852615024981,0.273166430547723,0.246017135493875,0.712891457894315,0.797965354642884,0.00868958330596659,0.0169288088759294,0.0251199517828713,0.426581107086557,0.93583202046693,0.965566053570604,0.366930198074411,0.57998432848433,0.787879174151946,0.747713062069797,0.91255238515687,0.425565191328861,0.871136406214998,0.521786771413325,0.517677310210174,0.829928257947411,0.153477890175494,0.97300817529767,0.406568559386435,0.342467148142791,0.748093623798268,0.267928476113811,0.95440837642185,0.993441173768478,0.9497505507904,0.448803592563205,0.0436386549382091,0.286029993700167,0.678258145982396,0.00334478837402941,0.45793199878894,0.0182256406625187,0.00275666688696807,0.0733425105249932,0.0517664948613445,0.496856539918477,1.03641468269799e-05,0.989760140685913,0.188731942997236,0.632514915493978,0.380543969061402,0.139683432543229,0.133201210657013,0.807246214010501,0.688672599542815,0.0640209873606481,0.0154745365137656,0.0017762317844312,0.993483625269101,0.423212465279933,0.956257735651033,0.475509043666788,0.590039303543551,0.00941300658686672,0.253625040908787,0.572282123095036,0.532844734473528,0.0985714595282303,0.617942988825311,0.863349690402354,0.794038694140991,0.390358547362802,0.163500921138846,0.225877344142628,0.918114948267379,0.208606576967279,0.737580252415885,0.996271766381188,0.894041171826293,0.000921817756766252,0.50150876277765,0.437509856168867,0.876505759586695,0.101052610498535,0.153931674634596,0.091399944061745,0.0134889020007116,0.203085578450989,0.361249412432647,0.260696275290107,0.115533710143245,0.294428315074717,0.644255746442509,0.88656337993479,0.413194167931386,0.0136747094429874,0.446528586244924,0.106021899320397,0.0607741722716231,0.61691450864303,0.0288817370040368,0.0312172840052831,0.861950687779101,0.970540714344835,0.478254021370695,0.398478813424961,0.000151847488410128,0.324519948003406,0.821530227599714,0.514051939523559,0.0103994553626983,0.649902535672237,0.108756337861201,0.619203377560925,0.476440475504638,0.109309494645656,0.360651117445002,0.0128690811679006,0.265249977685818,0.171227536830083,0.733948601071671,0.152768207979634,0.735685188066633,0.0741301499891123,0.00126443430566137,0.943259139365723,0.123068132172391,0.57035463258956,0.0455761375942791,0.00213657695687397,0.0436386549382091,0.467300273140316,0.666212452485061,0.0197830035145006,0.627509596661566,0.435279732206975,0.0755874279913318,0.129393063121933,0.908775302814926,0.250829691583788,0.804297021815517,0.11210685578909,0.137746913100139,0.41733458538438,0.16758716594213,0.930257370213189,0.20395266872419,0.876655812413733,0.0405701351544594,0.756975472697446,0.769460972001351,0.278484112423116,0.234004884066625,0.927944985073946,0.231996831155449,0.292768864976241,0.300563842597874,0.000561515312977656,0.000120853646117025,0.0866681175694486,0.263411753017802,0.000937037289900244,0.431433468948741,0.210615158742456,0.60819299811033,0.519313631572863,0.285591918141552,0.18348632815444,0.458296081078529,0.695286579699787,0.0868693180878033,0.0531805035938366,0.303379141778012,0.919078385803627,0.883182977166885,0.564378381280694,0.36985030900799,0.920005549853989,0.00166846822256561,0.0028401803710576,4.65210279898542e-06,0.550823557876133,0.937688329422283,0.00250838471844839,0.207446479632785,0.355278321039813,0.00578536749546399,0.635860674763123,0.288209711038669,0.0333057667876466,0.917288629729269,0.436677323758331,0.00236288494867587,0.114957228563798,0.48053530856102,0.574272580790934,0.065846391181974,0.173544255118017,0.00459786144455343,0.871857821075742,0.00638534430064674,0.769460972001351,0.411897173366448,0.431101630869191,0.638312835497971,0.284889376588356,0.776621216103165,0.839979014857376,0.986250022750951,0.893247079837904,0.382710175329295,0.0394565676429779,0.431101630869191,0.096605843992817,0.20168632537262,0.114661236344498,0.173275765467816,0.9682824872281,0.0315784553412359,0.79263864745827,0.642313058098476,0.895012079507866,0.836540167518558,0.733279058575102,0.355621089186331,0.137427674374566,0.537316289059868,0.447588021063015,0.703957013296616,0.28891994442467,0.579687363139427,0.828723759491272,0.183789633651635,0.000104144643616078,1.85981365445897e-05,0.00190963526471633,0.166659934665998,0.697232283573877,0.995345422662773,0.408552723779426,0.683380988574531,0.832680404746444,0.726907646013355,0.167932624946582,0.00741003761899295,0.735712174869796,0.578374386181772,0.581596253766823,0.466570641547756,0.827177468317956,0.00390122074386778,0.000107178471173253,0.0733449063030998,0.530197030237097,0.348828225719854,0.370898185999438,0.514010365852611,0.760069849218891,0.17734441297711,0.0849896158749044,0.0284547403925717,0.727260534571695,0.937563433023721,0.808680451395398,0.101202810087451,0.944994397002464,0.580537424740225,0.0743054208175997,0.186381444201668,0.816936231227181,0.171806935680263,0.110217472333489,0.167107544227561,0.816936231227181,0.208999710376454,0.314998862970924,0.695914242587506,0.00736745281369888,0.165599214196916,0.880306362941569,0.700627199460132,0.32568490532539,0.0141560200688218,0.77097631195664,0.677172874620603,0.0056663477366321,0.00655368942565948,0.40323259484811,0.357723378208856,0.095671183115225,0.139224713307722,0.00143840569275255,0.301468209200076,0.221857721397529,0.482397863199086,0.0530609615378077,0.485623055925227,0.345773467758229,0.601051083536569,0.629176251039384,0.150653324746762,0.947978969341645,0.217265316644925,0.906182362707285,0.816309167130023,0.500533515228615,0.699715165519978,0.449973756762591,0.252588659080436,0.837251869339673,5.41090541261724e-08,0.527938621975113,0.00668717994654155,0.181077955146504,0.280626885094599,0.693768696247317,6.59647608975966e-05,0.0533793892901253,0.0115258671237979,0.17696106810251,0.199684837746334,0.155932672433495,0.74454964378608,0.254599807268878,0.694142774590454,0.509588579699501,0.221831170322177,0.238803956397104,0.394502407073001,0.910229241008489,0.225424255473556,0.390965992797161,0.393134171725172,0.672045203599511,0.848210848213391,0.866658071813668,0.181595686372517,0.120735521123939,0.119589762179194,0.750607776545861,0.246303420976672,0.11781838882012,0.0482876492396911,0.711993181468586,0.123787900717302,0.673937814662497,8.89037543139182e-06,0.000464708436428651,0.0687596395944348,0.409710196467303,0.154189938506176,0.0673226134244196,0.534125202875345,0.204822301866555,0.0374895847970569,0.00890773897606367,0.529889574128835,0.228694654175637,0.284748332389661,0.604367932284345,0.832680404746444,0.13192283038377,0.995345422662773,0.0327674302041543,0.0829305596511092,0.33919037098043,0.225774993148751,0.558337809902072,0.0478048092143917,0.295780433242786,0.332424020811578,0.248597832160567,0.272119096827775,0.778414109065849,0.721663992763838,0.818993031125127,0.247606675952456,0.102280677852012,0.499232559123568,0.735655442088547,0.0046511706723531,0.143090181727903,0.162823291271482,0.527559359484699,0.0209596561666929,0.68139163013501],"significant":[false,false,true,false,true,true,false,false,false,false,true,true,false,false,true,false,false,false,false,true,true,false,true,false,false,true,true,false,false,false,false,true,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false,true,false,false,false,false,true,false,false,true,false,false,true,false,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,false,false,true,false,true,true,false,true,true,false,false,false,false,false,false,false,false,true,false,false,false,false,true,true,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,false,true,false,false,false,false,false,true,false,true,false,false,true,false,true,false,false,false,true,false,true,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,true,false,false,false,false,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,true,false,true,true,false,false,false,true,false,false,false,false,false,false,false,false,false,true,true,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,true,false,false,false,false,true,true,false,false,false,false,true,false,false,false,true,false,false,false,false,false,false,true,false,false,false,false,false,false,true,false,false,false,true,true,true,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,true,true,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,true,false,false,true,false,false,true,false,false,true,false,false,true,false,false,false,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,true,false,false,false,false,false,false,false,false,true,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,true,false,false,true,true,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,true,true,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,true,false],"sig":["","","*","","*","*","","","","","*","*","","","*","","","","","*","*","","*","","","*","*","","","","","*","","","","","","","*","*","","","","","","","","","*","","","","","*","","","*","","","*","","","*","","","*","","","","","","","","","","","","","","","","","","*","","","","","","","","","","","","","","*","","*","","","","","*","","*","*","","*","*","","","","","","","","","*","","","","","*","*","","","","","*","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","*","","","","","","","","","","","","","","*","","","","","","","","*","","","*","","","","","","","","","","","","*","","*","","","","*","","","","","","*","","*","","","*","","*","","","","*","","*","","","","*","","","","","","","","","","","","","","","","","","","*","","","","*","","","","","*","*","*","","","","","","","","","","","","","","","","","","","","","","","","*","","","*","","*","*","","","","*","","","","","","","","","","*","*","","","","","","*","","","","","","","","","","","","","","","","*","","","","","","","*","","","","","","","","","*","","","","","*","*","","","","","*","","","","*","","","","","","","*","","","","","","","*","","","","*","*","*","","","*","","","","","","","","","","","","","","","*","","","","","","","","","*","*","","","*","","","","","","","","","","","","","","","","","*","*","*","","","*","","","*","","","*","","","*","","","","","","*","","*","","","","","","","","","","","*","","","","","","","*","","","","","","","","","","","","","","","*","*","*","","","","","","","","","*","","","","","","*","*","","","","","","","","","*","","","","","","","","","","","","","","","","","*","","","","","*","","","*","*","","","","","*","","","","","","","","","","","","","","","","","","","*","","*","","","","*","","*","","","","","","","","","","","","","","","","","","","","","","","","*","","","","*","*","","","","","","","*","*","","","","","","","","*","","","","","*","","","","","","","","","","","","*","","","","*",""]},"columns":[{"id":"var_1","name":"var_1","type":"factor","format":{"cell":{"digits":3},"aggregated":{"digits":3}}},{"id":"var_2","name":"var_2","type":"factor","format":{"cell":{"digits":3},"aggregated":{"digits":3}}},{"id":"rho","name":"rho","type":"numeric","format":{"cell":{"digits":3},"aggregated":{"digits":3}}},{"id":"p","name":"p","type":"numeric","format":{"cell":{"digits":3},"aggregated":{"digits":3}}},{"id":"significant","name":"significant","type":"logical","format":{"cell":{"digits":3},"aggregated":{"digits":3}}},{"id":"sig","name":"sig","type":"character","format":{"cell":{"digits":3},"aggregated":{"digits":3}}}],"resizable":true,"filterable":true,"searchable":true,"defaultPageSize":10,"showPageSizeOptions":true,"onClick":"select","highlight":true,"bordered":true,"striped":true,"compact":true,"style":{"fontSize":"14px"},"dataKey":"a8a41d2f4a5288a4035e72dd8fbc892b"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Reporting for paper:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Join dimensions back to correlations for reporting</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> dp_tree <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dimension, metric) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(metric, <span class="st">'NONE'</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># How many correlations are significant overall</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>(perc_sig <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(tab<span class="sc">$</span>sig <span class="sc">==</span> <span class="st">'*'</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>(perc_unsig <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">-</span> perc_sig)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Internal correlations among each dimension</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>dimensions <span class="ot">&lt;-</span> <span class="fu">unique</span>(tree<span class="sc">$</span>dimension)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>internal_cors <span class="ot">&lt;-</span> <span class="fu">map</span>(dimensions, <span class="sc">~</span> {</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  dim_metrics <span class="ot">&lt;-</span> tree <span class="sc">%&gt;%</span> </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(dimension <span class="sc">==</span> .x) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(metric)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  dim_cors <span class="ot">&lt;-</span> tab <span class="sc">%&gt;%</span> </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(var_1 <span class="sc">%in%</span> dim_metrics <span class="sc">&amp;</span> var_2 <span class="sc">%in%</span> dim_metrics) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(sig)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  dim_sig_cors <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(dim_cors <span class="sc">==</span> <span class="st">'*'</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(dimensions)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>internal_cors</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Check percentage of sig correlations for a couple of examples in paper:</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(tab)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Violent Crime Rate'</span>,</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Land and Building Value per Acre'</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>examples <span class="ot">&lt;-</span> <span class="fu">map</span>(vars, <span class="sc">~</span> {</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  sigs <span class="ot">&lt;-</span> tab <span class="sc">%&gt;%</span> </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(var_1 <span class="sc">==</span> .x <span class="sc">|</span> var_2 <span class="sc">==</span> .x) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(sig)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="fu">mean</span>(sigs <span class="sc">==</span> <span class="st">'*'</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(vars)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>examples</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Percentage of significant internal correlations in each dimension:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>internal_cors</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Economics Environment Health Production Social
+1     14.29       14.29  37.78         30  28.57</code></pre>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../3_coverage/src/dp_coverage.html" class="pagination-link" aria-label="Coverage">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Coverage</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../5_trends/src/dp_trends.html" class="pagination-link" aria-label="Trends">
+        <span class="nav-page-text">Trends</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

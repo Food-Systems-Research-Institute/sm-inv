@@ -41,7 +41,6 @@ packages <- c(
 for (pkg in packages) {
   library(pkg, character.only = TRUE)
 }
-# TODO: is this better than pacman given renv::restore in Makefile?
 
 # Set conflict preferences
 conflicts_prefer(

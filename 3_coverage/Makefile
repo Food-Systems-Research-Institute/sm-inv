@@ -11,7 +11,7 @@ OUTPUTS = \
 
 all: $(OUTPUTS)
 
-$(OUTPUTS) &: src/dp_coverage.qmd data/data_paper/neast_tiles.rds ../.renv_restored
+$(OUTPUTS) &: src/dp_coverage.qmd input/neast_tiles.rds ../.renv_restored
 	quarto render src/dp_coverage.qmd --output-dir .
 
 ../.renv_restored: ../renv.lock

@@ -55,6 +55,9 @@ conflicts_prefer(
   base::setdiff(),
   .quiet = TRUE
 )
+
+dp_meta <- readRDS(here::here("0_prep", "output", "dp_meta.rds"))
+dp_tree <- readRDS(here::here("0_prep", "output", "dp_tree.rds"))
 ```
 
 This page explores correlations among metrics across counties using the latest available time point for each metric.
@@ -69,13 +72,13 @@ Here, filter our dataset to latest time points for each metric, filter to county
 #| fig-height: 10
 #| fig-width: 10
 # metric crosswalk
-crosswalk <- SMdocs::dp_meta %>% 
+crosswalk <- dp_meta %>% 
   select(variable_name, metric)
 
 # Get df ready
 str(SMdata::metrics)
 df <- SMdata::metrics %>% 
-  filter(variable_name %in% SMdocs::dp_meta$variable_name) %>% 
+  filter(variable_name %in% dp_meta$variable_name) %>% 
   SMdocs::get_latest_year() %>% 
   SMdata::filter_fips('new') %>% 
   mutate(variable_name = str_split_i(variable_name, '_', 1)) %>% 
@@ -511,7 +514,7 @@ Reporting for paper:
 ```{r}
 #| output: false
 # Join dimensions back to correlations for reporting
-tree <- SMdocs::dp_tree %>% 
+tree <- dp_tree %>%
   select(dimension, metric) %>% 
   filter(str_detect(metric, 'NONE', negate = TRUE))
 

@@ -11,7 +11,8 @@ pacman::p_load(
   RefManageR,
   fuzzyjoin,
   tidyr,
-  purrr
+  purrr,
+  here
 )
 
 pacman::p_load_current_gh("ChrisDonovan307/projecter")
@@ -65,7 +66,7 @@ get_str(giant_tab)
 
 
 # Pull from bibtex file to convert shorthand citations in appendix table
-bib_file <- ReadBib("../assets/SM_Data_Survey.bib")
+bib_file <- ReadBib(here::here("assets", "SM_Data_Survey.bib"))
 bib <- imap(bib_file, ~ {
   if (length(.x$author) > 2) {
     label <- paste0(.x$author$family[[1]], " et al. (", .x$year, ")")

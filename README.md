@@ -14,6 +14,8 @@ To run the entire project, go to the root of the project, then:
 make
 ```
 
+This defaults to running `make all`.
+
 Or, to run only a single page, use:
 
 ```sh
@@ -34,7 +36,7 @@ To build the Quarto site:
 make site
 ```
 
-This renders to `_site/`.
+This renders to `_site/`. Note that rendering will used cached results where possible.
 
 ## Structure
 

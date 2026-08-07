@@ -1,9 +1,7 @@
 indicator,year,dimension
-Income Stability,2000,Economics
 Business Failure Rate,2000,Economics
 Wealth and Income Distribution,2000,Economics
 Farm Insurance,2001,Economics
-Income Stability,2001,Economics
 Business Failure Rate,2001,Economics
 Wealth and Income Distribution,2001,Economics
 Operations Diversification,2002,Economics
@@ -11,13 +9,10 @@ Access to Land,2002,Economics
 Income Stability,2002,Economics
 Business Failure Rate,2002,Economics
 Wealth and Income Distribution,2002,Economics
-Income Stability,2003,Economics
 Business Failure Rate,2003,Economics
 Wealth and Income Distribution,2003,Economics
-Income Stability,2005,Economics
 Business Failure Rate,2005,Economics
 Wealth and Income Distribution,2005,Economics
-Income Stability,2006,Economics
 Business Failure Rate,2006,Economics
 Wealth and Income Distribution,2006,Economics
 Farm Insurance,2007,Economics
@@ -27,19 +22,15 @@ Income Stability,2007,Economics
 Business Failure Rate,2007,Economics
 Wealth and Income Distribution,2007,Economics
 Farm Insurance,2008,Economics
-Income Stability,2008,Economics
 Business Failure Rate,2008,Economics
 Wealth and Income Distribution,2008,Economics
 Farm Insurance,2009,Economics
-Income Stability,2009,Economics
 Business Failure Rate,2009,Economics
 Wealth and Income Distribution,2009,Economics
 Farm Insurance,2010,Economics
-Income Stability,2010,Economics
 Business Failure Rate,2010,Economics
 Wealth and Income Distribution,2010,Economics
 Farm Insurance,2011,Economics
-Income Stability,2011,Economics
 Business Failure Rate,2011,Economics
 Wealth and Income Distribution,2011,Economics
 Farm Insurance,2012,Economics
@@ -49,14 +40,11 @@ Income Stability,2012,Economics
 Business Failure Rate,2012,Economics
 Wealth and Income Distribution,2012,Economics
 Farm Insurance,2013,Economics
-Wealth and Income Distribution,2013,Economics
 Farm Insurance,2014,Economics
 Farm Insurance,2015,Economics
-Income Stability,2015,Economics
 Business Failure Rate,2015,Economics
 Wealth and Income Distribution,2015,Economics
 Farm Insurance,2016,Economics
-Income Stability,2016,Economics
 Business Failure Rate,2016,Economics
 Wealth and Income Distribution,2016,Economics
 Farm Insurance,2017,Economics
@@ -67,19 +55,15 @@ Income Stability,2017,Economics
 Business Failure Rate,2017,Economics
 Wealth and Income Distribution,2017,Economics
 Farm Insurance,2018,Economics
-Income Stability,2018,Economics
 Business Failure Rate,2018,Economics
 Wealth and Income Distribution,2018,Economics
 Farm Insurance,2019,Economics
-Income Stability,2019,Economics
 Business Failure Rate,2019,Economics
 Wealth and Income Distribution,2019,Economics
 Farm Insurance,2020,Economics
-Income Stability,2020,Economics
 Business Failure Rate,2020,Economics
 Wealth and Income Distribution,2020,Economics
 Farm Insurance,2021,Economics
-Income Stability,2021,Economics
 Business Failure Rate,2021,Economics
 Wealth and Income Distribution,2021,Economics
 Farm Insurance,2022,Economics
@@ -90,11 +74,9 @@ Income Stability,2022,Economics
 Business Failure Rate,2022,Economics
 Wealth and Income Distribution,2022,Economics
 Farm Insurance,2023,Economics
-Income Stability,2023,Economics
 Business Failure Rate,2023,Economics
 Wealth and Income Distribution,2023,Economics
 Farm Insurance,2024,Economics
-Income Stability,2024,Economics
 Business Failure Rate,2024,Economics
 Wealth and Income Distribution,2024,Economics
 Forest Complexity,2000,Environment
@@ -218,7 +200,9 @@ Biodiversity,2023,Environment
 Forest Health,2023,Environment
 Land Use Diversity,2023,Environment
 Water Quantity,2023,Environment
+Forest Complexity,2024,Environment
 Biodiversity,2024,Environment
+Forest Health,2024,Environment
 Land Use Diversity,2024,Environment
 Water Quantity,2024,Environment
 Food Affordability,2009,Health
@@ -425,10 +409,15 @@ Technology Adoption,2022,Production
 Yield,2022,Production
 Inputs,2022,Production
 Crop Diversity,2022,Production
+Total Quantity Exported,2023,Production
 Total Quantity Imported,2023,Production
 Total Quantity Forest Products,2023,Production
+Yield,2023,Production
 Crop Diversity,2023,Production
+Total Quantity Exported,2024,Production
 Total Quantity Imported,2024,Production
+Total Quantity Forest Products,2024,Production
+Yield,2024,Production
 Crop Diversity,2024,Production
 Participatory Governance,2000,Social
 Community Safety,2000,Social
@@ -523,6 +512,7 @@ Farm Insurance,2000,NA
 Operations Diversification,2000,NA
 Market Mix,2000,NA
 Access to Land,2000,NA
+Income Stability,2000,NA
 Participatory Governance,2001,NA
 Social Connectedness,2001,NA
 Producer Gender Diversity,2001,NA
@@ -560,6 +550,7 @@ Embodied Carbon,2001,NA
 Operations Diversification,2001,NA
 Market Mix,2001,NA
 Access to Land,2001,NA
+Income Stability,2001,NA
 Social Connectedness,2002,NA
 Producer Gender Diversity,2002,NA
 Producer Racial Diversity,2002,NA
@@ -626,6 +617,7 @@ Farm Insurance,2003,NA
 Operations Diversification,2003,NA
 Market Mix,2003,NA
 Access to Land,2003,NA
+Income Stability,2003,NA
 Social Connectedness,2004,NA
 Producer Gender Diversity,2004,NA
 Producer Racial Diversity,2004,NA
@@ -702,6 +694,7 @@ Farm Insurance,2005,NA
 Operations Diversification,2005,NA
 Market Mix,2005,NA
 Access to Land,2005,NA
+Income Stability,2005,NA
 Social Connectedness,2006,NA
 Producer Gender Diversity,2006,NA
 Producer Racial Diversity,2006,NA
@@ -738,6 +731,7 @@ Farm Insurance,2006,NA
 Operations Diversification,2006,NA
 Market Mix,2006,NA
 Access to Land,2006,NA
+Income Stability,2006,NA
 Participatory Governance,2007,NA
 Social Connectedness,2007,NA
 Producer Gender Diversity,2007,NA
@@ -799,6 +793,7 @@ Embodied Carbon,2008,NA
 Operations Diversification,2008,NA
 Market Mix,2008,NA
 Access to Land,2008,NA
+Income Stability,2008,NA
 Participatory Governance,2009,NA
 Social Connectedness,2009,NA
 Producer Gender Diversity,2009,NA
@@ -831,6 +826,7 @@ Embodied Carbon,2009,NA
 Operations Diversification,2009,NA
 Market Mix,2009,NA
 Access to Land,2009,NA
+Income Stability,2009,NA
 Social Connectedness,2010,NA
 Producer Gender Diversity,2010,NA
 Producer Racial Diversity,2010,NA
@@ -861,6 +857,7 @@ Embodied Carbon,2010,NA
 Operations Diversification,2010,NA
 Market Mix,2010,NA
 Access to Land,2010,NA
+Income Stability,2010,NA
 Participatory Governance,2011,NA
 Social Connectedness,2011,NA
 Producer Gender Diversity,2011,NA
@@ -891,6 +888,7 @@ Embodied Carbon,2011,NA
 Operations Diversification,2011,NA
 Market Mix,2011,NA
 Access to Land,2011,NA
+Income Stability,2011,NA
 Social Connectedness,2012,NA
 Producer Gender Diversity,2012,NA
 Producer Racial Diversity,2012,NA
@@ -936,6 +934,7 @@ Market Mix,2013,NA
 Access to Land,2013,NA
 Income Stability,2013,NA
 Business Failure Rate,2013,NA
+Wealth and Income Distribution,2013,NA
 Social Connectedness,2014,NA
 Producer Gender Diversity,2014,NA
 Producer Racial Diversity,2014,NA
@@ -992,6 +991,7 @@ Embodied Carbon,2015,NA
 Operations Diversification,2015,NA
 Market Mix,2015,NA
 Access to Land,2015,NA
+Income Stability,2015,NA
 Social Connectedness,2016,NA
 Producer Gender Diversity,2016,NA
 Producer Racial Diversity,2016,NA
@@ -1016,6 +1016,7 @@ Embodied Carbon,2016,NA
 Operations Diversification,2016,NA
 Market Mix,2016,NA
 Access to Land,2016,NA
+Income Stability,2016,NA
 Participatory Governance,2017,NA
 Social Connectedness,2017,NA
 Total Quantity Imported,2017,NA
@@ -1048,6 +1049,7 @@ Embodied Carbon,2018,NA
 Operations Diversification,2018,NA
 Market Mix,2018,NA
 Access to Land,2018,NA
+Income Stability,2018,NA
 Participatory Governance,2019,NA
 Social Connectedness,2019,NA
 Producer Gender Diversity,2019,NA
@@ -1070,6 +1072,7 @@ Embodied Carbon,2019,NA
 Operations Diversification,2019,NA
 Market Mix,2019,NA
 Access to Land,2019,NA
+Income Stability,2019,NA
 Social Connectedness,2020,NA
 Producer Gender Diversity,2020,NA
 Producer Racial Diversity,2020,NA
@@ -1091,6 +1094,7 @@ Embodied Carbon,2020,NA
 Operations Diversification,2020,NA
 Market Mix,2020,NA
 Access to Land,2020,NA
+Income Stability,2020,NA
 Participatory Governance,2021,NA
 Social Connectedness,2021,NA
 Producer Gender Diversity,2021,NA
@@ -1113,6 +1117,7 @@ Embodied Carbon,2021,NA
 Operations Diversification,2021,NA
 Market Mix,2021,NA
 Access to Land,2021,NA
+Income Stability,2021,NA
 Social Connectedness,2022,NA
 Access to Culturally Appropriate Food,2022,NA
 Housing Supply and Quality,2022,NA
@@ -1127,12 +1132,10 @@ Producer Gender Diversity,2023,NA
 Producer Racial Diversity,2023,NA
 Producer Age Diversity,2023,NA
 Conservation Program,2023,NA
-Total Quantity Exported,2023,NA
 Total Quantity Food Products,2023,NA
 Value Added Market,2023,NA
 Certificates of Assurance,2023,NA
 Technology Adoption,2023,NA
-Yield,2023,NA
 Inputs,2023,NA
 Nutritious Diets,2023,NA
 Access to Social Support,2023,NA
@@ -1144,19 +1147,17 @@ Carbon Fluxes,2023,NA
 Operations Diversification,2023,NA
 Market Mix,2023,NA
 Access to Land,2023,NA
+Income Stability,2023,NA
 Community Safety,2024,NA
 Producer Gender Diversity,2024,NA
 Producer Racial Diversity,2024,NA
 Producer Age Diversity,2024,NA
 Outmigration,2024,NA
 Conservation Program,2024,NA
-Total Quantity Exported,2024,NA
-Total Quantity Forest Products,2024,NA
 Total Quantity Food Products,2024,NA
 Value Added Market,2024,NA
 Certificates of Assurance,2024,NA
 Technology Adoption,2024,NA
-Yield,2024,NA
 Inputs,2024,NA
 Access to Culturally Appropriate Food,2024,NA
 Housing Supply and Quality,2024,NA
@@ -1164,9 +1165,7 @@ Food Affordability,2024,NA
 Nutritious Diets,2024,NA
 Educational Attainment,2024,NA
 Food Insecurity,2024,NA
-Forest Complexity,2024,NA
 Carbon Stocks,2024,NA
-Forest Health,2024,NA
 Sensitive or Rare Habitats,2024,NA
 Water Quality,2024,NA
 Embodied Carbon,2024,NA
@@ -1174,3 +1173,4 @@ Carbon Fluxes,2024,NA
 Operations Diversification,2024,NA
 Market Mix,2024,NA
 Access to Land,2024,NA
+Income Stability,2024,NA

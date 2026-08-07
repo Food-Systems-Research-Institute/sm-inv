@@ -8,6 +8,5 @@ render: ../.renv_restored
 	touch $@
 
 clean:
-	rm -f dp_eda.html
 	rm -rf src/dp_eda_cache src/dp_eda_files
 	rm -rf dp_eda_cache dp_eda_files

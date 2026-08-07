@@ -55,6 +55,11 @@ conflicts_prefer(
   base::setdiff(),
   .quiet = TRUE
 )
+
+dp_meta <- readRDS(here::here("0_prep", "output", "dp_meta.rds"))
+dp_metrics <- readRDS(here::here("0_prep", "output", "dp_metrics.rds"))
+dp_metrics_county <- readRDS(here::here("0_prep", "output", "dp_metrics_county.rds"))
+dp_weights <- readRDS(here::here("0_prep", "output", "dp_weights.rds"))
 ```
 
 Here we explore how secondary data sources cover the region by dimension, geography, and over time.
@@ -71,7 +76,7 @@ Explore coverage by dimension. Things we are interested in:
 Indicators without any metrics:
 
 ```{r}
-SMdocs::dp_meta %>% 
+dp_meta %>% 
   filter(is.na(variable_name)) %>% 
   select(dimension, indicator) %>% 
   unique() %>% 
@@ -85,7 +90,7 @@ Proportion of indicator coverage by dimension:
 ```{r}
 #| label: indicator_coverage_by_dimension
 # Dimensions, indicators, metrics, and indicator representation
-tab <- SMdocs::dp_meta %>% 
+tab <- dp_meta %>% 
   group_by(dimension, indicator) %>% 
   summarize(
     has_metric = any(!is.na(variable_name)),
@@ -102,11 +107,11 @@ tab <- SMdocs::dp_meta %>%
 tab
 
 # County metrics
-county_metrics <- SMdocs::dp_metrics_county %>% 
+county_metrics <- dp_metrics_county %>% 
   select(variable_name) %>% 
   distinct()
 dim(county_metrics)
-county_col <- SMdocs::dp_meta %>% 
+county_col <- dp_meta %>% 
   select(dimension, variable_name) %>% 
   right_join(county_metrics) %>% 
   group_by(dimension) %>% 
@@ -171,7 +176,7 @@ Looks like all Economics and Health indicators had a secondary metric to represe
 How many metrics are at the state level vs county level? Note that we are prioritizing county and only counting state if they are not available at the county level.
 
 ```{r}
-dat <- SMdocs::dp_meta %>% 
+dat <- dp_meta %>% 
   filter(
     !is.na(variable_name),
     metric != 'NONE'
@@ -229,19 +234,19 @@ First wrangle up a Start with metrics in each county, including a population cou
 
 ```{r}
 #| label: geo_summary_stats
-# str(SMdocs::dp_metrics_county)
-n_county_metrics <- SMdocs::dp_metrics_county$variable_name %>% 
+# str(dp_metrics_county)
+n_county_metrics <- dp_metrics_county$variable_name %>% 
   unique %>% 
   length
 
 # Latest population of each county
-pops <- SMdocs::dp_weights %>% 
+pops <- dp_weights %>% 
   filter(variable_name == 'population5YearSmooth', year == '2023') %>% 
   select(fips, value)
 
 # Metrics per county
-# str(SMdocs::dp_metrics_county)
-tab_metrics <- SMdocs::dp_metrics_county %>% 
+# str(dp_metrics_county)
+tab_metrics <- dp_metrics_county %>% 
   group_by(fips) %>% 
   summarize(n_metrics = length(unique(variable_name))) %>% 
   ungroup() %>% 
@@ -257,11 +262,11 @@ get_reactable(tab_metrics)
 Now break them down by dimension:
 
 ```{r}
-dims <- SMdocs::dp_meta %>% 
+dims <- dp_meta %>% 
   select(variable_name, dimension) %>% 
   na.omit() %>% 
   filter(variable_name != 'NONE')
-tab_metrics_dim <- SMdocs::dp_metrics_county %>% 
+tab_metrics_dim <- dp_metrics_county %>% 
   left_join(dims) %>% 
   group_by(fips, dimension) %>% 
   summarize(n_metrics = length(unique(variable_name)))
@@ -275,7 +280,7 @@ Average number of metrics in each county in across years:
 
 ```{r}
 # Get total number of county metrics
-total_metrics <- SMdocs::dp_metrics %>% 
+total_metrics <- dp_metrics %>% 
   filter(year >= 2000, year < 2025) %>% 
   SMdata::filter_fips('counties') %>% 
   pull(variable_name) %>% 
@@ -283,7 +288,7 @@ total_metrics <- SMdocs::dp_metrics %>%
   length()
 
 # Metric counts by county and year
-tab <- SMdocs::dp_metrics %>% 
+tab <- dp_metrics %>% 
   filter(year >= 2000, year < 2025) %>% 
   SMdata::filter_fips('counties') %>% 
   group_by(fips, year) %>% 
@@ -334,7 +339,6 @@ The first map shows the total number of metrics with data in each county across 
 ```{r}
 #| output: false
 ## Get bounding box - commenting out to avoid downloading this each time
-# would be better off caching though
 
 # bbox_new <- st_bbox(neast_counties_2024)
 # xrange <- bbox_new$xmax - bbox_new$xmin # range of x values
@@ -351,10 +355,10 @@ The first map shows the total number of metrics with data in each county across 
 #   zoom = 7,
 #   crop = TRUE
 # )
-# terra::saveRDS(tiles, 'data/data_paper/neast_tiles.rds')
+# terra::saveRDS(tiles, '3_coverage/input/neast_tiles.rds')
 
 # Load tiles for background
-tiles <- terra::readRDS('3_coverage/data/data_paper/neast_tiles.rds')
+tiles <- terra::readRDS('3_coverage/input/neast_tiles.rds')
 
 # Counts of unique metrics in each county
 # var_counts <- datasets$dp_metrics_all %>% 
@@ -481,10 +485,10 @@ This section explores the growth in metric and indicator counts over time.
 
 ```{r}
 #| include: false
-# dat <- SMdocs::dp_metrics
+# dat <- dp_metrics
 # str(dat)
 #   
-# n_county_vars <- SMdocs::dp_metrics_county %>% 
+# n_county_vars <- dp_metrics_county %>% 
 #   pull(variable_name) %>% 
 #   unique() %>% 
 #   length()
@@ -501,8 +505,8 @@ Here we show the total number of indicators represented each year, colored by di
 #| out-width: '75%'
 #| fig-align: center
 # Join based on 'variable_name'
-merged_df <- SMdocs::dp_metrics %>%
-  left_join(SMdocs::dp_meta %>%
+merged_df <- dp_metrics %>%
+  left_join(dp_meta %>%
               select(variable_name,
                      dimension = dimension,
                      index = index,
@@ -589,8 +593,8 @@ Here we have metric representation by year - another graph made by Isabella. Thi
 #| fig-width: 7
 #| out-width: 80%
 # Join based on "variable_name"
-metrics_and_meta <- SMdocs::dp_metrics %>%
-  left_join(SMdocs::dp_meta %>%
+metrics_and_meta <- dp_metrics %>%
+  left_join(dp_meta %>%
               select(variable_name,
                      dimension,
                      index,
@@ -694,8 +698,8 @@ metric_heatmap
 
 ## This is the same as the figure above, but for indicators instead of metrics.
 # confusingly put in the metrics section
-metrics_and_meta <- SMdocs::dp_metrics %>%
-  left_join(SMdocs::dp_meta %>%
+metrics_and_meta <- dp_metrics %>%
+  left_join(dp_meta %>%
               select(variable_name,
                      dimension,
                      index,

@@ -53,6 +53,11 @@ conflicts_prefer(
   base::setdiff(),
   .quiet = TRUE
 )
+
+dp_meta <- readRDS(here::here("0_prep", "output", "dp_meta.rds"))
+dp_metrics_county <- readRDS(here::here("0_prep", "output", "dp_metrics_county.rds"))
+dp_metrics_county_wide <- readRDS(here::here("0_prep", "output", "dp_metrics_county_wide.rds"))
+dp_metrics_state <- readRDS(here::here("0_prep", "output", "dp_metrics_state.rds"))
 ```
 
 ## Sources
@@ -64,7 +69,7 @@ Wrangling sources:
 ```{r}
 #| label: source_wrangling
 #| output: false
-tab <- SMdocs::giant_table
+tab <- dp_meta
 str(tab)
 
 # Filter down to metrics in use
@@ -92,9 +97,9 @@ tab$cluster <- clusters
 tab %>% 
   select(source, cluster) %>% 
   arrange(source)
-
 # This is less useful than I hoped - some sources have very different citations3
 # because they come from different branches. Let's try manually clumping
+
 str(tab)
 tab <- tab %>% 
   mutate(
@@ -420,7 +425,7 @@ Finally, let's look at the overall proportion of missing data for each metric at
 ```{r}
 #| label: missing_data
 #| output: false
-skimr::skim(SMdocs::dp_metrics_county_wide)
+skimr::skim(dp_metrics_county_wide)
 # Missing years are county areas, that's fine
 # Other missing values are because years don't match up, that's fine
 str(dp_metrics_county_wide)

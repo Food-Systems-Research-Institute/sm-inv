@@ -1,7 +1,8 @@
 # root
 
-.PHONY: all site data clean distclean
+.PHONY: all site data mostlyclean clean
 
+# make defaults to make all
 all: site
 
 # Restore renv only when renv.lock changes. $@ is target name
