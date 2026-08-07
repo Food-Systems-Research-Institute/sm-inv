@@ -87,7 +87,7 @@ The code and analyses here are publicly available under a [GPLv3 License](https:
 
 ```{r}
 #| label: prep_graphs
-tree <- SMdocs::dp_tree %>%
+tree <- readRDS("0_prep/output/dp_tree.rds") %>%
   mutate(
     indicator = case_when(
       str_detect(indicator, "inputs bought locally") ~ "% local inputs",
@@ -259,7 +259,7 @@ px.sunburst(
 Same information as above, but perhaps a bit easier to explore. Use the search bar at the top to search through all fields, or the filter fields at the top of each column for finer control.
 
 ```{r}
-dp_tree %>%
+readRDS("0_prep/output/dp_tree.rds") %>%
   mutate(metric = case_when(
     str_detect(metric, "NONE") ~ NA,
     .default = metric

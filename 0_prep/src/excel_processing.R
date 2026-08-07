@@ -29,7 +29,8 @@ pacman::p_load(
   writexl,
   httr2,
   knitr,
-  kableExtra
+  kableExtra,
+  here
 )
 
 pacman::p_load_current_gh(
@@ -54,7 +55,7 @@ og_xl_path <- paste0(root_metric_path, "secondary_metrics_revised.xlsx")
 lit_path <- paste0(root_metric_path, "literature_justifying_indicators.xlsx")
 
 # Relative path to where we will save a copy of the secondary metrics xl locally
-new_xl_path <- "1_intro/output/secondary_metrics.xlsx"
+new_xl_path <- here::here("1_intro", "output", "secondary_metrics.xlsx")
 
 
 ## Read Revised Metrics files (5 sheets of Metrics file) -------------------
@@ -212,15 +213,13 @@ openxlsx2::write_xlsx(
 # Save to outputs
 openxlsx2::write_xlsx(
   giant_table,
-  "output/giant_table.xlsx",
+  here::here("0_prep", "output", "giant_table.xlsx"),
   widths = c(15, "auto"),
   na.strings = "NA"
 )
 
 
 # Save DP Objects ---------------------------------------------------------
-
-# Saving some data paper (dp) datasets used in the project.
 
 ## dp_tree ----
 # For making framework diagrams
@@ -230,21 +229,22 @@ dp_tree <- giant_table %>%
 count <- sum(dp_tree$metric == "NONE")
 dp_tree$metric[dp_tree$metric == "NONE"] <- paste0("NONE_", 1:count)
 
-saveRDS(dp_tree, "output/dp_tree.rds")
+saveRDS(dp_tree, here::here("0_prep", "output", "dp_tree.rds"))
 
 
 ## dp_meta ----
 # all metadata for just dp_metrics based on excel sheet in OneDrive
-# get_str(giant_table)
 dp_meta <- giant_table
-usethis::use_data(dp_meta, overwrite = TRUE)
+saveRDS(dp_meta, here::here("0_prep", "output", "dp_meta.rds"))
+
 
 ## dp_metrics ----
 # Only the metrics where we have state and county level that are used in dp
 # get_str(existing_metrics)
 dp_metrics <- existing_metrics %>%
   mutate(across(c(year, value), as.numeric))
-usethis::use_data(dp_metrics, overwrite = TRUE)
+saveRDS(dp_metrics, here::here("0_prep", "output", "dp_metrics.rds"))
+
 
 ## dp_weight_vars ----
 # Variable names and metric names of weighting variables from utils sheet
@@ -254,28 +254,27 @@ dp_weight_vars <- read_excel(
 ) %>%
   filter(status != "stall") %>%
   select(metric, variable_name)
-# get_str(dp_weight_vars)
-usethis::use_data(dp_weight_vars, overwrite = TRUE)
+saveRDS(dp_weight_vars, here::here("0_prep", "output", "dp_weight_vars.rds"))
+
 
 ## dp_weights ----
 # Get another DF of weighting variables
 dp_weights <- SMdata::metrics %>%
   filter(variable_name %in% dp_weight_vars$variable_name) %>%
   filter_fips("neast")
-# get_str(dp_weights)
-usethis::use_data(dp_weights, overwrite = TRUE)
+saveRDS(dp_weights, here::here("0_prep", "output", "dp_weights.rds"))
+
 
 ## dp_metrics_county ----
 # Pull out county and state separately, based on spec in metadata
-# (resolutions <- dp_meta$resolution %>% unique)
 county_vars <- dp_meta %>%
   filter(resolution %in% c("county", "30m", "4km")) %>%
   pull(variable_name)
 dp_metrics_county <- dp_metrics %>%
   filter(variable_name %in% county_vars) %>%
   SMdata::filter_fips("counties")
-# get_str(dp_metrics_county)
-usethis::use_data(dp_metrics_county, overwrite = TRUE)
+saveRDS(dp_metrics_county, here::here("0_prep", "output", "dp_metrics_county.rds"))
+
 
 ## dp_metrics_state ----
 # Only take state data for which there is no county data
@@ -289,10 +288,8 @@ dp_metrics_state <- dp_metrics %>%
 cpi <- dp_metrics %>%
   filter(variable_name == "cpi")
 dp_metrics_state <- bind_rows(dp_metrics_state, cpi)
-# get_str(dp_metrics_state)
-# unique(dp_metrics_state$fips)
-# unique(dp_metrics_state$variable_name)
-usethis::use_data(dp_metrics_state, overwrite = TRUE)
+saveRDS(dp_metrics_state, here::here("0_prep", "output", "dp_metrics_state.rds"))
+
 
 ## dp_metrics_county_wide ----
 # Pivot wider for transformations, then alphabetize columns
@@ -307,8 +304,10 @@ dp_metrics_county_wide <- dp_metrics_county %>%
     names_from = "variable_name"
   ) %>%
   select(fips, year, sort(names(.)[2:length(names(.))]))
-# get_str(dp_metrics_county_wide)
-usethis::use_data(dp_metrics_county_wide, overwrite = TRUE)
+saveRDS(
+  dp_metrics_county_wide,
+  here::here("0_prep", "output", "dp_metrics_county_wide.rds")
+)
 
 
 # Inflation Adjustment ----------------------------------------------------
@@ -331,7 +330,7 @@ cpi <- SMdata::metrics %>%
 cpi_2024 <- cpi$cpi[cpi$year == "2024"]
 
 # Adjust columns that are in USD
-dfs <- list(SMdocs::dp_metrics_county, SMdocs::dp_metrics_state)
+dfs <- list(dp_metrics_county, dp_metrics_state)
 adj_dfs <- map(dfs, ~ {
   .x %>%
     left_join(cpi, by = join_by(year)) %>%
@@ -349,8 +348,8 @@ get_str(adj_dfs, 3)
 
 ## dp_metrics_county_adj ----
 dp_metrics_county_adj <- adj_dfs$county
-usethis::use_data(dp_metrics_county_adj, overwrite = TRUE)
+saveRDS(dp_metrics_county_adj, here::here("0_prep", "output", "dp_metrics_county_adj.rds"))
 
 ## dp_metrics_state_adj ----
 dp_metrics_state_adj <- adj_dfs$state
-usethis::use_data(dp_metrics_state_adj, overwrite = TRUE)
+saveRDS(dp_metrics_state_adj, here::here("0_prep", "output", "dp_metrics_state_adj.rds"))

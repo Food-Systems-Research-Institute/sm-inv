@@ -7,21 +7,23 @@ all: site
 # Restore renv only when renv.lock changes. $@ is target name
 .renv_restored: renv.lock
 	Rscript -e "renv::restore(project = '.', prompt = FALSE)"
-	touch $@ 
+	touch $@
 
 # Convenience - only render pages with actual outputs
 data: .renv_restored
+	$(MAKE) -C 0_prep
 	$(MAKE) -C 3_coverage
 	$(MAKE) -C 4_correlations
 	$(MAKE) -C 5_trends
 
 # Render full website, executing chunks unless cached found in _freeze
-site: .renv_restored
+site: data
 	quarto render
 
 # Remove outputs, but keep _freeze intact. Quarto only re-renders when code changes
-mostlyclean: 
+mostlyclean:
 	rm -rf _site
+	$(MAKE) -C 0_prep clean
 	$(MAKE) -C 1_intro clean
 	$(MAKE) -C 2_eda clean
 	$(MAKE) -C 3_coverage clean

@@ -65,7 +65,7 @@ get_str(giant_tab)
 
 
 # Pull from bibtex file to convert shorthand citations in appendix table
-bib_file <- ReadBib("assets/SM_Data_Survey.bib")
+bib_file <- ReadBib("../assets/SM_Data_Survey.bib")
 bib <- imap(bib_file, ~ {
   if (length(.x$author) > 2) {
     label <- paste0(.x$author$family[[1]], " et al. (", .x$year, ")")
@@ -145,7 +145,7 @@ get_str(giant_tab)
 
 ## Wrangle table --------------------------------------------------
 
-trend_files <- dir("5_trends/output/trend_plots")
+trend_files <- dir("output/trend_plots")
 trend_file_vars <- trend_files %>%
   str_remove_all("fig_trend_") %>%
   str_remove_all("\\.png")
@@ -346,7 +346,7 @@ body_out <- paste0(header, body, footer)
 cat(body_out)
 
 # Save this to latex file
-writeLines(body_out, "5_trends/output/tab_metrics_body.tex")
+writeLines(body_out, "output/tab_metrics_body.tex")
 
 
 # Appendix Table ----------------------------------------------------------
@@ -538,4 +538,4 @@ app_body_out <- paste0(app_header, app_body, app_footer)
 cat(app_body_out)
 
 # Save this to latex file
-writeLines(app_body_out, "5_trends/output/tab_metrics_appendix.tex")
+writeLines(app_body_out, "output/tab_metrics_appendix.tex")

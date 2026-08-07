@@ -1,7 +1,4 @@
-.PHONY: render clean
-
-OUTPUTS = \
-    output/dp_tree.rds
+.PHONY: clean
 
 ../.renv_restored: ../renv.lock
 	Rscript -e "renv::restore(project = '..', prompt = FALSE)"
