@@ -39,7 +39,7 @@ pacman::p_load(
 )
 
 # GitHub packages
-pacman::p_load_current_gh(
+pacman::p_load_gh(
   'Food-Systems-Research-Institute/SMdata',
   'Food-Systems-Research-Institute/SMdocs'
 )

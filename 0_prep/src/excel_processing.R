@@ -1,19 +1,3 @@
-# Excel processing
-# 2025-09-11
-
-#' This script takes our 'revised_secondary_metrics.xlsx' from OneDrive and
-#' combines it with the literature justifications to get one very large, some
-#' might even say giant, table. It may be saved back to OneDrive for reference,
-#' but it is not a final product. We will use this table to:
-#'   1. Create the body table that will go in the body of the paper. This
-#'    will include just the essential information for the reader: dimension,
-#'    indicator, metric, definition, weighting, source, and shorthand citations.
-#'    Subject to revision.
-#'  2. Create the supplementary table with stuff for nerds: level of analysis,
-#'    indicator type, state coverage, county coverage, first year, last year, year
-#'    range, url, resolution, updates, probably others. I suppose it's just
-#'    everything else that is of any use.
-
 # Housekeeping ------------------------------------------------------------
 
 pacman::p_load(
@@ -32,7 +16,7 @@ pacman::p_load(
   here
 )
 
-pacman::p_load_current_gh(
+pacman::p_load_gh(
   "ChrisDonovan307/projecter",
   "Food-Systems-Research-Institute/SMdata"
 )
@@ -49,9 +33,12 @@ options(scipen = 9999)
 # Pull Metrics Revised and Lit Justification Excel files -----------------
 ## Set Paths ---------------------------------------------------------------
 
-root_metric_path <- "/mnt/c/Users/cdonov12/OneDrive - University of Vermont/Food Systems Research Center/Sustainability Metrics/2026 Sustainability Metrics Manuscript/Metrics/"
-og_xl_path <- paste0(root_metric_path, "secondary_metrics_revised.xlsx")
-lit_path <- paste0(root_metric_path, "literature_justifying_indicators.xlsx")
+og_xl_path <- here::here("0_prep", "input", "secondary_metrics_revised.xlsx")
+lit_path <- here::here(
+  "0_prep",
+  "input",
+  "literature_justifying_indicators.xlsx"
+)
 
 # Relative path to where we will save a copy of the secondary metrics xl locally
 new_xl_path <- here::here("1_intro", "output", "secondary_metrics.xlsx")
@@ -205,22 +192,6 @@ get_str(giant_table)
 
 
 # Save Giant Table --------------------------------------------------------
-
-# Saving to OneDrive and as RDS
-# Note that this is not a final product, just a way to reference our giant table
-
-# OneDrive as excel
-giant_table_path <- paste0(
-  root_metric_path,
-  Sys.Date(),
-  "_giant_table.xlsx"
-)
-openxlsx2::write_xlsx(
-  giant_table,
-  giant_table_path,
-  widths = c(15, "auto"),
-  na.strings = "NA"
-)
 
 # Save to outputs
 openxlsx2::write_xlsx(

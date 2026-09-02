@@ -6,3 +6,5 @@
 renv/
 .renv_restored
 site_libs/
+/paper/
+/paper_assets.zip

@@ -215,7 +215,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../2_eda/src/dp_eda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploratory</span></a>
+ <span class="menu-text">Exploratory Analysis</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -226,13 +226,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../4_correlations/src/dp_correlations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Correlations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../5_trends/src/dp_trends.html" class="sidebar-item-text sidebar-link">
+  <a href="../../4_trends/src/dp_trends.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Trends</span></a>
   </div>
 </li>
@@ -283,12 +277,8 @@ div.csl-indent {
 
 
 <div class="cell">
-<div class="code-with-filename">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-with-filename-file">
-<pre><strong>r</strong></pre>
-</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dplyr"</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"conflicted"</span>,</span>
@@ -305,7 +295,7 @@ div.csl-indent {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"htmltools"</span>,</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"reactable"</span>,</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"downloadthis"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># "reticulate",</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"reticulate"</span>,</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scico"</span>,</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SMdata"</span>,</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SMdocs"</span></span>
@@ -314,18 +304,16 @@ div.csl-indent {
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pkg <span class="cf">in</span> packages) {</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(pkg, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: is this better than pacman given renv::restore in Makefile?</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Set conflict preferences</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">conflicts_prefer</span>(</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(),</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(),</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(),</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(),</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">.quiet =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Set conflict preferences</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">conflicts_prefer</span>(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">.quiet =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
 </div>
 <section id="abstract" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="abstract"><span class="header-section-number">1</span> Abstract</h2>
@@ -336,7 +324,7 @@ div.csl-indent {
 <section id="sec-intro" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="sec-intro"><span class="header-section-number">2</span> Introduction</h2>
 <p>This section of pages presents the analysis and most of the data wrangling for a survey of available food system sustainability data in the Northeast. For details on data collection and cleaning, see the FSRI <a href="https://www.github.com/Food-Systems-Research-Institute/SMdata">SMdata repository</a>.</p>
-<p><span class="citation" data-cites="wiltshire2024RegionalFoodSystema">Wiltshire et al. (<a href="#ref-wiltshire2024RegionalFoodSystema" role="doc-biblioref">2024</a>)</span> describe the development of the Sustainability Metrics framework on which this work is based. It builds on the “three pillar” model of sustainability (economic, environment, and health) <span class="citation" data-cites="barbier1987ConceptSustainableEconomic">(<a href="#ref-barbier1987ConceptSustainableEconomic" role="doc-biblioref">Barbier 1987</a>)</span>, and adds two more dimensions: production and social. We used a set of seven criteria to collect available data relevant to the Northeast based on this foundation. Metrics used in the framework should:</p>
+<p><span class="citation" data-cites="wiltshire2024RegionalFoodSystema">(<a href="#ref-wiltshire2024RegionalFoodSystema" role="doc-biblioref"><strong>wiltshire2024RegionalFoodSystema?</strong></a>)</span> describe the development of the Sustainability Metrics framework on which this work is based. It builds on the “three pillar” model of sustainability (economic, environment, and health) <span class="citation" data-cites="barbier1987ConceptSustainableEconomic">(<a href="#ref-barbier1987ConceptSustainableEconomic" role="doc-biblioref">Barbier 1987</a>)</span>, and adds two more dimensions: production and social. We used a set of seven criteria to collect available data relevant to the Northeast based on this foundation. Metrics used in the framework should:</p>
 <ol type="1">
 <li>be representative of their indicators</li>
 <li>leverage the finest spatial scale available</li>
@@ -354,13 +342,9 @@ div.csl-indent {
 <p>This section shows dendrograms of each dimension and the available data at the county level, if any. From left to right, the graphs show the dimension, index, indicator, and secondary data metrics that are available.</p>
 <p>The code and analyses here are publicly available under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html#license-text">GPLv3 License</a>. Note that each page has a “setup” chunk at the very top that loads required packages and datasets. This is shown on this intro page, but not on the subsequent pages as they are rather repetitive. For more details, you can visit the <a href="https://www.github.com/Food-Systems-Research-Institute/SMdocs">SMdocs GitHub Repository</a> where you will find unabridged analyses and package dependencies.</p>
 <div class="cell">
-<div class="code-with-filename">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-with-filename-file">
-<pre><strong>r</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span>dp_tree <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"0_prep/output/dp_tree.rds"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">indicator =</span> <span class="fu">case_when</span>(</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(indicator, <span class="st">"inputs bought locally"</span>) <span class="sc">~</span> <span class="st">"% local inputs"</span>,</span>
@@ -376,16 +360,11 @@ div.csl-indent {
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">list</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</div>
 <section id="economics" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="economics"><span class="header-section-number">3.1</span> Economics</h3>
 <div class="cell">
-<div class="code-with-filename">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-with-filename-file">
-<pre><strong>r</strong></pre>
-</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plots<span class="sc">$</span>econ <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span><span class="fu">get_dimension_ggraph</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">framework_df =</span> tree,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include_metrics =</span> <span class="cn">TRUE</span>,</span>
@@ -401,7 +380,6 @@ div.csl-indent {
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plots<span class="sc">$</span>econ</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -414,12 +392,8 @@ div.csl-indent {
 <section id="environment" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="environment"><span class="header-section-number">3.2</span> Environment</h3>
 <div class="cell">
-<div class="code-with-filename">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-with-filename-file">
-<pre><strong>r</strong></pre>
-</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plots<span class="sc">$</span>env <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span><span class="fu">get_dimension_ggraph</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">framework_df =</span> tree,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include_metrics =</span> <span class="cn">TRUE</span>,</span>
@@ -435,7 +409,6 @@ div.csl-indent {
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plots<span class="sc">$</span>env</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -448,12 +421,8 @@ div.csl-indent {
 <section id="health" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="health"><span class="header-section-number">3.3</span> Health</h3>
 <div class="cell">
-<div class="code-with-filename">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-with-filename-file">
-<pre><strong>r</strong></pre>
-</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plots<span class="sc">$</span>health <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span><span class="fu">get_dimension_ggraph</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">framework_df =</span> tree,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include_metrics =</span> <span class="cn">TRUE</span>,</span>
@@ -469,7 +438,6 @@ div.csl-indent {
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plots<span class="sc">$</span>health</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -482,12 +450,8 @@ div.csl-indent {
 <section id="production" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="production"><span class="header-section-number">3.4</span> Production</h3>
 <div class="cell">
-<div class="code-with-filename">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-with-filename-file">
-<pre><strong>r</strong></pre>
-</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plots<span class="sc">$</span>prod <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span><span class="fu">get_dimension_ggraph</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">framework_df =</span> tree,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include_metrics =</span> <span class="cn">TRUE</span>,</span>
@@ -503,7 +467,6 @@ div.csl-indent {
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plots<span class="sc">$</span>prod</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -516,12 +479,8 @@ div.csl-indent {
 <section id="social" class="level3" data-number="3.5">
 <h3 data-number="3.5" class="anchored" data-anchor-id="social"><span class="header-section-number">3.5</span> Social</h3>
 <div class="cell">
-<div class="code-with-filename">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-with-filename-file">
-<pre><strong>r</strong></pre>
-</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plots<span class="sc">$</span>social <span class="ot">&lt;-</span> SMdocs<span class="sc">::</span><span class="fu">get_dimension_ggraph</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">framework_df =</span> tree,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include_metrics =</span> <span class="cn">TRUE</span>,</span>
@@ -537,7 +496,6 @@ div.csl-indent {
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plots<span class="sc">$</span>social</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -553,13 +511,9 @@ div.csl-indent {
 <h2 data-number="4" class="anchored" data-anchor-id="dimension-table"><span class="header-section-number">4</span> Dimension Table</h2>
 <p>Same information as above, but perhaps a bit easier to explore. Use the search bar at the top to search through all fields, or the filter fields at the top of each column for finer control.</p>
 <div class="cell">
-<div class="code-with-filename">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-with-filename-file">
-<pre><strong>r</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dp_tree <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">readRDS</span>(<span class="st">"0_prep/output/dp_tree.rds"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">metric =</span> <span class="fu">case_when</span>(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(metric, <span class="st">"NONE"</span>) <span class="sc">~</span> <span class="cn">NA</span>,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> metric</span>
@@ -567,10 +521,9 @@ div.csl-indent {
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(dimension, index, indicator, metric) <span class="sc">%&gt;%</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_reactable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-69b847ff6733cfb7ff28" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-69b847ff6733cfb7ff28">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"dimension":["Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Production","Production","Production","Production","Production","Production","Production","Production","Production","Production","Production","Production","Production","Production","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social"],"index":["Community Economy","Community Economy","Community Economy","Community Economy","Community Economy","Community Economy","Community Economy","Community Economy","Food Business Resilience","Food Business Resilience","Food Business Resilience","Food Business Resilience","Food Business Resilience","Food Business Resilience","Food Business Resilience","Carbon, GHG, and Nutrients","Carbon, GHG, and Nutrients","Carbon, GHG, and Nutrients","Carbon, GHG, and Nutrients","Carbon, GHG, and Nutrients","Forests","Forests","Forests","Soils","Soils","Soils","Species and Habitat","Species and Habitat","Species and Habitat","Species and Habitat","Water","Water","Water","Water","Education","Food Security","Food Security","Food Security","Food Security","Food Security","Mental Health","Mental Health","Mental Health","Physical Health","Physical Health","Physical Health","Physical Health","Physical Health","Physical Health","Physical Health","Physical Health","Imports vs Exports","Imports vs Exports","Product Quality","Production Diversity","Production Efficiency","Production Efficiency","Production Margins","Production Margins","Production Margins","Production Margins","Production Margins","Production Margins","Production Margins","Waste and Losses","Community Embeddedness","Community Embeddedness","Community Embeddedness","Community Embeddedness","Community Embeddedness","Community Embeddedness","Community Embeddedness","Food System Governance","Food System Governance","Food System Governance","Food System Governance","Food and Farmworker Diversity","Food and Farmworker Diversity","Food and Farmworker Diversity","Food and Farmworker Diversity","Rural Community Livability","Rural Community Livability","Rural Community Livability","Stewardship Participation","Stewardship Participation"],"indicator":["Access to Land","Business Failure Rate","Diversity of Farm Types","Local Inputs","Marketplace","Precarity Index","Wealth and Income Distribution","Wealth and Income Distribution","Farm Insurance","Income Stability","Income Stability","Income Stability","Market Health Index","Market Mix","Operations Diversification","Carbon Fluxes","Carbon Fluxes","Carbon Fluxes","Carbon Stocks","Embodied Carbon","Forest Complexity","Forest Complexity","Forest Health","Soil Biology","Soil Chemistry","Soil Structure","Biodiversity","Biodiversity","Land Use Diversity","Sensitive or Rare Habitats","Water Quality","Water Quality","Water Quantity","Water Quantity","Educational Attainment","Access to Culturally Appropriate Food","Food Access","Food Affordability","Food Agency","Food Insecurity","Access to Social Support","Happiness Index","Stress and Anxiety","Access to Care","Housing Supply and Quality","Mobility, Pain","Mobility, Pain","Nutritious Diets","Nutritious Diets","Prevalence of Diet-Related Disease","Prevalence of Diet-Related Disease","Total Quantity Exported","Total Quantity Imported","Certificates of Assurance","Crop Diversity","Inputs","Technology Adoption","Total Quantity Food Products","Total Quantity Forest Products","Total Quantity Non-Food Ag Products","Value Added Market","Yield","Yield","Yield","Crop Failure","Belonging to Community","Collective Action","Common Goals","Reciprocity","Social Connectedness","Tradition/Heritage","Trust","Community Safety","Government Transparency","Participatory Governance","Policy, Regulation, Responsiveness","Producer Age Diversity","Producer Gender Diversity","Producer Racial Diversity","Producer Sexuality","Diverse Representation","Open Spaces and Natural Beauty","Outmigration","Conservation Program","Farmer Stewardship Ethic"],"metric":["Land and Building Value per Acre","Change in Agricultural Establishments",null,null,"Consumer Price Index for food at home",null,"Average Weekly Wages","Gini Index","Total Indemnities","Expenses per Operation","Labor Expenses","Percent Change in Wages",null,"Market Channel Ratio","Sales from Agritourism and Recreation","CH4 Emissions from Agriculture","CO2 Emissions from Agriculture","N2O Emissions from Agriculture","Total Ecosystem Carbon per Acre","Fuel Expenses","Tree Size Diversity","Tree Species Diversity","Proportion of Invasive Species",null,null,null,"Rarefied Richness of Animals","Rarefied Richness of Plants","Land Use Diversity","Percentage of Ecosystems at Risk","Lake Habitat Complexity Condition","Riparian Vegetation Condition","Annual Precipitation","Weeks of Extreme Drought","High School Graduation Rate","SFAs Serving Culturally Relevant Food","Limited Access to Healthy Foods","Price of a Meal",null,"Food Insecurity Rate, Overall","Lacking Social Support",null,"Poor Mental Health Days","Proportion Uninsured","Rental Vacancy Rate","Frequent Physical Distress","Mobility Disability","Percent Low Daily Fruit Consumption","Percent Low Daily Vegetable Consumption","Diabetes Prevalence","Heart Disease Prevalence","Value of Total Agricultural Exports","Value of Top Five Imports","Proportion of Organic Operations","Crop Diversity","Fertilizer Expenses","Operations Using Precision Agriculture","Total Animal and Crop Sales","Total Receipts from Forest Products",null,"Sales from Value-Added Products","Hay Yield","Maple Yield","Milk Yield",null,null,null,null,null,"Social Isolation",null,null,"Violent Crime Rate",null,"Voter Turnout",null,"Producer Age Skew","Ratio of Female to Male Producers","Racial Diversity of Producers",null,null,null,"Annual Population Change","Acres in Conservation Easements",null]},"columns":[{"id":"dimension","name":"dimension","type":"character"},{"id":"index","name":"index","type":"character"},{"id":"indicator","name":"indicator","type":"character"},{"id":"metric","name":"metric","type":"character"}],"resizable":true,"filterable":true,"searchable":true,"defaultPageSize":10,"showPageSizeOptions":true,"onClick":"select","highlight":true,"bordered":true,"striped":true,"compact":true,"style":{"fontSize":"14px"},"dataKey":"54e2123c19c032f56d2fc72882c230b9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-72bc432296042d033c40" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-72bc432296042d033c40">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"dimension":["Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Economics","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Environment","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Health","Production","Production","Production","Production","Production","Production","Production","Production","Production","Production","Production","Production","Production","Production","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social","Social"],"index":["Community Economy","Community Economy","Community Economy","Community Economy","Community Economy","Community Economy","Community Economy","Community Economy","Food Business Resilience","Food Business Resilience","Food Business Resilience","Food Business Resilience","Food Business Resilience","Food Business Resilience","Food Business Resilience","Carbon, GHG, and Nutrients","Carbon, GHG, and Nutrients","Carbon, GHG, and Nutrients","Carbon, GHG, and Nutrients","Carbon, GHG, and Nutrients","Forests","Forests","Forests","Soils","Soils","Soils","Species and Habitat","Species and Habitat","Species and Habitat","Species and Habitat","Water","Water","Water","Water","Food Security","Food Security","Food Security","Food Security","Food Security","Mental Health","Mental Health","Mental Health","Physical Health","Physical Health","Physical Health","Physical Health","Physical Health","Physical Health","Physical Health","Physical Health","Imports vs Exports","Imports vs Exports","Product Quality","Production Diversity","Production Efficiency","Production Efficiency","Production Margins","Production Margins","Production Margins","Production Margins","Production Margins","Production Margins","Production Margins","Waste and Losses","Community Embeddedness","Community Embeddedness","Community Embeddedness","Community Embeddedness","Community Embeddedness","Community Embeddedness","Community Embeddedness","Food System Governance","Food System Governance","Food System Governance","Food System Governance","Food and Farmworker Diversity","Food and Farmworker Diversity","Food and Farmworker Diversity","Food and Farmworker Diversity","Rural Community Livability","Rural Community Livability","Rural Community Livability","Stewardship Participation","Stewardship Participation"],"indicator":["Access to Land","Business Failure Rate","Diversity of Farm Types","Local Inputs","Marketplace","Precarity Index","Wealth and Income Distribution","Wealth and Income Distribution","Farm Insurance","Income Stability","Income Stability","Income Stability","Market Health Index","Market Mix","Operations Diversification","Carbon Fluxes","Carbon Fluxes","Carbon Fluxes","Carbon Stocks","Embodied Carbon","Forest Complexity","Forest Complexity","Forest Health","Soil Biology","Soil Chemistry","Soil Structure","Biodiversity","Biodiversity","Land Use Diversity","Sensitive or Rare Habitats","Water Quality","Water Quality","Water Quantity","Water Quantity","Access to Culturally Appropriate Food","Food Access","Food Affordability","Food Agency","Food Insecurity","Access to Social Support","Happiness Index","Stress and Anxiety","Access to Care","Housing Supply and Quality","Mobility, Pain","Mobility, Pain","Nutritious Diets","Nutritious Diets","Prevalence of Diet-Related Disease","Prevalence of Diet-Related Disease","Total Quantity Exported","Total Quantity Imported","Certificates of Assurance","Crop Diversity","Inputs","Technology Adoption","Total Quantity Food Products","Total Quantity Forest Products","Total Quantity Non-Food Ag Products","Value Added Market","Yield","Yield","Yield","Crop Failure","Belonging to Community","Collective Action","Common Goals","Reciprocity","Social Connectedness","Tradition/Heritage","Trust","Community Safety","Government Transparency","Participatory Governance","Policy, Regulation, Responsiveness","Producer Age Diversity","Producer Gender Diversity","Producer Racial Diversity","Producer Sexuality","Diverse Representation","Open Spaces and Natural Beauty","Outmigration","Conservation Program","Farmer Stewardship Ethic"],"metric":["Land and Building Value per Acre","Change in Agricultural Establishments",null,null,"Consumer Price Index for food at home",null,"Average Weekly Wages","Gini Index","Total Indemnities","Expenses per Operation","Labor Expenses","Percent Change in Wages",null,"Market Channel Ratio","Sales from Agritourism and Recreation","CH4 Emissions from Agriculture","CO2 Emissions from Agriculture","N2O Emissions from Agriculture","Total Ecosystem Carbon per Acre","Fuel Expenses","Tree Size Diversity","Tree Species Diversity","Proportion of Invasive Species",null,null,null,"Rarefied Richness of Animals","Rarefied Richness of Plants","Land Use Diversity","Percentage of Ecosystems at Risk","Lake Habitat Complexity Condition","Riparian Vegetation Condition","Annual Precipitation","Weeks of Extreme Drought","SFAs Serving Culturally Relevant Food","Limited Access to Healthy Foods","Price of a Meal",null,"Food Insecurity Rate, Overall","Lacking Social Support",null,"Poor Mental Health Days","Proportion Uninsured","Rental Vacancy Rate","Frequent Physical Distress","Mobility Disability","Percent Low Daily Fruit Consumption","Percent Low Daily Vegetable Consumption","Diabetes Prevalence","Heart Disease Prevalence","Value of Total Agricultural Exports","Value of Top Five Imports","Proportion of Organic Operations","Crop Diversity","Fertilizer Expenses","Operations Using Precision Agriculture","Total Animal and Crop Sales","Total Receipts from Forest Products",null,"Sales from Value-Added Products","Hay Yield","Maple Yield","Milk Yield",null,null,null,null,null,"Social Isolation",null,null,"Violent Crime Rate",null,"Voter Turnout",null,"Producer Age Skew","Ratio of Female to Male Producers","Racial Diversity of Producers",null,null,null,"Annual Population Change","Acres in Conservation Easements",null]},"columns":[{"id":"dimension","name":"dimension","type":"character"},{"id":"index","name":"index","type":"character"},{"id":"indicator","name":"indicator","type":"character"},{"id":"metric","name":"metric","type":"character"}],"resizable":true,"filterable":true,"searchable":true,"defaultPageSize":10,"showPageSizeOptions":true,"onClick":"select","highlight":true,"bordered":true,"striped":true,"compact":true,"style":{"fontSize":"14px"},"dataKey":"5cbcadadb2a15f11a0977e8100d06b02"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
@@ -583,10 +536,7 @@ div.csl-indent {
 Barbier, Edward B. 1987. <span>“The <span>Concept</span> of <span>Sustainable Economic Development</span>.”</span> <em>Environmental Conservation</em> 14 (2): 101–10. <a href="https://doi.org/10.1017/S0376892900011449">https://doi.org/10.1017/S0376892900011449</a>.
 </div>
 <div id="ref-clancy2010LocalEnoughArguments" class="csl-entry" role="listitem">
-Clancy, Kate, and Kathryn Ruhf. 2010. <span>“Is <span>Local Enough</span>? <span>Some Arguments</span> for <span>Regional Food Systems</span>.”</span> <em>Choices</em> 25 (1). <a href="https://doi.org/10.22004/ag.econ.93827">https://doi.org/10.22004/ag.econ.93827</a>.
-</div>
-<div id="ref-wiltshire2024RegionalFoodSystema" class="csl-entry" role="listitem">
-Wiltshire, Serge, Brian Beckage, Chris Callahan, et al. 2024. <span>“Regional Food System Sustainability: <span>Using</span> Team Science to Develop an Indicator-Based Assessment Framework.”</span> <em>Journal of Agriculture, Food Systems, and Community Development</em> 14 (1): 1–24. <a href="https://doi.org/10.5304/jafscd.2024.141.011">https://doi.org/10.5304/jafscd.2024.141.011</a>.
+Clancy, Kate, and Kathryn Ruhf. 2010. <span>“Is <span>Local Enough</span>? <span>Some Arguments</span> for <span>Regional Food Systems</span>.”</span> <em>Choices</em> 25 (1). <a href="https://www.jstor.org/stable/choices.25.1.08">https://www.jstor.org/stable/choices.25.1.08</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1000,8 +950,8 @@ Wiltshire, Serge, Brian Beckage, Chris Callahan, et al. 2024. <span>“Regional 
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../2_eda/src/dp_eda.html" class="pagination-link" aria-label="Exploratory">
-        <span class="nav-page-text">Exploratory</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../2_eda/src/dp_eda.html" class="pagination-link" aria-label="Exploratory Analysis">
+        <span class="nav-page-text">Exploratory Analysis</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

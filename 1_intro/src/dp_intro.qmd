@@ -9,8 +9,8 @@ warnings: false
 engine: knitr
 execute:
   cache: false
-filters:
-    - ../../assets/show-lang.lua # relative path despite quarto yml
+# filters:
+    # - ../../assets/show-lang.lua
 ---
 
 ```{r}

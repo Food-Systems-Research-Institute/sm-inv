@@ -1,7 +1,9 @@
 indicator,year,dimension
+Income Stability,2000,Economics
 Business Failure Rate,2000,Economics
 Wealth and Income Distribution,2000,Economics
 Farm Insurance,2001,Economics
+Income Stability,2001,Economics
 Business Failure Rate,2001,Economics
 Wealth and Income Distribution,2001,Economics
 Operations Diversification,2002,Economics
@@ -9,10 +11,13 @@ Access to Land,2002,Economics
 Income Stability,2002,Economics
 Business Failure Rate,2002,Economics
 Wealth and Income Distribution,2002,Economics
+Income Stability,2003,Economics
 Business Failure Rate,2003,Economics
 Wealth and Income Distribution,2003,Economics
+Income Stability,2005,Economics
 Business Failure Rate,2005,Economics
 Wealth and Income Distribution,2005,Economics
+Income Stability,2006,Economics
 Business Failure Rate,2006,Economics
 Wealth and Income Distribution,2006,Economics
 Farm Insurance,2007,Economics
@@ -22,15 +27,19 @@ Income Stability,2007,Economics
 Business Failure Rate,2007,Economics
 Wealth and Income Distribution,2007,Economics
 Farm Insurance,2008,Economics
+Income Stability,2008,Economics
 Business Failure Rate,2008,Economics
 Wealth and Income Distribution,2008,Economics
 Farm Insurance,2009,Economics
+Income Stability,2009,Economics
 Business Failure Rate,2009,Economics
 Wealth and Income Distribution,2009,Economics
 Farm Insurance,2010,Economics
+Income Stability,2010,Economics
 Business Failure Rate,2010,Economics
 Wealth and Income Distribution,2010,Economics
 Farm Insurance,2011,Economics
+Income Stability,2011,Economics
 Business Failure Rate,2011,Economics
 Wealth and Income Distribution,2011,Economics
 Farm Insurance,2012,Economics
@@ -40,11 +49,14 @@ Income Stability,2012,Economics
 Business Failure Rate,2012,Economics
 Wealth and Income Distribution,2012,Economics
 Farm Insurance,2013,Economics
+Wealth and Income Distribution,2013,Economics
 Farm Insurance,2014,Economics
 Farm Insurance,2015,Economics
+Income Stability,2015,Economics
 Business Failure Rate,2015,Economics
 Wealth and Income Distribution,2015,Economics
 Farm Insurance,2016,Economics
+Income Stability,2016,Economics
 Business Failure Rate,2016,Economics
 Wealth and Income Distribution,2016,Economics
 Farm Insurance,2017,Economics
@@ -55,15 +67,19 @@ Income Stability,2017,Economics
 Business Failure Rate,2017,Economics
 Wealth and Income Distribution,2017,Economics
 Farm Insurance,2018,Economics
+Income Stability,2018,Economics
 Business Failure Rate,2018,Economics
 Wealth and Income Distribution,2018,Economics
 Farm Insurance,2019,Economics
+Income Stability,2019,Economics
 Business Failure Rate,2019,Economics
 Wealth and Income Distribution,2019,Economics
 Farm Insurance,2020,Economics
+Income Stability,2020,Economics
 Business Failure Rate,2020,Economics
 Wealth and Income Distribution,2020,Economics
 Farm Insurance,2021,Economics
+Income Stability,2021,Economics
 Business Failure Rate,2021,Economics
 Wealth and Income Distribution,2021,Economics
 Farm Insurance,2022,Economics
@@ -74,9 +90,11 @@ Income Stability,2022,Economics
 Business Failure Rate,2022,Economics
 Wealth and Income Distribution,2022,Economics
 Farm Insurance,2023,Economics
+Income Stability,2023,Economics
 Business Failure Rate,2023,Economics
 Wealth and Income Distribution,2023,Economics
 Farm Insurance,2024,Economics
+Income Stability,2024,Economics
 Business Failure Rate,2024,Economics
 Wealth and Income Distribution,2024,Economics
 Forest Complexity,2000,Environment
@@ -225,7 +243,6 @@ Access to Care,2013,Health
 Food Affordability,2013,Health
 Stress and Anxiety,2013,Health
 Food Access,2013,Health
-Educational Attainment,2013,Health
 Food Insecurity,2013,Health
 Prevalence of Diet-Related Disease,2013,Health
 Access to Care,2014,Health
@@ -260,7 +277,6 @@ Access to Care,2018,Health
 Food Affordability,2018,Health
 Stress and Anxiety,2018,Health
 Food Access,2018,Health
-Educational Attainment,2018,Health
 "Mobility, Pain",2018,Health
 Food Insecurity,2018,Health
 Prevalence of Diet-Related Disease,2018,Health
@@ -300,7 +316,6 @@ Access to Care,2023,Health
 Food Affordability,2023,Health
 Stress and Anxiety,2023,Health
 Food Access,2023,Health
-Educational Attainment,2023,Health
 "Mobility, Pain",2023,Health
 Food Insecurity,2023,Health
 Prevalence of Diet-Related Disease,2023,Health
@@ -498,7 +513,6 @@ Stress and Anxiety,2000,NA
 Nutritious Diets,2000,NA
 Food Access,2000,NA
 Access to Social Support,2000,NA
-Educational Attainment,2000,NA
 "Mobility, Pain",2000,NA
 Food Insecurity,2000,NA
 Prevalence of Diet-Related Disease,2000,NA
@@ -512,7 +526,6 @@ Farm Insurance,2000,NA
 Operations Diversification,2000,NA
 Market Mix,2000,NA
 Access to Land,2000,NA
-Income Stability,2000,NA
 Participatory Governance,2001,NA
 Social Connectedness,2001,NA
 Producer Gender Diversity,2001,NA
@@ -537,7 +550,6 @@ Stress and Anxiety,2001,NA
 Nutritious Diets,2001,NA
 Food Access,2001,NA
 Access to Social Support,2001,NA
-Educational Attainment,2001,NA
 "Mobility, Pain",2001,NA
 Food Insecurity,2001,NA
 Prevalence of Diet-Related Disease,2001,NA
@@ -550,7 +562,6 @@ Embodied Carbon,2001,NA
 Operations Diversification,2001,NA
 Market Mix,2001,NA
 Access to Land,2001,NA
-Income Stability,2001,NA
 Social Connectedness,2002,NA
 Producer Gender Diversity,2002,NA
 Producer Racial Diversity,2002,NA
@@ -569,7 +580,6 @@ Stress and Anxiety,2002,NA
 Nutritious Diets,2002,NA
 Food Access,2002,NA
 Access to Social Support,2002,NA
-Educational Attainment,2002,NA
 "Mobility, Pain",2002,NA
 Food Insecurity,2002,NA
 Prevalence of Diet-Related Disease,2002,NA
@@ -603,7 +613,6 @@ Stress and Anxiety,2003,NA
 Nutritious Diets,2003,NA
 Food Access,2003,NA
 Access to Social Support,2003,NA
-Educational Attainment,2003,NA
 "Mobility, Pain",2003,NA
 Food Insecurity,2003,NA
 Prevalence of Diet-Related Disease,2003,NA
@@ -617,7 +626,6 @@ Farm Insurance,2003,NA
 Operations Diversification,2003,NA
 Market Mix,2003,NA
 Access to Land,2003,NA
-Income Stability,2003,NA
 Social Connectedness,2004,NA
 Producer Gender Diversity,2004,NA
 Producer Racial Diversity,2004,NA
@@ -640,7 +648,6 @@ Stress and Anxiety,2004,NA
 Nutritious Diets,2004,NA
 Food Access,2004,NA
 Access to Social Support,2004,NA
-Educational Attainment,2004,NA
 "Mobility, Pain",2004,NA
 Food Insecurity,2004,NA
 Prevalence of Diet-Related Disease,2004,NA
@@ -680,7 +687,6 @@ Stress and Anxiety,2005,NA
 Nutritious Diets,2005,NA
 Food Access,2005,NA
 Access to Social Support,2005,NA
-Educational Attainment,2005,NA
 "Mobility, Pain",2005,NA
 Food Insecurity,2005,NA
 Prevalence of Diet-Related Disease,2005,NA
@@ -694,7 +700,6 @@ Farm Insurance,2005,NA
 Operations Diversification,2005,NA
 Market Mix,2005,NA
 Access to Land,2005,NA
-Income Stability,2005,NA
 Social Connectedness,2006,NA
 Producer Gender Diversity,2006,NA
 Producer Racial Diversity,2006,NA
@@ -717,7 +722,6 @@ Stress and Anxiety,2006,NA
 Nutritious Diets,2006,NA
 Food Access,2006,NA
 Access to Social Support,2006,NA
-Educational Attainment,2006,NA
 "Mobility, Pain",2006,NA
 Food Insecurity,2006,NA
 Prevalence of Diet-Related Disease,2006,NA
@@ -731,7 +735,6 @@ Farm Insurance,2006,NA
 Operations Diversification,2006,NA
 Market Mix,2006,NA
 Access to Land,2006,NA
-Income Stability,2006,NA
 Participatory Governance,2007,NA
 Social Connectedness,2007,NA
 Producer Gender Diversity,2007,NA
@@ -751,7 +754,6 @@ Stress and Anxiety,2007,NA
 Nutritious Diets,2007,NA
 Food Access,2007,NA
 Access to Social Support,2007,NA
-Educational Attainment,2007,NA
 "Mobility, Pain",2007,NA
 Food Insecurity,2007,NA
 Prevalence of Diet-Related Disease,2007,NA
@@ -780,7 +782,6 @@ Stress and Anxiety,2008,NA
 Nutritious Diets,2008,NA
 Food Access,2008,NA
 Access to Social Support,2008,NA
-Educational Attainment,2008,NA
 "Mobility, Pain",2008,NA
 Food Insecurity,2008,NA
 Prevalence of Diet-Related Disease,2008,NA
@@ -793,7 +794,6 @@ Embodied Carbon,2008,NA
 Operations Diversification,2008,NA
 Market Mix,2008,NA
 Access to Land,2008,NA
-Income Stability,2008,NA
 Participatory Governance,2009,NA
 Social Connectedness,2009,NA
 Producer Gender Diversity,2009,NA
@@ -814,7 +814,6 @@ Stress and Anxiety,2009,NA
 Nutritious Diets,2009,NA
 Food Access,2009,NA
 Access to Social Support,2009,NA
-Educational Attainment,2009,NA
 "Mobility, Pain",2009,NA
 Prevalence of Diet-Related Disease,2009,NA
 Carbon Stocks,2009,NA
@@ -826,7 +825,6 @@ Embodied Carbon,2009,NA
 Operations Diversification,2009,NA
 Market Mix,2009,NA
 Access to Land,2009,NA
-Income Stability,2009,NA
 Social Connectedness,2010,NA
 Producer Gender Diversity,2010,NA
 Producer Racial Diversity,2010,NA
@@ -845,7 +843,6 @@ Access to Care,2010,NA
 Nutritious Diets,2010,NA
 Food Access,2010,NA
 Access to Social Support,2010,NA
-Educational Attainment,2010,NA
 "Mobility, Pain",2010,NA
 Prevalence of Diet-Related Disease,2010,NA
 Carbon Stocks,2010,NA
@@ -857,7 +854,6 @@ Embodied Carbon,2010,NA
 Operations Diversification,2010,NA
 Market Mix,2010,NA
 Access to Land,2010,NA
-Income Stability,2010,NA
 Participatory Governance,2011,NA
 Social Connectedness,2011,NA
 Producer Gender Diversity,2011,NA
@@ -877,7 +873,6 @@ Access to Care,2011,NA
 Nutritious Diets,2011,NA
 Food Access,2011,NA
 Access to Social Support,2011,NA
-Educational Attainment,2011,NA
 "Mobility, Pain",2011,NA
 Carbon Stocks,2011,NA
 Biodiversity,2011,NA
@@ -888,7 +883,6 @@ Embodied Carbon,2011,NA
 Operations Diversification,2011,NA
 Market Mix,2011,NA
 Access to Land,2011,NA
-Income Stability,2011,NA
 Social Connectedness,2012,NA
 Producer Gender Diversity,2012,NA
 Producer Racial Diversity,2012,NA
@@ -900,7 +894,6 @@ Access to Culturally Appropriate Food,2012,NA
 Housing Supply and Quality,2012,NA
 Nutritious Diets,2012,NA
 Access to Social Support,2012,NA
-Educational Attainment,2012,NA
 "Mobility, Pain",2012,NA
 Carbon Stocks,2012,NA
 Biodiversity,2012,NA
@@ -934,7 +927,6 @@ Market Mix,2013,NA
 Access to Land,2013,NA
 Income Stability,2013,NA
 Business Failure Rate,2013,NA
-Wealth and Income Distribution,2013,NA
 Social Connectedness,2014,NA
 Producer Gender Diversity,2014,NA
 Producer Racial Diversity,2014,NA
@@ -950,7 +942,6 @@ Access to Culturally Appropriate Food,2014,NA
 Housing Supply and Quality,2014,NA
 Nutritious Diets,2014,NA
 Access to Social Support,2014,NA
-Educational Attainment,2014,NA
 "Mobility, Pain",2014,NA
 Carbon Stocks,2014,NA
 Biodiversity,2014,NA
@@ -981,7 +972,6 @@ Access to Culturally Appropriate Food,2015,NA
 Housing Supply and Quality,2015,NA
 Nutritious Diets,2015,NA
 Access to Social Support,2015,NA
-Educational Attainment,2015,NA
 "Mobility, Pain",2015,NA
 Carbon Stocks,2015,NA
 Biodiversity,2015,NA
@@ -991,7 +981,6 @@ Embodied Carbon,2015,NA
 Operations Diversification,2015,NA
 Market Mix,2015,NA
 Access to Land,2015,NA
-Income Stability,2015,NA
 Social Connectedness,2016,NA
 Producer Gender Diversity,2016,NA
 Producer Racial Diversity,2016,NA
@@ -1007,7 +996,6 @@ Access to Culturally Appropriate Food,2016,NA
 Housing Supply and Quality,2016,NA
 Nutritious Diets,2016,NA
 Access to Social Support,2016,NA
-Educational Attainment,2016,NA
 Carbon Stocks,2016,NA
 Biodiversity,2016,NA
 Sensitive or Rare Habitats,2016,NA
@@ -1016,7 +1004,6 @@ Embodied Carbon,2016,NA
 Operations Diversification,2016,NA
 Market Mix,2016,NA
 Access to Land,2016,NA
-Income Stability,2016,NA
 Participatory Governance,2017,NA
 Social Connectedness,2017,NA
 Total Quantity Imported,2017,NA
@@ -1024,7 +1011,6 @@ Technology Adoption,2017,NA
 Access to Culturally Appropriate Food,2017,NA
 Housing Supply and Quality,2017,NA
 Access to Social Support,2017,NA
-Educational Attainment,2017,NA
 Carbon Stocks,2017,NA
 Biodiversity,2017,NA
 Sensitive or Rare Habitats,2017,NA
@@ -1049,7 +1035,6 @@ Embodied Carbon,2018,NA
 Operations Diversification,2018,NA
 Market Mix,2018,NA
 Access to Land,2018,NA
-Income Stability,2018,NA
 Participatory Governance,2019,NA
 Social Connectedness,2019,NA
 Producer Gender Diversity,2019,NA
@@ -1064,7 +1049,6 @@ Inputs,2019,NA
 Access to Culturally Appropriate Food,2019,NA
 Housing Supply and Quality,2019,NA
 Access to Social Support,2019,NA
-Educational Attainment,2019,NA
 Carbon Stocks,2019,NA
 Sensitive or Rare Habitats,2019,NA
 Water Quality,2019,NA
@@ -1072,7 +1056,6 @@ Embodied Carbon,2019,NA
 Operations Diversification,2019,NA
 Market Mix,2019,NA
 Access to Land,2019,NA
-Income Stability,2019,NA
 Social Connectedness,2020,NA
 Producer Gender Diversity,2020,NA
 Producer Racial Diversity,2020,NA
@@ -1087,14 +1070,12 @@ Access to Culturally Appropriate Food,2020,NA
 Housing Supply and Quality,2020,NA
 Nutritious Diets,2020,NA
 Access to Social Support,2020,NA
-Educational Attainment,2020,NA
 Sensitive or Rare Habitats,2020,NA
 Water Quality,2020,NA
 Embodied Carbon,2020,NA
 Operations Diversification,2020,NA
 Market Mix,2020,NA
 Access to Land,2020,NA
-Income Stability,2020,NA
 Participatory Governance,2021,NA
 Social Connectedness,2021,NA
 Producer Gender Diversity,2021,NA
@@ -1109,7 +1090,6 @@ Inputs,2021,NA
 Access to Culturally Appropriate Food,2021,NA
 Housing Supply and Quality,2021,NA
 Access to Social Support,2021,NA
-Educational Attainment,2021,NA
 Carbon Stocks,2021,NA
 Sensitive or Rare Habitats,2021,NA
 Water Quality,2021,NA
@@ -1117,13 +1097,11 @@ Embodied Carbon,2021,NA
 Operations Diversification,2021,NA
 Market Mix,2021,NA
 Access to Land,2021,NA
-Income Stability,2021,NA
 Social Connectedness,2022,NA
 Access to Culturally Appropriate Food,2022,NA
 Housing Supply and Quality,2022,NA
 Nutritious Diets,2022,NA
 Access to Social Support,2022,NA
-Educational Attainment,2022,NA
 Carbon Stocks,2022,NA
 Participatory Governance,2023,NA
 Community Safety,2023,NA
@@ -1147,7 +1125,6 @@ Carbon Fluxes,2023,NA
 Operations Diversification,2023,NA
 Market Mix,2023,NA
 Access to Land,2023,NA
-Income Stability,2023,NA
 Community Safety,2024,NA
 Producer Gender Diversity,2024,NA
 Producer Racial Diversity,2024,NA
@@ -1163,7 +1140,6 @@ Access to Culturally Appropriate Food,2024,NA
 Housing Supply and Quality,2024,NA
 Food Affordability,2024,NA
 Nutritious Diets,2024,NA
-Educational Attainment,2024,NA
 Food Insecurity,2024,NA
 Carbon Stocks,2024,NA
 Sensitive or Rare Habitats,2024,NA
@@ -1173,4 +1149,3 @@ Carbon Fluxes,2024,NA
 Operations Diversification,2024,NA
 Market Mix,2024,NA
 Access to Land,2024,NA
-Income Stability,2024,NA

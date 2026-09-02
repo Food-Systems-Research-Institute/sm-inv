@@ -41,7 +41,7 @@ pacman::p_load(
 )
 
 # GitHub packages
-pacman::p_load_current_gh(
+pacman::p_load_gh(
   'Food-Systems-Research-Institute/SMdata',
   'Food-Systems-Research-Institute/SMdocs'
 )
@@ -89,8 +89,6 @@ Proportion of indicator coverage by dimension:
 
 ```{r}
 #| label: indicator_coverage_by_dimension
-get_str(dp_meta)
-
 # n indicators
 dp_meta %>% 
   pull(indicator) %>% 
@@ -220,10 +218,6 @@ latex_tab %>%
 tab %>% 
   get_reactable()
 ```
-
-Looks like all Economics and Health indicators had a secondary metric to represent them. Environment and Production were missing a few, and Social is missing 60%.
-
-How many metrics are at the state level vs county level? Note that we are prioritizing county and only counting state if they are not available at the county level.
 
 ```{r}
 dat <- dp_meta %>% 

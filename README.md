@@ -28,7 +28,7 @@ To clear results and outputs, use:
 make clean
 ```
 
-Note that `5_trends` will take ~20 minutes to run. To avoid having to re-run this, we are using Quarto's freeze feature, which caches outputs in `_freeze/`. Cells will only re-run when code has changed. `make clean` will erase this as is expected to ensure that you get a clean, reproducible run. If you'd rather not lose this cache, but you do want to erase outputs in task folders, you can use `make mostlyclean` instead. This repo is shipped with the freeze cache intact for convenience, so remember to use `make clean` first to erase it.
+Note that `4_trends` will take a few minutes. To avoid having to re-run this, we are using Quarto's freeze feature, which caches outputs in `_freeze/`. Cells will only re-run when code has changed. `make clean` will erase this as is expected to ensure that you get a clean, reproducible run. If you'd rather not lose this cache, but you do want to erase outputs in task folders, you can use `make mostlyclean` instead. This repo is shipped with the freeze cache intact for convenience, so remember to use `make clean` first to erase it.
 
 To build the Quarto site:
 
@@ -37,6 +37,13 @@ make site
 ```
 
 This renders to `_site/`. Note that rendering will used cached results where possible.
+
+To produce manuscript outputs:
+
+```sh
+make paper
+```
+
 
 ## Structure
 
@@ -63,3 +70,7 @@ Other files and folders in root:
     - Although there is so much in SMdocs maybe it isn't worth it. Also have `dp_tree` coming from there
 - Many wrangling functions are coming from `SMdata`
 - Note that we need to update our `SM_Data_Survey.bib`
+
+## Notes and Issues
+
+- Dropping `4_correlations/`

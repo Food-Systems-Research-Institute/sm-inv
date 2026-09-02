@@ -2,7 +2,11 @@
 
 .PHONY: all clean
 
-# Pulls Excel from OneDrive, builds dp_* objects used throughout
+# Reads the two source Excel files in input/, builds dp_* objects used throughout
+INPUTS = \
+	input/secondary_metrics_revised.xlsx \
+	input/literature_justifying_indicators.xlsx
+
 OUTPUTS = \
     output/dp_tree.rds \
     output/giant_table.xlsx \
@@ -18,7 +22,7 @@ OUTPUTS = \
 
 all: $(OUTPUTS)
 
-$(OUTPUTS) &: src/excel_processing.R ../.renv_restored
+$(OUTPUTS) &: src/excel_processing.R $(INPUTS) ../.renv_restored
 	Rscript src/excel_processing.R
 
 ../.renv_restored: ../renv.lock
