@@ -66,7 +66,8 @@ get_str(giant_tab)
 
 
 # Pull from bibtex file to convert shorthand citations in appendix table
-bib_file <- ReadBib(here::here("assets", "SM_Data_Survey.bib"))
+# bib_file <- ReadBib(here::here("assets", "SM_Data_Survey.bib"))
+bib_file <- ReadBib(here::here("assets", "sm_data_survey_full.bib"))
 bib <- imap(bib_file, ~ {
   if (length(.x$author) > 2) {
     label <- paste0(.x$author$family[[1]], " et al. (", .x$year, ")")
@@ -136,17 +137,25 @@ keys <- keys %>%
   )
 keys$citations %>% head()
 
-# Join keys back to giant_tab
+# Join keys back to giant_tab. Collapse the unnested citation rows back down to
+# one row per original row first, otherwise metrics with multiple citations get
+# duplicated.
 get_str(giant_tab)
 get_str(keys)
 
-giant_tab$citations <- keys$citations
+giant_tab <- giant_tab %>%
+  select(-citations, -label, -key) %>%
+  distinct(row_id, .keep_all = TRUE) %>%
+  left_join(
+    keys %>% rename(latex_citation = citations),
+    by = "row_id"
+  )
 get_str(giant_tab)
 
 
 ## Wrangle table --------------------------------------------------
 
-trend_files <- dir("output/trend_plots")
+trend_files <- dir("5_trends/output/trend_plots")
 trend_file_vars <- trend_files %>%
   str_remove_all("fig_trend_") %>%
   str_remove_all("\\.png")
@@ -165,11 +174,11 @@ body_table <- giant_tab %>%
     weighting,
     source,
     variable_name, # use this to link to trend graph, then drop
-    citations
+    citations = latex_citation
   ) %>%
   mutate(
     # Wrap dimension in rotatebox
-    dimension = paste0("\\rotatebox[origin=c]{90}{", dimension, "}"),
+    dimension = paste0("\\rotatebox[origin=c]{90}{\\textbf{", dimension, "}}"),
     # Paste together mean and sd into one col
     across(c(mean, sd), ~ round(.x, 2)),
     mean_sd = case_when(
@@ -211,11 +220,8 @@ body_table <- giant_tab %>%
       str_replace_all("none", "None") %>%
       str_replace_all("Gdp", "GDP") %>%
       str_replace_all("Of", "of"),
-
-    # Put scale (resolution) into title case
-    scale = str_to_title(scale),
-    citations =
-    ) %>%
+    scale = str_to_title(scale)
+  ) %>%
   # Final order of columns
   select(
     dimension,
@@ -227,17 +233,21 @@ body_table <- giant_tab %>%
     scale,
     trend,
     weighting,
-    source
+    source,
+    citations
   ) %>%
   # Format headers
   setNames(c(names(.) %>% snakecase::to_title_case())) %>%
-  rename("Metric Definition" = Definition) %>%
+  rename("Metric Definition" = "Definition") %>%
   rename("$\\mu (\\sigma)$" = "Mean Sd") %>%
   # Missing cells should all be \textemdash
   mutate(across(everything(), ~ case_when(
     .x %in% c("NONE", "None", "none") | is.na(.x) ~ "\\textemdash",
     .default = .x
   )))
+
+# Remove Dimension header
+names(body_table)[1] <- ""
 
 get_str(body_table)
 body_table$Trend
@@ -276,7 +286,7 @@ body %>%
 header <- "\\begin{landscape}
 \\scriptsize
 \\begin{longtblr}[
-  placement = htbp,
+  % placement = htbp, % NOTE: cannot float
   caption = Metric Attributes and Data Sources,
   label = {tab:tab_metrics_body},
   remark{Note} = {
@@ -291,8 +301,7 @@ header <- "\\begin{landscape}
     ACS-5 and interpolated linearly between data points.
   }
 ]{
-  % colspec={Q[50] Q[200] Q[200] Q[200]}, % Column widths,
-  % Dimension cell merges
+  % Dimension cell merges. Edit these manually once settled
   cell{2}{1}={r=8}{l},
   cell{10}{1}={r=7}{l}, % econ to env (but clean, next is env)
   cell{17}{1}={r=7}{l},
@@ -327,13 +336,14 @@ header <- "\\begin{landscape}
   column{1}={wd=0.5cm}, % dimension (narrow, vertical)
   column{2}={wd=1.75cm}, % indicator
   column{3}={wd=2cm}, % metric
-  column{4}={wd=4cm}, % definition
+  column{4}={wd=3cm}, % definition
   column{5}={wd=1.75cm}, % mean, sd
   column{6}={wd=1.5cm}, % units
   column{7}={wd=1.25cm}, % scale
   column{8}={wd=1.25cm}, % trend
   column{9}={wd=1.75cm}, % weighting
-  column{10}={wd=3cm}, % source
+  column{10}={wd=2.5cm}, % source
+  column{11}={wd=2.5cm}, % citations
   vlines,
   % hline{1,2,Z}={solid} % for only header and footer
   hlines, % all horizontal lines
@@ -347,7 +357,7 @@ body_out <- paste0(header, body, footer)
 cat(body_out)
 
 # Save this to latex file
-writeLines(body_out, "output/tab_metrics_body.tex")
+writeLines(body_out, "5_trends/output/tab_metrics_body.tex")
 
 
 # Appendix Table ----------------------------------------------------------
