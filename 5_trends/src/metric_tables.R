@@ -486,6 +486,8 @@ get_str(keys)
 app_table$Citations <- keys$Citations
 get_str(app_table)
 
+# NOTE: removing citations for now. They might come back.
+app_table <- select(app_table, -Citations)
 
 
 ## Latex -------------------------------------------------------------------
@@ -524,8 +526,7 @@ app_header <- "\\begin{landscape}
   number of each that the metric is available for, out of a total of 9 states
   and 209 counties in the Northeast, not including Connecticut. Years describes
   the total number of years represented by each metric, and Range describes the
-  difference between the first and last year available. The Citations column
-  includes literature supporting the value of the indicator.}
+  difference between the first and last year available.}
 ]{
   rowhead = 1,
   row{1} = {font=\\bfseries},
@@ -534,7 +535,6 @@ app_header <- "\\begin{landscape}
   column{1-3}={wd=2cm}, % indicator, metric, updates
   column{4}={wd=1.5cm}, % Desirable
   column{5-8}={wd=1.75cm}, % States, counties, years, range
-  column{9}={wd=3.25cm}, % Citations
   vlines,
   % hline{1,2,Z}={solid} % for only header and footer
   hlines, % all horizontal lines
@@ -549,4 +549,4 @@ app_body_out <- paste0(app_header, app_body, app_footer)
 cat(app_body_out)
 
 # Save this to latex file
-writeLines(app_body_out, "output/tab_metrics_appendix.tex")
+writeLines(app_body_out, "5_trends/output/tab_metrics_appendix.tex")

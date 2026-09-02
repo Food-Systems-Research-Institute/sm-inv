@@ -14,7 +14,6 @@
 #'    range, url, resolution, updates, probably others. I suppose it's just
 #'    everything else that is of any use.
 
-
 # Housekeeping ------------------------------------------------------------
 
 pacman::p_load(
@@ -79,8 +78,10 @@ get_str(combined_df)
 existing_metrics <- SMdata::metrics %>%
   filter(variable_name %in% combined_df$variable_name) %>%
   SMdata::filter_fips("neast") %>%
-  bind_rows(SMdata::metrics %>%
-    filter(variable_name == "cpi"))
+  bind_rows(
+    SMdata::metrics %>%
+      filter(variable_name == "cpi")
+  )
 get_str(existing_metrics)
 
 
@@ -128,7 +129,10 @@ if (lit_ind_count != df_ind_count) {
   warning(
     paste(
       "There should be the same number of indicators in the lit xl and the summary table",
-      "The lit XL has", lit_ind_count, "and the summary table has", df_ind_count
+      "The lit XL has",
+      lit_ind_count,
+      "and the summary table has",
+      df_ind_count
     )
   )
 }
@@ -149,18 +153,23 @@ get_str(giant_table)
 # Simplify resolution into only county or state.
 (all_res <- giant_table$resolution %>% unique())
 giant_table <- giant_table %>%
-  mutate(resolution = case_when(
-    resolution %in% c("system", "state") ~ "state",
-    resolution %in% c("county", "30m", "4km") ~ "county",
-    .default = NA
-  ))
+  mutate(
+    resolution = case_when(
+      resolution %in% c("system", "state") ~ "state",
+      resolution %in% c("county", "30m", "4km") ~ "county",
+      .default = NA
+    )
+  )
 get_str(giant_table)
 
 # Get mean and standard deviation depending on the resolution of metric
 get_str(existing_metrics)
 county_stats <- existing_metrics %>%
   SMdata::filter_fips("counties") %>%
-  filter(variable_name %in% giant_table$variable_name[giant_table$resolution == "county"]) %>%
+  filter(
+    variable_name %in%
+      giant_table$variable_name[giant_table$resolution == "county"]
+  ) %>%
   mutate(value = as.numeric(value)) %>%
   group_by(variable_name) %>%
   summarize(
@@ -172,7 +181,10 @@ county_stats
 
 state_stats <- existing_metrics %>%
   SMdata::filter_fips("states") %>%
-  filter(variable_name %in% giant_table$variable_name[giant_table$resolution == "state"]) %>%
+  filter(
+    variable_name %in%
+      giant_table$variable_name[giant_table$resolution == "state"]
+  ) %>%
   mutate(value = as.numeric(value)) %>%
   group_by(variable_name) %>%
   summarize(
@@ -273,7 +285,10 @@ county_vars <- dp_meta %>%
 dp_metrics_county <- dp_metrics %>%
   filter(variable_name %in% county_vars) %>%
   SMdata::filter_fips("counties")
-saveRDS(dp_metrics_county, here::here("0_prep", "output", "dp_metrics_county.rds"))
+saveRDS(
+  dp_metrics_county,
+  here::here("0_prep", "output", "dp_metrics_county.rds")
+)
 
 
 ## dp_metrics_state ----
@@ -288,16 +303,21 @@ dp_metrics_state <- dp_metrics %>%
 cpi <- dp_metrics %>%
   filter(variable_name == "cpi")
 dp_metrics_state <- bind_rows(dp_metrics_state, cpi)
-saveRDS(dp_metrics_state, here::here("0_prep", "output", "dp_metrics_state.rds"))
+saveRDS(
+  dp_metrics_state,
+  here::here("0_prep", "output", "dp_metrics_state.rds")
+)
 
 
 ## dp_metrics_county_wide ----
 # Pivot wider for transformations, then alphabetize columns
 dp_metrics_county_wide <- dp_metrics_county %>%
   # Remove one weird doubled up value
-  filter(!(
-    fips == "42" & year == 2022 & variable_name == "hayYieldMeasuredInTonsAcre"
-  )) %>%
+  filter(
+    !(fips == "42" &
+      year == 2022 &
+      variable_name == "hayYieldMeasuredInTonsAcre")
+  ) %>%
   pivot_wider(
     id_cols = c(fips, year),
     values_from = "value",
@@ -331,16 +351,22 @@ cpi_2024 <- cpi$cpi[cpi$year == "2024"]
 
 # Adjust columns that are in USD
 dfs <- list(dp_metrics_county, dp_metrics_state)
-adj_dfs <- map(dfs, ~ {
-  .x %>%
-    left_join(cpi, by = join_by(year)) %>%
-    mutate(value = case_when(
-      variable_name %in% usd_metrics$variable_name ~ value * (cpi_2024 / cpi),
-      !variable_name %in% usd_metrics$variable_name ~ value,
-      .default = NA
-    )) %>%
-    select(-cpi)
-}) %>%
+adj_dfs <- map(
+  dfs,
+  ~ {
+    .x %>%
+      left_join(cpi, by = join_by(year)) %>%
+      mutate(
+        value = case_when(
+          variable_name %in% usd_metrics$variable_name ~ value *
+            (cpi_2024 / cpi),
+          !variable_name %in% usd_metrics$variable_name ~ value,
+          .default = NA
+        )
+      ) %>%
+      select(-cpi)
+  }
+) %>%
   setNames(c("county", "state"))
 get_str(adj_dfs, 3)
 
@@ -348,8 +374,14 @@ get_str(adj_dfs, 3)
 
 ## dp_metrics_county_adj ----
 dp_metrics_county_adj <- adj_dfs$county
-saveRDS(dp_metrics_county_adj, here::here("0_prep", "output", "dp_metrics_county_adj.rds"))
+saveRDS(
+  dp_metrics_county_adj,
+  here::here("0_prep", "output", "dp_metrics_county_adj.rds")
+)
 
 ## dp_metrics_state_adj ----
 dp_metrics_state_adj <- adj_dfs$state
-saveRDS(dp_metrics_state_adj, here::here("0_prep", "output", "dp_metrics_state_adj.rds"))
+saveRDS(
+  dp_metrics_state_adj,
+  here::here("0_prep", "output", "dp_metrics_state_adj.rds")
+)

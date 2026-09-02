@@ -77,7 +77,7 @@ Indicators without any metrics:
 
 ```{r}
 dp_meta %>% 
-  filter(is.na(variable_name)) %>% 
+  filter(variable_name == 'NONE') %>% 
   select(dimension, indicator) %>% 
   unique() %>% 
   get_reactable()
@@ -89,79 +89,129 @@ Proportion of indicator coverage by dimension:
 
 ```{r}
 #| label: indicator_coverage_by_dimension
+get_str(dp_meta)
+
+# n indicators
+dp_meta %>% 
+  pull(indicator) %>% 
+  unique() %>% 
+  length()
+# 70
+
+# How many metrics?
+dp_meta %>% 
+  filter(metric != "NONE", variable_name != "NONE") %>% 
+  nrow()
+# 61
+
 # Dimensions, indicators, metrics, and indicator representation
 tab <- dp_meta %>% 
   group_by(dimension, indicator) %>% 
   summarize(
-    has_metric = any(!is.na(variable_name)),
-    n_metrics = sum(metric != 'NONE'),
+    has_metric = any(!is.na(variable_name) & variable_name != 'NONE'),
+    n_metrics = sum(metric != 'NONE', na.rm = TRUE),
     .groups = 'drop_last'
   ) %>% 
   summarize(
     indicators = n(),
-    perc_rep_ind = sum(has_metric) / indicators * 100,
+    n_rep_ind = sum(has_metric),
+    perc_rep_ind = n_rep_ind / indicators * 100,
     metrics = sum(n_metrics),
-    rep_ind = sum(has_metric),
     .groups = "drop"
   ) 
 tab
 
-# County metrics
-county_metrics <- dp_metrics_county %>% 
-  select(variable_name) %>% 
-  distinct()
-dim(county_metrics)
-county_col <- dp_meta %>% 
-  select(dimension, variable_name) %>% 
-  right_join(county_metrics) %>% 
-  group_by(dimension) %>% 
-  summarize(`County Scale` = n())
-tab <- tab %>% 
-  inner_join(county_col)
+# Find vars with 2+ years
+multi_year_vars <- function(df) {
+  df %>%
+    filter(!is.na(year)) %>%
+    group_by(variable_name, fips) %>%
+    summarize(n_years = n_distinct(year), .groups = 'drop') %>%
+    group_by(variable_name) %>%
+    summarize(max_years = max(n_years), .groups = 'drop') %>%
+    filter(max_years >= 2) %>%
+    pull(variable_name)
+}
+
+county_vars <- dp_metrics_county %>% 
+  distinct(variable_name) %>% 
+  pull()
+multiyear_vars <- multi_year_vars(dp_metrics)
+county_multiyear_vars <- multi_year_vars(dp_metrics_county)
+
+# Add more cols
+extra_cols <- dp_meta %>%
+  filter(metric != 'NONE', variable_name != 'NONE') %>%
+  distinct(dimension, variable_name) %>%
+  group_by(dimension) %>%
+  summarize(
+    `County Metrics` = sum(variable_name %in% county_vars),
+    `Multi-Year Metrics` = sum(variable_name %in% multiyear_vars),
+    `Trend Metrics` = sum(variable_name %in% county_multiyear_vars),
+    .groups = 'drop'
+  )
+extra_cols
+
+tab <- tab %>%
+  left_join(extra_cols, by = 'dimension')
+tab
 
 # Add row of totals
-totals <- tab %>% 
-  summarize(across(c(indicators:metrics, `County Scale`), base::sum))
+totals <- tab %>%
+  summarize(across(
+    c(indicators, n_rep_ind, metrics,
+      `County Metrics`, `Multi-Year Metrics`, `Trend Metrics`),
+    base::sum
+  ))
 totals
 
 str(tab)
-latex_tab <- tab %>% 
+latex_tab <- tab %>%
+  # Row of totals. re-weight for percentages
   add_row(
-    'dimension' = 'Total',
-    'indicators' = as.double(totals[1, 'indicators']),
-    'metrics' = as.double(totals[1, 'metrics']),
-    'perc_rep_ind' = sum(.[['rep_ind']]) / sum(.[['indicators']]) * 100,
-    'County Scale' = as.double(totals[1, 'County Scale'])
-  ) %>% 
-  select(-rep_ind) %>% 
-  setNames(c(
-    names(.) %>% 
-      str_to_title() %>% 
-      str_replace('Perc_rep_ind', 'Representation (\\\\%)')
-  ))
+    dimension = 'Total',
+    indicators = totals$indicators,
+    n_rep_ind = totals$n_rep_ind,
+    perc_rep_ind = totals$n_rep_ind / totals$indicators * 100,
+    metrics = totals$metrics,
+    `County Metrics` = totals$`County Metrics`,
+    `Multi-Year Metrics` = totals$`Multi-Year Metrics`,
+    `Trend Metrics` = totals$`Trend Metrics`
+  ) %>%
+  mutate(
+    represented = paste0(n_rep_ind, ' (', round(perc_rep_ind), '\\%)')
+  ) %>%
+  select(
+    dimension, indicators, represented, metrics,
+    `County Metrics`, `Multi-Year Metrics`, `Trend Metrics`
+  )
 latex_tab
 
 # Save to latex
-latex_tab %>% 
+latex_tab %>%
   kbl(
     format = 'latex',
     caption = 'Indicators and metrics by dimension.',
     label = 'tab_metric_breakdown',
     booktabs = TRUE,
     escape = FALSE,
-    digits = 1
-  ) %>% 
+    digits = 1,
+    col.names = c('Dimension', 'N', 'Represented', 'N', 'County', 'Trend', 'County Trend')
+  ) %>%
   kable_styling(
     font_size = 10
-  ) %>% 
+  ) %>%
+  add_header_above(
+    c(' ' = 1, 'Indicator' = 2, 'Metric' = 4)
+  ) %>%
   footnote(
     general_title = "",
-    general = 
-      '\\\\textit{Note:} Representation is the percentage of indicators that are represented by at least one metric in the available data. The County Scale column shows metrics that are available at or below the county level and included in correlation and regression analyses.',
+    general =
+      '\\\\textit{Note:} Representation is the percentage of indicators represented by at least one metric. County metrics are available at or below the county level. Trend metrics have at least two time points for at least one state or county; County Trend metrics meet both requirements for trend analyses.',
     threeparttable = TRUE,
     escape = FALSE
-  ) %>% 
-  row_spec(6, bold = TRUE) %>% 
+  ) %>%
+  row_spec(nrow(latex_tab), bold = TRUE) %>%
   save_kable(
     file = '3_coverage/output/tab_metric_breakdown.tex'
   )
