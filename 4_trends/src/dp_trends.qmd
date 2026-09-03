@@ -193,8 +193,8 @@ series_vars <- map(vars, ~ {
   keep(~ !is.null(.x)) %>%
   unlist()
 
-dir.create('5_trends/output/trend_plots', recursive = TRUE, showWarnings = FALSE)
-saveRDS(series_vars, '5_trends/output/series_vars.rds')
+dir.create('4_trends/output/trend_plots', recursive = TRUE, showWarnings = FALSE)
+saveRDS(series_vars, '4_trends/output/series_vars.rds')
 ```
 
 Now we plot each graph individually and arrange them together:
@@ -253,7 +253,7 @@ state_series_vars <- map(vars, ~ {
 }) %>% 
   keep(~ !is.null(.x)) %>%
   unlist()
-saveRDS(state_series_vars, '5_trends/output/state_series_vars.rds')
+saveRDS(state_series_vars, '4_trends/output/state_series_vars.rds')
 
 plots <- map(state_series_vars, ~ {
   df <- dp_metrics_state_adj %>%
@@ -345,7 +345,7 @@ system_plots <- SMdata::metrics %>%
 # Save them all to outputs with variable names
 iwalk(c(county_plots, state_plots, system_plots), \(plot, var) {
   ggsave(
-    filename = paste0('5_trends/output/trend_plots/fig_trend_', var, '.png'),
+    filename = paste0('4_trends/output/trend_plots/fig_trend_', var, '.png'),
     plot = plot,
     width = 1.5,
     height = 1.5,
@@ -376,8 +376,8 @@ dp_metrics_county_adj_normed <- map(vars, ~ {
   list_rbind()
 str(dp_metrics_county_adj_normed)  
 
-dir.create('5_trends/output/', recursive = TRUE, showWarnings = FALSE)
-saveRDS(dp_metrics_county_adj_normed, '5_trends/output/dp_metrics_county_adj_normed.rds')
+dir.create('4_trends/output/', recursive = TRUE, showWarnings = FALSE)
+saveRDS(dp_metrics_county_adj_normed, '4_trends/output/dp_metrics_county_adj_normed.rds')
 ```
 
 Create a weights crosswalk that links `variable_name`s to weighting variables.
@@ -456,12 +456,12 @@ We run this portion of the code in parallel because it has a pretty long run tim
 
 # Slow. Run only when the saved models are missing
 # or older than the step-0 input, else load. Delete .rds to force rerun
-sar_path <- '5_trends/output/errorsarlm_outs.rds'
+sar_path <- '4_trends/output/errorsarlm_outs.rds'
 in_path  <- here::here('0_prep', 'output', 'dp_metrics_county_adj.rds')
 stale <- !file.exists(sar_path) || file.mtime(sar_path) < file.mtime(in_path)
 
 if (stale) {
-  dir.create('5_trends/output', recursive = TRUE, showWarnings = FALSE)
+  dir.create('4_trends/output', recursive = TRUE, showWarnings = FALSE)
 
   state_link <- SMdata::fips_key %>%
     filter(str_length(fips) == 2, fips != '00') %>%
@@ -833,7 +833,7 @@ latex_df %>%
     escape = FALSE
   ) %>% 
   save_kable(
-    file = '5_trends/output/tab_errorsarlm.tex'
+    file = '4_trends/output/tab_errorsarlm.tex'
   )
 ```
 
@@ -852,7 +852,7 @@ errorsar_figure <- pct_change_graph(
 )
 
 ggsave(
-  '5_trends/output/fig_errorsarlm.png',
+  '4_trends/output/fig_errorsarlm.png',
   plot = errorsar_figure,
   width = 8.5,
   height = 6,
