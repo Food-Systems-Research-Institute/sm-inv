@@ -7,5 +7,3 @@ renv/
 .renv_restored
 site_libs/
 /_site/
-/paper/
-/paper_assets.zip
