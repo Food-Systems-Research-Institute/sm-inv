@@ -56,6 +56,9 @@ conflicts_prefer(
   .quiet = TRUE
 )
 
+devtools::load_all()
+magic <- list()
+
 dp_meta <- readRDS(here::here("0_prep", "output", "dp_meta.rds"))
 dp_metrics <- readRDS(here::here("0_prep", "output", "dp_metrics.rds"))
 dp_metrics_county <- readRDS(here::here("0_prep", "output", "dp_metrics_county.rds"))
@@ -90,17 +93,23 @@ Proportion of indicator coverage by dimension:
 ```{r}
 #| label: indicator_coverage_by_dimension
 # n indicators
-dp_meta %>% 
+n_indicators <- dp_meta %>% 
   pull(indicator) %>% 
   unique() %>% 
   length()
+n_indicators
 # 70
 
+add_magic(n_indicators, "Total number of indicators in framework")
+
 # How many metrics?
-dp_meta %>% 
+n_metrics <- dp_meta %>% 
   filter(metric != "NONE", variable_name != "NONE") %>% 
   nrow()
+n_metrics
 # 61
+
+add_magic(n_metrics, "Total number of metrics to represent framework indicators")
 
 # Dimensions, indicators, metrics, and indicator representation
 tab <- dp_meta %>% 
@@ -177,7 +186,7 @@ latex_tab <- tab %>%
     `Trend Metrics` = totals$`Trend Metrics`
   ) %>%
   mutate(
-    represented = paste0(n_rep_ind, ' (', round(perc_rep_ind), '\\%)')
+    represented = paste0(n_rep_ind, ' (', format(round(perc_rep_ind, digits = 1), nsmall = 1), '\\%)')
   ) %>%
   select(
     dimension, indicators, represented, metrics,
@@ -194,7 +203,7 @@ latex_tab %>%
     booktabs = TRUE,
     escape = FALSE,
     digits = 1,
-    col.names = c('Dimension', 'N', 'Represented', 'N', 'County', 'Trend', 'County Trend')
+    col.names = c('Dimension', 'N', 'Represented', 'N', 'County', 'Trend', 'Both')
   ) %>%
   kable_styling(
     font_size = 10
@@ -844,3 +853,13 @@ ggsave(
 indicator_heatmap
 ```
 
+
+
+```{r}
+#| output: false
+path <- here::here("3_coverage", "output", "magic.yaml")
+save_magic(
+  magic,
+  path
+)
+```

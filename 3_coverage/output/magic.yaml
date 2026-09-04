@@ -1,0 +1,6 @@
+n_indicators:
+  value: 70
+  description: Total number of indicators in framework
+n_metrics:
+  value: 61
+  description: Total number of metrics to represent framework indicators
